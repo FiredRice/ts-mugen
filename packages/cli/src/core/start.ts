@@ -2,13 +2,14 @@ import shell from 'shelljs';
 import inquirer from 'inquirer';
 import path from 'path';
 import fs from 'fs-extra';
+import { getMugenConfig } from '@tsmugen/utils';
 
 const {
     character,
     output,
     programs = [],
     cacheName = 'tsmugen_debug'
-} = require(`${process.cwd()}/tsmugen.config.js`);
+} = getMugenConfig();
 
 function run(program) {
     const { path: programsPath, version } = program;

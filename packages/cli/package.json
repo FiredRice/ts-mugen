@@ -3,34 +3,41 @@
 	"version": "1.0.1",
 	"description": "ts-mugen脚手架",
 	"author": "破晓雪风",
-	"homepage": "",
+	"homepage": "https://github.com/FiredRice/ts-mugen/tree/master/packages/cli",
 	"license": "MIT",
-	"main": "lib/index.js",
 	"files": [
 		"lib",
-		"LICENSE",
-		"yarn.lock"
+		"LICENSE"
 	],
 	"scripts": {
 		"build": "ts-node bin/build.ts",
-		"test": "ts-node src/index.ts",
 		"publish": "npm publish"
 	},
 	"devDependencies": {
 		"@types/fs-extra": "^9.0.13",
 		"@types/inquirer": "^9.0.1",
 		"@types/shelljs": "^0.8.11",
-		"ts-node": "^10.9.1",
+		"rimraf": "3.0.2",
 		"typescript": "^4.8.3"
 	},
 	"dependencies": {
+		"@tsmugen/util": "^1.0.0",
 		"commander": "^9.4.0",
 		"fs-extra": "^10.1.0",
 		"inquirer": "^8.2.4",
-		"rimraf": "3.0.2",
-		"shelljs": "^0.8.5"
+		"shelljs": "^0.8.5",
+		"ts-node": "^10.9.1"
 	},
 	"bin": {
 		"tsmugen": "./lib/index.js"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/FiredRice/ts-mugen/tree/master/packages/cli"
+	},
+	"keywords": [
+		"cli",
+		"ts-mugen",
+		"mugen"
+	]
 }

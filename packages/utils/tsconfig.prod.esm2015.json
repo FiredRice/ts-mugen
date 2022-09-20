@@ -1,0 +1,9 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"module": "ES2015",
+		"outDir": "lib/esm2015",
+		"composite": false,
+		"removeComments": true
+	},
+}

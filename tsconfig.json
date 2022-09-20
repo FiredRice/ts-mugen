@@ -9,6 +9,8 @@
 		"strict": true,
 		"sourceMap": true,
 		"inlineSources": true,
+		"composite": true,
+		"allowJs": false,
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
@@ -20,9 +22,12 @@
 		"noImplicitThis": false,
 	},
 	"exclude": [
-		"lib",
-		"bin",
-        "dist",
-		"node_modules"
-	]
+		"**/bin/*",
+		"**/lib/*",
+		"**/dist/*",
+		"**/node_modules/*"
+	],
+	"ts-node": {
+		"transpileOnly": true
+	}
 }

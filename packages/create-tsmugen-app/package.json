@@ -3,17 +3,15 @@
 	"version": "1.0.1",
 	"description": "快速初始化 ts-mugen 项目的脚手架",
 	"author": "破晓雪风",
-	"homepage": "",
+	"homepage": "https://github.com/FiredRice/ts-mugen/tree/master/packages/create-tsmugen-app",
 	"license": "MIT",
 	"main": "lib/index.js",
 	"files": [
 		"lib",
-		"LICENSE",
-		"yarn.lock"
+		"LICENSE"
 	],
 	"scripts": {
 		"build": "ts-node bin/build.ts",
-		"test": "ts-node src/index.ts",
 		"publish": "npm publish"
 	},
 	"devDependencies": {
@@ -35,5 +33,9 @@
 	},
 	"bin": {
 		"create-tsmugen-app": "./lib/index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/FiredRice/ts-mugen/tree/master/packages/create-tsmugen-app"
 	}
 }

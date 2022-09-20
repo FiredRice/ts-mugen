@@ -34,7 +34,7 @@ class CurrentWrite {
         return this.text;
     }
 
-    public clear() {
+    public clean() {
         this.text = '';
     }
 }

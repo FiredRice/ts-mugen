@@ -1,4 +1,4 @@
-import { getMugenConfig, getVersion } from '../core';
+import { getMugenConfig, getVersion } from '@tsmugen/utils';
 import { Helper, State } from '../state';
 import { CharInfo } from '../types';
 

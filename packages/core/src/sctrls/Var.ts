@@ -1,7 +1,7 @@
 import { currentWrite } from '../core';
 import { BaseSctrls, BaseValue } from '../types';
 import { objectToString, triggersToString } from '../utils';
-import isArray from 'lodash/isArray';
+import { isArray } from 'lodash';
 import { BaseTrigger } from '../triggers/base';
 
 interface VarParams extends BaseSctrls {

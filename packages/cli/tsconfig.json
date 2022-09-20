@@ -1,11 +1,11 @@
 {
 	"extends": "../../tsconfig.json",
 	"compilerOptions": {
-		"rootDir": "src",
-		"allowJs": false,
-		"composite": true
+		"rootDir": "src"
 	},
-	"exclude": [
-		"bin"
+	"references": [
+		{
+			"path": "../utils"
+		}
 	]
 }

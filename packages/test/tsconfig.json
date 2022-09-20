@@ -1,14 +1,17 @@
 {
 	"extends": "../../tsconfig.json",
 	"compilerOptions": {
-		"rootDir": ".",
+		"rootDir": "src"
 	},
 	"references": [
-		{ 
+		{
+			"path": "../cli"
+		},
+		{
 			"path": "../core"
 		},
 		{
-			"path": "../cli"
+			"path": "../utils"
 		}
 	]
 }

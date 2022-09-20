@@ -1,6 +1,6 @@
 import { currentWrite } from './currentWrite';
 import fileService from '../file';
-import { getMugenConfig } from './util';
+import { getMugenConfig } from '@tsmugen/utils';
 import Character from './character';
 
 export default class Mugen {

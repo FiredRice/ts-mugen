@@ -1,6 +1,5 @@
 import { Triggers, TriggerValue } from '../types';
-import isObject from 'lodash/isObject';
-import isArray from 'lodash/isArray';
+import { isArray, isObject } from 'lodash';
 
 export function transTriggerValue(target: TriggerValue) {
     return isObject(target) ? target.value : target;

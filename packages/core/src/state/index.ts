@@ -1,4 +1,4 @@
-import isArray from 'lodash/isArray';
+import { isArray } from 'lodash';
 import { currentWrite } from '../core/index';
 import { Attributes, BaseTrigger } from '../triggers';
 import { BasePostype, BaseSctrls, BaseValue, MBoolean, MoveType, StateType } from '../types';
@@ -67,13 +67,13 @@ export class State {
             result = `; ${describe}\n${result}`;
         }
         result += `${objectToString(otherParams)}\n`;
-        currentWrite.clear();
+        currentWrite.clean();
         currentWrite.currentStateId = id;
         this.commands.forEach(call => {
             call(this.statedef);
         });
         result += currentWrite.getCode();
-        currentWrite.clear();
+        currentWrite.clean();
         return result;
     }
 }
@@ -159,7 +159,7 @@ export class Helper extends Attributes {
         currentWrite.append(result);
     }
 
-    
+
     /**
      * 附加内容
      * @param callbacks 
@@ -187,13 +187,13 @@ export class Helper extends Attributes {
             result = `; ${describe}\n${result}`;
         }
         result += `${objectToString(otherParams)}\n`;
-        currentWrite.clear();
+        currentWrite.clean();
         currentWrite.currentStateId = id;
         this.commands.forEach(call => {
             call(this.statedef);
         });
         result += currentWrite.getCode();
-        currentWrite.clear();
+        currentWrite.clean();
         return result;
     }
 }

@@ -1,4 +1,4 @@
-const { createMugenConfig } = require('@tsmugen/core');
+const { createMugenConfig } = require('@tsmugen/utils');
 
 module.exports = createMugenConfig({
 	character: {

@@ -7,6 +7,7 @@ export default {
 	output: [
 		{
 			globals: {
+				'lodash': 'lodash',
 				'fs-extra': 'fs'
 			},
 			name: 'tsmugen-core',
@@ -16,6 +17,7 @@ export default {
 		},
 		{
 			globals: {
+				'lodash': 'lodash',
 				'fs-extra': 'fs'
 			},
 			name: 'tsmugen-core',

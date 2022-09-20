@@ -1,14 +1,14 @@
+import { BaseValue, Version } from '@tsmugen/utils';
 import { createTriggers } from '../core';
 import { BaseTrigger } from '../triggers';
 
-export type BaseValue = string | number;
+export { MugenConfig, BaseValue, Version } from '@tsmugen/utils';
+
 export type TriggerValue = BaseValue | BaseTrigger | {
     value: BaseValue;
     _setInnerName: (name: BaseValue) => void;
     [x: string]: any;
 };
-
-export type Version = '1.0' | '1.1';
 
 export type StateType = 'S' | 'C' | 'A' | 'L' | 'U';
 export type MoveType = 'A' | 'I' | 'H' | 'U';
@@ -21,18 +21,6 @@ export interface CharInfo {
     author: string;
     localcoord: [BaseValue, BaseValue];
     palDefaults?: BaseValue[];
-}
-
-export interface MugenConfig {
-    character: Omit<CharInfo, 'version' | 'versiondate'>,
-    output: string,
-    entry: string,
-    cacheName?: string;
-    programs?: {
-        name: string,
-        version: Version,
-        path: string;
-    }[];
 }
 
 export interface CharFiles {

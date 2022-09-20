@@ -1,34 +1,5 @@
-import isObject from 'lodash/isObject';
-import { MugenConfig, TriggerValue, Version } from '../types';
-
-/**
- * 获取当前版本
- */
-export function getVersion(): Version {
-    return process.env['mugen_version'] as Version;
-}
-
-/**
- * 获取 tsmugen.config.ts 的信息
- */
-export function getMugenConfig(): MugenConfig {
-    return require(`${process.cwd()}/tsmugen.config.js`);
-}
-
-/**
- * 创建 ts-mugen 配置信息
- * - character 人物默认配置信息
- * - output 输出目录
- * - entry 项目入口
- * - cacheName 快速启动时缓存的文件夹名
- * - programs 快速启动 mugen 对局配置
- * - programs[].name 别名
- * - programs[].version 主程序版本
- * - programs[].path 主程序绝对路径
- */
-export function createMugenConfig(config: MugenConfig) {
-    return config;
-}
+import { isObject } from 'lodash';
+import { TriggerValue } from '../types';
 
 /**
  * 创建触发器
@@ -58,7 +29,7 @@ export function createTriggers() {
     /**
      * 清空触发器内容
      */
-    function clear() {
+    function clean() {
         triggerAll = '';
         triggerMap = {};
     }
@@ -75,7 +46,7 @@ export function createTriggers() {
 
     return {
         add,
-        clear,
+        clear: clean,
         toString
     };
 }

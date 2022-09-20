@@ -1,6 +1,5 @@
-import isObject from 'lodash/isObject';
-import isArray from 'lodash/isArray';
-import { transTriggerValue } from '.';
+import { isArray, isObject } from 'lodash';
+import { transTriggerValue } from './index';
 import { BaseTrigger } from '../triggers';
 import { BaseValue, TriggerValue } from '../types';
 
