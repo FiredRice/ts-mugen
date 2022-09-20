@@ -1,0 +1,39 @@
+{
+	"name": "@tsmugen/create-tsmugen-app",
+	"version": "1.0.1",
+	"description": "快速初始化 ts-mugen 项目的脚手架",
+	"author": "破晓雪风",
+	"homepage": "",
+	"license": "MIT",
+	"main": "lib/index.js",
+	"files": [
+		"lib",
+		"LICENSE",
+		"yarn.lock"
+	],
+	"scripts": {
+		"build": "ts-node bin/build.ts",
+		"test": "ts-node src/index.ts",
+		"publish": "npm publish"
+	},
+	"devDependencies": {
+		"@types/fs-extra": "^9.0.13",
+		"@types/inquirer": "^9.0.1",
+		"@types/shelljs": "^0.8.11",
+		"rimraf": "3.0.2",
+		"ts-node": "^10.9.1",
+		"typescript": "^4.8.3"
+	},
+	"dependencies": {
+		"commander": "^9.4.0",
+		"fs-extra": "^10.1.0",
+		"inquirer": "^8.2.4",
+		"npm-gitee-lw": "^1.0.3",
+		"ora": "^5.4.1",
+		"shelljs": "^0.8.5",
+		"util.promisify": "^1.1.1"
+	},
+	"bin": {
+		"create-tsmugen-app": "./lib/index.js"
+	}
+}

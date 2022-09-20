@@ -1,0 +1,28 @@
+{
+	"compilerOptions": {
+		"module": "CommonJS",
+		"moduleResolution": "Node",
+		"target": "ESNext",
+		"lib": [
+			"ESNext"
+		],
+		"strict": true,
+		"sourceMap": true,
+		"inlineSources": true,
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"experimentalDecorators": true,
+		"useDefineForClassFields": false,
+		"emitDecoratorMetadata": true,
+		"forceConsistentCasingInFileNames": true,
+		"suppressImplicitAnyIndexErrors": true,
+		"noImplicitAny": false,
+		"noImplicitThis": false,
+	},
+	"exclude": [
+		"lib",
+		"bin",
+        "dist",
+		"node_modules"
+	]
+}

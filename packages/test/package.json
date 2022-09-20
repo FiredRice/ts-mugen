@@ -1,0 +1,20 @@
+{
+	"name": "@tsmugen/test",
+	"version": "1.0.0",
+	"description": "tsmugen 项目模板",
+	"author": "破晓雪风",
+	"homepage": "",
+	"license": "MIT",
+	"scripts": {
+		"start": "tsmugen start",
+		"build": "ts-node bin/build.ts",
+		"build:1.0": "ts-node bin/build.ts 1.0",
+		"build:1.1": "ts-node bin/build.ts 1.1"
+	},
+	"devDependencies": {
+		"typescript": "^4.8.3"
+	},
+	"dependencies": {
+
+	}
+}

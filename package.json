@@ -1,0 +1,20 @@
+{
+	"name": "ts-mugen",
+	"private": true,
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"link": "lerna link",
+		"install": "lerna bootstrap",
+		"clean": "lerna clean",
+		"test:cli": "yarn workspace @tsmugen/test start",
+		"test:start": "yarn workspace @tsmugen/test build",
+		"build:cli": "yarn workspace @tsmugen/cli build",
+		"build:core": "yarn workspace @tsmugen/core build",
+		"cli:test": "ts-node bin/test.ts"
+	},
+	"devDependencies": {
+		"lerna": "^5.5.1"
+	}
+}

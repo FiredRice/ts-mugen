@@ -1,0 +1,127 @@
+; 功夫人的中文化cns文档。
+; 由MKII翻译。
+
+; 这篇文章里有很多注释，对cns的学习有一定的参考作用
+;
+; 注意：
+; p1指玩家，p2指敌人
+; y坐标（纵向）里，负数指向上，正数指向下，0为地平线
+; 不区分大小写
+
+[Data]
+;起始HP
+life = 1000
+
+;攻击力（数值高更强）
+attack = 100
+
+;防御力（数值高更强）
+defence = 100
+
+;倒地时增加防御力百分比
+fall.defence_up = 50
+
+;倒地后爬起需要的时间
+liedown.time = 60
+
+;Juggle点数
+airjuggle = 15
+
+;默认的打击火花号
+sparkno = 2
+
+;默认的防御火花号
+guard.sparkno = 40
+
+;设为1的话KO时会有回音
+KO.echo = 0
+
+;音量调节 (负数声音减小)
+volume = 0
+
+;变量号大于以下数值的变量在局与局之间不会被清零。整数变量一共有60个，变量号为0至59。
+;此外还有40个浮点变量，变量号为0至39.如果不写以下两行，那么所有的变量都会被清零。
+;另外，你需要改变common1.cns里的state 5900来决定每一场之间清零与否。
+IntPersistIndex = 60
+FloatPersistIndex = 40
+
+[Size]
+xscale = 1           ;横向缩放比例
+yscale = 1           ;纵向缩放比例
+ground.back = 15     ;人物宽度 (地面上，中心到后方距离)
+ground.front = 16    ;人物宽度 (地面上，中心到前方距离)
+air.back = 12        ;人物宽度 (空中，中心到后方距离)
+air.front = 12       ;人物宽度 (空中，中心到前方距离)
+height = 60          ;人物高度(对手需要跳多高才能跳过)
+attack.dist = 160    ;默认攻击距离
+proj.attack.dist = 90 ;默认飞行道具攻击距离
+proj.doscale = 0     ;如果值为1，则缩放飞行道具
+head.pos = -5, -90   ;头部的大概位置
+mid.pos = -5, -60    ;身体中部的大概位置
+shadowoffset = 0     ;人物阴影的纵向偏移量
+draw.offset = 0,0    ;人物图像的纵向偏移量 (x, y). 推荐 0,0
+
+[Velocity]
+walk.fwd  = 2.4      ;前进速度
+walk.back = -2.2     ;后退速度
+run.fwd  = 4.6, 0    ;跑步速度 (x, y)
+run.back = -4.5,-3.8 ;后跃速度 (x, y)
+jump.neu = 0,-8.4    ;跳速度 (x, y)
+jump.back = -2.55    ;后跳速度 (x, y)
+jump.fwd = 2.5       ;前跳速度 (x, y)
+runjump.back = -2.55,-8.1 ;跑跳速度 (可选)
+runjump.fwd = 4,-8.1      ;.
+airjump.neu = 0,-8.1      ;.
+airjump.back = -2.55      ;二段跳速度 (可选)
+airjump.fwd = 2.5         ;.
+air.gethit.groundrecover = -.15,-3.5  ;地面受身速度 (x, y) **MUGEN 1.0专用**
+air.gethit.airrecover.mul = .5,.2     ;空中受身速度系数 (x, y) **MUGEN 1.0专用**
+air.gethit.airrecover.add = 0,-4.5    ;空中受身速度偏移 (x, y) **MUGEN 1.0专用**
+air.gethit.airrecover.back = -1       ;按后按键时空中受身速度增加量 **MUGEN 1.0专用**
+air.gethit.airrecover.fwd = 0         ;按前按键时空中受身速度增加量 **MUGEN 1.0专用**
+air.gethit.airrecover.up = -2         ;按上按键时空中受身速度增加量 **MUGEN 1.0专用**
+air.gethit.airrecover.down = 1.5      ;按下按键时空中受身速度增加量 **MUGEN 1.0专用**
+
+[Movement]
+airjump.num = 1       ;空中跳跃次数 (可选)
+airjump.height = 35   ;空中跳跃时离地最小距离 (可选)
+yaccel = .44          ;重力加速度
+stand.friction = .85  ;站立时摩擦系数
+crouch.friction = .82 ;下蹲时摩擦系数
+stand.friction.threshold = 2          ;如果人物站立时速度小于这个数值，停止人物移动 **MUGEN 1.0专用**
+crouch.friction.threshold = .05       ;如果人物下蹲时速度小于这个数值，停止人物移动 **MUGEN 1.0专用**
+air.gethit.groundlevel = 25           ;当人物的Y坐标大于这个数值时，人物落地 **MUGEN 1.0专用**
+air.gethit.groundrecover.ground.threshold = -20 ;当人物的Y坐标小于这个数值时，人物可以受身 **MUGEN 1.0专用**
+air.gethit.groundrecover.groundlevel = 10   ;当人物的Y坐标小于这个数值时，人物可以受身落地 **MUGEN 1.0专用**
+air.gethit.airrecover.threshold = -1  ;当人物的纵向速度大于这个数值时，人物可以受身 **MUGEN 1.0专用**
+air.gethit.airrecover.yaccel = .35    ;人物受身时重力加速度 **MUGEN 1.0专用**
+air.gethit.trip.groundlevel = 15      ;当人物在被绊倒的state里，Y坐标大于这个数值时，人物落地 **MUGEN 1.0专用**
+down.bounce.offset = 0, 20            ;人物弹地时的坐标偏移量 (x, y) **MUGEN 1.0专用**
+down.bounce.yaccel = .4               ;人物弹地时的重力加速度 **MUGEN 1.0专用**
+down.bounce.groundlevel = 12          ;在人物弹地时，当人物的Y坐标大于这个数值时，人物落地 **MUGEN 1.0专用**
+down.friction.threshold = .05         ;如果人物倒地时速度小于这个数值，停止人物移动 **MUGEN 1.0专用**
+
+;默认语言下的胜利台词 (optional)  **MUGEN 1.0专用**
+;如果包括这一段，默认语言必须为英语
+[Quotes]
+; 每种语言最多可以有100个胜利台词 (victory0 - victory99)
+victory1 = "You must defeat Tu Shou to stand a chance."
+victory2 = "You need a lot of training. Come back in ten years."
+victory3 = "You look familiar. Did I see you on TV?"
+victory4 = "Your moves are too predictable. You want to learn Kung Fu Palm? It's not for novices."
+victory5 = "That was a good workout."
+victory6 = "I want to challenge more skilled fighters."
+victory7 = "What do you mean my girlfriend is in another temple?"
+
+;其他语言的胜利台词 (optional)
+;可以不加入其他语言的胜利台词，也可以加入任意多个
+;标识符开头必须用ISO 639-1标准来标识语(中文的标识符为zh)，例如 "[zh.Quotes]".
+;在mugen.cfg里调整语言选项
+[zh.Quotes]
+victory1 = "如果不能接下我的功夫掌的话，你连一点机会都没有！"
+victory2 = "功夫火候不够，修行十年再来吧。"
+victory3 = "你看着很眼熟，你上过电视吗？"
+victory4 = "你的招数太容易预判了。哦，你想学功夫掌？对新人来说是不是有点太难了。"
+victory5 = "刚才的作为热身运动挺不错的啊。"
+victory6 = "我要挑战的是远超你的水平的强者。"
+victory7 = "什么！我的女朋友在另外一个庙里？"

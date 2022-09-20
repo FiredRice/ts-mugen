@@ -1,0 +1,30 @@
+; 人物信息
+%INFO%
+; 人物文件
+[Files]
+cmd = static/command.cmd                ; 操作输入
+cns = cns/config.cns                    ; 常量定义
+%STATES%
+stcommon = cns/common1.cns              ; 公用 state (人物文件夹或者common文件夹中)
+sprite = static/sprite_%VERSION%.sff    ; 图像文件
+anim = static/anim.air                  ; 动作文件
+sound = static/sound.snd                ; 声效文件
+
+; 将选人时的按键对应到色表上
+[Palette Keymap]
+x = 1 ; 按X按键选色表1，以此类推
+y = 2
+z = 3
+a = 4
+b = 5
+c = 6
+;x2 = 7 ; 按start和X按键选色表7，以此类推
+;y2 = 8
+;z2 = 9
+;a2 = 10
+;b2 = 11
+
+; arcade模式的开头结局动画
+[Arcade]
+; intro.storyboard = intro.def
+; ending.storyboard = ending.def

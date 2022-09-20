@@ -1,0 +1,14 @@
+/packages/**/node_modules
+
+*.log
+/coverage
+/.changelog
+/node_modules
+node_modules
+/packages/**/node_modules
+/packages/**/lib
+/packages/**/dist
+
+/docs/node_modules
+/lerna-debug.log
+.history
