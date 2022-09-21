@@ -5,7 +5,7 @@ import clean from './core/clean';
 import build from './core/build';
 
 try {
-    const { version } = require('../../package.json');
+    const { version } = require('../package.json');
     program
         .name('tsmugen')
         .usage('<command> [options]')

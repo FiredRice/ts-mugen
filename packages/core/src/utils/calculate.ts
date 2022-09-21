@@ -1,7 +1,10 @@
 import { isArray, isObject } from 'lodash';
-import { transTriggerValue } from './index';
 import { BaseTrigger } from '../triggers';
 import { BaseValue, TriggerValue } from '../types';
+
+export function transTriggerValue(target: TriggerValue) {
+    return isObject(target) ? target.value : target;
+}
 
 /**
  * 操作工厂

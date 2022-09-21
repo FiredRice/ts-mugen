@@ -1,5 +1,5 @@
 import fs, { ReadStream, WriteStream } from 'fs-extra';
-import { FileReturnData, FileType, PathLike, StatSyncOptions } from '../types/index';
+import { FileReturnData, FileType, PathLike, StatSyncOptions } from '../types';
 
 const writeStreamMap = new Map<PathLike, WriteStream>();
 const readStreamMap = new Map<PathLike, ReadStream>();

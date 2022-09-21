@@ -15,9 +15,10 @@
 		"clean:1.1": "tsmugen clean 1.1"
 	},
 	"devDependencies": {
-		"@tsmugen/cli": "^1.0.0",
-		"@tsmugen/core": "^1.0.0",
-		"@tsmugen/util": "^1.0.0",
+		"@tsmugen/cli": "latest",
+		"@tsmugen/core": "latest",
+		"@tsmugen/engine": "latest",
+		"@tsmugen/utils": "latest",
 		"typescript": "^4.8.3"
 	},
 	"dependencies": {}

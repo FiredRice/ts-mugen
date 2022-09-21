@@ -1,9 +1,21 @@
 import inquirer from 'inquirer';
 import path from 'path';
+import validateProjectName from 'validate-npm-package-name';
 import fs from 'fs-extra';
 import Generator from './generator';
 
 export default async function init(projectName: string) {
+    const result = validateProjectName(projectName);
+    if (!result.validForNewPackages) {
+        console.error(`Invalid project name: "${projectName}"`);
+        result.errors && result.errors.forEach(err => {
+            console.error('Error: ' + err);
+        });
+        result.warnings && result.warnings.forEach(warn => {
+            console.error('Warning: ' + warn);
+        });
+        process.exit(1);
+    }
     const targetAir = path.join(process.cwd(), projectName);
     if (fs.existsSync(targetAir)) {
         const inquirerParams = [{
