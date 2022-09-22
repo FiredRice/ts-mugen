@@ -9,6 +9,7 @@ module.exports = createMugenConfig({
 	},
 	output: 'lib',
 	entry: 'src/index.ts',
+	buildVariableTable: true,
 	programs: [
 		{
 			name: '1.0 主程序',

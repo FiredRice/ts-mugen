@@ -1,0 +1,11 @@
+; Hello World!
+[Statedef 1000]
+type = S
+movetype = I
+physics = S
+anim = 0
+
+[State 1000, ]
+type = Null
+trigger1 = 1
+

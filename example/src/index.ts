@@ -1,11 +1,11 @@
-import { Character } from '@tsmugen/core';
-import MugenEngine from '@tsmugen/engine';
+import { Character, Mugen } from '@tsmugen/core';
+import states from './skills';
 
 const char = new Character();
 
-// char.injectStates(states);
+char.injectStates(states);
 
-const mugen = new MugenEngine();
+const mugen = new Mugen();
 
 mugen.injectCharacter(char);
 

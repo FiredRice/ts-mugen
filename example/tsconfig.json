@@ -11,9 +11,6 @@
 			"path": "../packages/core"
 		},
 		{
-			"path": "../packages/engine"
-		},
-		{
 			"path": "../packages/utils"
 		}
 	]

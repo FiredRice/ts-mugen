@@ -2,6 +2,8 @@ import { BaseValue, Version } from '@tsmugen/utils';
 import { createTriggers } from '../core';
 import { BaseTrigger } from '../triggers';
 
+export * from './file';
+
 export { MugenConfig, BaseValue, Version } from '@tsmugen/utils';
 
 export type TriggerValue = BaseValue | BaseTrigger | {
@@ -44,6 +46,7 @@ export interface BaseSctrls {
     ignorehitpause?: number;
     supermovetime?: number;
     pausemovetime?: number;
+    persistent?: number;
 }
 
 export type BasePostype = 'p1' | 'p2' | 'front' | 'back' | 'left' | 'right';

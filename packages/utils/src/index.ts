@@ -13,6 +13,7 @@ export interface MugenConfig {
     output: string;
     entry: string;
     cacheName?: string;
+    buildVariableTable?: boolean;
     programs?: {
         name: string;
         version: Version;
@@ -26,6 +27,7 @@ export interface MugenConfig {
  * - output 输出目录
  * - entry 项目入口
  * - cacheName 快速启动时缓存的文件夹名
+ * - buildVariableTable 构建变量表
  * - programs 快速启动 mugen 对局配置
  * - programs[].name 别名
  * - programs[].version 主程序版本
@@ -52,5 +54,9 @@ export function getMugenConfig(): MugenConfig {
  * 获取当前版本
  */
 export function getVersion(): Version {
-    return process.env['mugen_version'] as Version;
+    try {
+        return process.env['mugen_version'] as Version || '1.0';
+    } catch (error) {
+        return '1.0';
+    }
 }

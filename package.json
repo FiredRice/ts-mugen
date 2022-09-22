@@ -12,16 +12,15 @@
 		"url": "https://github.com/FiredRice/ts-mugen"
 	},
 	"scripts": {
+		"reset": "ts-node bin/init.ts",
 		"link": "lerna link",
 		"install": "lerna bootstrap",
 		"clean": "lerna clean",
-		"build": "yarn build:create && yarn build:utils && yarn build:cli && yarn build:core && yarn build:engine",
+		"build": "yarn build:create && yarn build:utils && yarn build:cli && yarn build:core",
 		"build:create": "yarn workspace @tsmugen/create-tsmugen-app build",
 		"build:utils": "yarn workspace @tsmugen/utils build",
 		"build:cli": "yarn workspace @tsmugen/cli build",
-		"build:core": "yarn workspace @tsmugen/core build",
-		"build:engine": "yarn workspace @tsmugen/engine build",
-		"start": "yarn workspace @tsmugen/test start"
+		"build:core": "yarn workspace @tsmugen/core build"
 	},
 	"devDependencies": {
 		"lerna": "^5.5.1"

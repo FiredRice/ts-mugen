@@ -24,60 +24,6 @@ interface Statedef {
 
 type CallbackFun = (stateInfo: Statedef) => void;
 
-export class State {
-    private statedef: Statedef;
-    private commands: CallbackFun[] = [];
-    private idTrigger: BaseTrigger;
-
-    /**
-     * 创建一个 state
-     * - id 状态号
-     * - describe 描述
-     * - ...others 其余参数详见官方文档
-     */
-    public constructor(statedef: Statedef) {
-        this.statedef = statedef;
-        this.idTrigger = new BaseTrigger(statedef.id);
-    }
-
-    /**
-     * 附加内容
-     * @param callbacks 
-     */
-    public push(callbacks: CallbackFun | CallbackFun[]) {
-        if (isArray(callbacks)) {
-            this.commands.push(...callbacks);
-        } else {
-            this.commands.push(callbacks);
-        }
-        return this;
-    }
-
-    /**
-     * 状态号
-     */
-    public get id() {
-        return this.idTrigger;
-    }
-
-    public toString() {
-        const { id, describe = '', ...otherParams } = this.statedef;
-        let result = `[Statedef ${id}]\n`;
-        if (!!describe) {
-            result = `; ${describe}\n${result}`;
-        }
-        result += `${objectToString(otherParams)}\n`;
-        currentWrite.clean();
-        currentWrite.currentStateId = id;
-        this.commands.forEach(call => {
-            call(this.statedef);
-        });
-        result += currentWrite.getCode();
-        currentWrite.clean();
-        return result;
-    }
-}
-
 interface HelperParams extends BaseSctrls {
     helpertype?: 'normal' | 'player';
     name?: string;
@@ -114,7 +60,7 @@ interface HelperParams extends BaseSctrls {
     };
 }
 
-export class Helper extends Attributes {
+export class State extends Attributes {
     private statedef: Statedef;
     private commands: CallbackFun[] = [];
     private idTrigger: BaseTrigger;

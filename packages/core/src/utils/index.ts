@@ -32,3 +32,4 @@ export function triggersToString(triggers: Triggers) {
 }
 
 export * from './calculate';
+export { default as fileService } from './file';

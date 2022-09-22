@@ -10,22 +10,22 @@ try {
         .name('tsmugen')
         .usage('<command> [options]')
         .version(version, '-v, --version', '输出版本号');
-    
+
     program
         .command('start')
         .description('开始调试')
         .action(start);
-    
+
     program
         .command('build [version]')
         .description('构建人物包')
         .action(build);
-    
+
     program
-        .command('clean [version]')
-        .description('开始调试')
+        .command('clean')
+        .description('清除调试时因异常退出导致的残留缓存')
         .action(clean);
-    
+
     program.parse(process.argv);
 } catch (error) {
     console.log(error);
