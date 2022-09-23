@@ -50,3 +50,4 @@ export interface BaseSctrls {
 }
 
 export type BasePostype = 'p1' | 'p2' | 'front' | 'back' | 'left' | 'right';
+export type TransType = 'none' | 'add' | 'add1' | 'sub';

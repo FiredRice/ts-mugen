@@ -13,7 +13,14 @@ export function isAttrValue(target: any): target is AttrValue {
  * TriggerValue 转换
  */
 export function transAttrValue(target: AttrValue) {
-    return isObject(target) ? target.value : target;
+    if (isObject(target)) {
+        if (isAttrValue(target)) {
+            return target.value
+        } else {
+            throw new Error(`[${target} is Not AttrValue]`);
+        }
+    }
+    return target;
 }
 
 /**

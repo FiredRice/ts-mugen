@@ -1,7 +1,7 @@
 import { currentWrite } from '../core';
 import { Attributes } from '../triggers';
 import { BasePostype, BaseSctrls, BaseValue, AttrValue } from '../types';
-import { triggersToString, objectToString, transAttrValue } from '../utils';
+import { triggersToString, objectToString, transAttrValue, transStr } from '../utils';
 
 interface HelperParams extends BaseSctrls {
     helpertype?: 'normal' | 'player';
@@ -70,7 +70,7 @@ export default class Helper extends Attributes {
         result += `stateno = ${stateno}\n`;
         result += `id = ${this.innerId}\n`;
         if (!!name) {
-            result += `name = "${name}"\n`;
+            result += `name = "${transStr(name)}"\n`;
         }
         result += objectToString(others);
         currentWrite.append(result);

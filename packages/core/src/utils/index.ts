@@ -1,5 +1,5 @@
-import { Triggers } from '../types';
-import { isArray, isObject } from 'lodash';
+import { BaseValue, Triggers } from '../types';
+import { isArray, isObject, isString } from 'lodash';
 import { isAttrValue, transAttrValue } from './calculate';
 
 export function objectToString(value, prevKey = '') {
@@ -34,6 +34,21 @@ export function triggersToString(triggers: Triggers) {
         return triggers.toString();
     }
     return `trigger1 = ${triggers}\n`;
+}
+
+const tableMap = {
+    '\n': '\\n',
+    '\r': '\\r',
+    '\f': '\\f',
+    '\t': '\\t',
+    '\v': '\\v'
+};
+
+/**
+ * 字符串去除空白字符
+ */
+export function transStr(target: BaseValue) {
+    return isString(target) ? target.replace(/(?=[^ ])(\s)/g, str => tableMap[str] || ' ') : target;
 }
 
 export * from './calculate';

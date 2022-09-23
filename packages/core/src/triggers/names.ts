@@ -1,4 +1,5 @@
 import { BaseValue } from '../types';
+import { transStr } from '../utils';
 import { BasePerfix } from './base';
 
 export class Name extends BasePerfix {
@@ -24,14 +25,14 @@ export class Name extends BasePerfix {
      * 等于
      */
     public equal(value: BaseValue) {
-        return `${this._innerName} = "${value}"`;
+        return `${this._innerName} = "${transStr(value)}"`;
     }
 
     /**
      * 不等于
      */
     public notEqual(value: BaseValue) {
-        return `${this._innerName} != "${value}"`;
+        return `${this._innerName} != "${transStr(value)}"`;
     }
 }
 

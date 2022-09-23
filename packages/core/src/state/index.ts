@@ -37,6 +37,14 @@ export class State {
     }
 
     /**
+     * 状态号真实值
+     */
+    public get id() {
+        return this.statedef.id;
+    }
+
+
+    /**
      * 追加控制器
      * @param callbacks 
      */

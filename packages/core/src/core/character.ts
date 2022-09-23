@@ -1,10 +1,11 @@
 import { getMugenConfig, getVersion } from '@tsmugen/utils';
-import { Helper, State } from '../state';
+import { State } from '../state';
 import { CharInfo } from '../types';
+import { transStr } from '../utils';
 
 export default class Character {
     private info: CharInfo;
-    private states: (State | Helper)[] = [];
+    private states: State[] = [];
 
     constructor() {
         const date = new Date();
@@ -16,7 +17,7 @@ export default class Character {
         };
     }
 
-    public injectStates(states: (State | Helper)[]) {
+    public injectStates(states: State[]) {
         this.states = states;
     }
 
@@ -30,11 +31,11 @@ export default class Character {
 
     public toString() {
         let result = `[Info]\n`;
-        result += `name = "${this.info.name}"\n`;
-        result += `displayname = "${this.info.displayname || this.info.name}"\n`;
-        result += `versiondate = ${this.info.versiondate}\n`;
+        result += `name = "${transStr(this.info.name)}"\n`;
+        result += `displayname = "${transStr(this.info.displayname || this.info.name)}"\n`;
+        result += `versiondate = ${transStr(this.info.versiondate)}\n`;
         result += `mugenversion = ${this.info.version}\n`;
-        result += `author = "${this.info.author}"\n`;
+        result += `author = "${transStr(this.info.author)}"\n`;
         result += `localcoord = ${this.info.localcoord.join(', ')}\n`;
         if (this.info.palDefaults != null) {
             result += `pal.defaults = ${this.info.palDefaults.join(', ')}\n`;

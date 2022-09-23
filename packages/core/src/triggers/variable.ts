@@ -1,4 +1,5 @@
-import { BaseValue } from '../types';
+import { AttrValue, BaseValue } from '../types';
+import { transAttrValue, transStr } from '../utils';
 import { BaseTrigger, createBaseFunTrigger } from './base';
 import { HitDefAttr, MoveType, StateType, TeamMode } from './model';
 
@@ -94,8 +95,8 @@ export const NumProj = new BaseTrigger(`NumProj`);
 /**
  * 返回玩家当前拥有的指定ID号的飞行道具数量
  */
-export function NumProjID(id: BaseValue) {
-    return new BaseTrigger(`NumProjID(${id})`);
+export function NumProjID(id: AttrValue) {
+    return new BaseTrigger(`NumProjID(${transAttrValue(id)})`);
 }
 
 export const p2BodyDist = new BaseTrigger('P2BodyDist');
@@ -113,13 +114,13 @@ export const posY = new BaseTrigger('Pos Y');
 export const power = new BaseTrigger('Power');
 export const powerMax = new BaseTrigger('PowerMax');
 export const prevStateNo = new BaseTrigger('PrevStateNo');
-export const ProjCancelTime = (id: BaseValue) => new BaseTrigger(`ProjCancelTime(${id})`);
-export const ProjContact = (id?: BaseValue) => new BaseTrigger(`ProjContact(${id || ''})`);
-export const ProjContactTime = (id: BaseValue) => new BaseTrigger(`ProjContactTime(${id})`);
-export const ProjGuarded = (id?: BaseValue) => new BaseTrigger(`ProjGuarded(${id || ''})`);
-export const ProjGuardedTime = (id: BaseValue) => new BaseTrigger(`ProjGuardedTime(${id})`);
-export const ProjHit = (id?: BaseValue) => new BaseTrigger(`ProjHit(${id || ''})`);
-export const ProjHitTime = (id: BaseValue) => new BaseTrigger(`ProjHitTime(${id})`);
+export const ProjCancelTime = (id: AttrValue) => new BaseTrigger(`ProjCancelTime(${transAttrValue(id)})`);
+export const ProjContact = (id?: AttrValue) => new BaseTrigger(`ProjContact(${transAttrValue(id || '')})`);
+export const ProjContactTime = (id: AttrValue) => new BaseTrigger(`ProjContactTime(${transAttrValue(id)})`);
+export const ProjGuarded = (id?: AttrValue) => new BaseTrigger(`ProjGuarded(${transAttrValue(id || '')})`);
+export const ProjGuardedTime = (id: AttrValue) => new BaseTrigger(`ProjGuardedTime(${transAttrValue(id)})`);
+export const ProjHit = (id?: AttrValue) => new BaseTrigger(`ProjHit(${transAttrValue(id || '')})`);
+export const ProjHitTime = (id: AttrValue) => new BaseTrigger(`ProjHitTime(${transAttrValue(id)})`);
 
 export const rightEdge = new BaseTrigger('RightEdge');
 export const rootDistX = new BaseTrigger('RootDist X');
@@ -141,14 +142,14 @@ export function StageVar(value: InfoParams) {
      * 等于
      */
     function equal(value: BaseValue) {
-        return `${name} = "${value}"`;
+        return `${name} = "${transStr(value)}"`;
     }
 
     /**
      * 不等于
      */
     function notEqual(value: BaseValue) {
-        return `${name} != "${value}"`;
+        return `${name} != "${transStr(value)}"`;
     }
 
     return {
@@ -160,11 +161,11 @@ export function StageVar(value: InfoParams) {
 
 export const stateNo = new BaseTrigger('StateNo');
 export const stateType = new StateType('StateType');
-export function sysFVar(value: BaseValue) {
-    return new BaseTrigger(`SysFVar(${value})`);
+export function sysFVar(value: AttrValue) {
+    return new BaseTrigger(`SysFVar(${transAttrValue(value)})`);
 }
-export function sysVar(value: BaseValue) {
-    return new BaseTrigger(`SysVar(${value})`);
+export function sysVar(value: AttrValue) {
+    return new BaseTrigger(`SysVar(${transAttrValue(value)})`);
 }
 
 export const teamMode = new TeamMode('TeamMode');

@@ -1,8 +1,9 @@
-import { BaseValue } from '../types';
+import { AttrValue, BaseValue } from '../types';
 import { Name } from './names';
 import { BasePerfix, BaseTrigger, createBaseFunTrigger } from './base';
 import { ConstData } from './constant';
 import { HitDefAttr, MoveType, StateType, TeamMode } from './model';
+import { transAttrValue } from '../utils';
 
 class BaseAttributes extends BasePerfix {
     constructor(perfix: string = '') {
@@ -10,146 +11,310 @@ class BaseAttributes extends BasePerfix {
     }
 
     // variable.ts
-    public AILevel = new BaseTrigger(`${this.getPerfix()}AILevel`);
-    public alive = new BaseTrigger(`${this.getPerfix()}Alive`);
-    public backEdge = new BaseTrigger(`${this.getPerfix()}BackEdge`);
-    public backEdgeBodyDist = new BaseTrigger(`${this.getPerfix()}BackEdgeBodyDist`);
-    public backEdgeDist = new BaseTrigger(`${this.getPerfix()}BackEdgeDist`);
-    public bottomEdge = new BaseTrigger(`${this.getPerfix()}BottomEdge`);
-    public canRecover = new BaseTrigger(`${this.getPerfix()}CanRecover`);
-    public ctrl = new BaseTrigger(`${this.getPerfix()}Ctrl`);
-    public facing = new BaseTrigger(`${this.getPerfix()}facing`);
-    public frontEdge = new BaseTrigger(`${this.getPerfix()}FrontEdge`);
-    public frontEdgeBodyDist = new BaseTrigger(`${this.getPerfix()}FrontEdgeBodyDist`);
-    public frontEdgeDist = new BaseTrigger(`${this.getPerfix()}FrontEdgeDist`);
-    public getHitVar = new BaseTrigger(`${this.getPerfix()}GetHitVar`);
-    public hitCount = new BaseTrigger(`${this.getPerfix()}HitCount`);
-    public hitDefAttr = new HitDefAttr(this.getPerfix());
-    public hitFall = new BaseTrigger(`${this.getPerfix()}HitFall`);
-    public hitOver = new BaseTrigger(`${this.getPerfix()}HitOver`);
-    public hitPauseTime = new BaseTrigger(`${this.getPerfix()}HitPauseTime`);
-    public hitShakeOver = new BaseTrigger(`${this.getPerfix()}HitShakeOver`);
-    public hitVelX = new BaseTrigger(`${this.getPerfix()}HitVel X`);
-    public hitVelY = new BaseTrigger(`${this.getPerfix()}HitVel Y`);
+    public get AILevel() {
+        return new BaseTrigger(`${this.getPerfix()}AILevel`);
+    }
+    public get alive() {
+        return new BaseTrigger(`${this.getPerfix()}Alive`);
+    }
+    public get backEdge() {
+        return new BaseTrigger(`${this.getPerfix()}BackEdge`);
+    }
+    public get backEdgeBodyDist() {
+        return new BaseTrigger(`${this.getPerfix()}BackEdgeBodyDist`);
+    }
+    public get backEdgeDist() {
+        return new BaseTrigger(`${this.getPerfix()}BackEdgeDist`);
+    }
+    public get bottomEdge() {
+        return new BaseTrigger(`${this.getPerfix()}BottomEdge`);
+    }
+    public get canRecover() {
+        return new BaseTrigger(`${this.getPerfix()}CanRecover`);
+    }
+    public get ctrl() {
+        return new BaseTrigger(`${this.getPerfix()}Ctrl`);
+    }
+    public get facing() {
+        return new BaseTrigger(`${this.getPerfix()}facing`);
+    }
+    public get frontEdge() {
+        return new BaseTrigger(`${this.getPerfix()}FrontEdge`);
+    }
+    public get frontEdgeBodyDist() {
+        return new BaseTrigger(`${this.getPerfix()}FrontEdgeBodyDist`);
+    }
+    public get frontEdgeDist() {
+        return new BaseTrigger(`${this.getPerfix()}FrontEdgeDist`);
+    }
+    public get getHitVar() {
+        return new BaseTrigger(`${this.getPerfix()}GetHitVar`);
+    }
+    public get hitCount() {
+        return new BaseTrigger(`${this.getPerfix()}HitCount`);
+    }
+    public get hitDefAttr() {
+        return new HitDefAttr(this.getPerfix());
+    }
+    public get hitFall() {
+        return new BaseTrigger(`${this.getPerfix()}HitFall`);
+    }
+    public get hitOver() {
+        return new BaseTrigger(`${this.getPerfix()}HitOver`);
+    }
+    public get hitPauseTime() {
+        return new BaseTrigger(`${this.getPerfix()}HitPauseTime`);
+    }
+    public get hitShakeOver() {
+        return new BaseTrigger(`${this.getPerfix()}HitShakeOver`);
+    }
+    public get hitVelX() {
+        return new BaseTrigger(`${this.getPerfix()}HitVel X`);
+    }
+    public get hitVelY() {
+        return new BaseTrigger(`${this.getPerfix()}HitVel Y`);
+    }
     /**
      * 返回玩家的ID号
      */
-    public ID = new BaseTrigger(`${this.getPerfix()}ID`);
-    public inGuardDist = new BaseTrigger(`${this.getPerfix()}InGuardDist`);
-    public IsHelper = createBaseFunTrigger(`${this.getPerfix()}IsHelper`);
-    public isHomeTeam = new BaseTrigger(`${this.getPerfix()}IsHomeTeam`);
-    public leftEdge = new BaseTrigger(`${this.getPerfix()}LeftEdge`);
-    public life = new BaseTrigger(`${this.getPerfix()}Life`);
-    public lifeMax = new BaseTrigger(`${this.getPerfix()}LifeMax`);
-    public lose = new BaseTrigger(`${this.getPerfix()}Lose`);
-    public loseKO = new BaseTrigger(`${this.getPerfix()}LoseKO`);
-    public loseTime = new BaseTrigger(`${this.getPerfix()}LoseTime`);
-    public matchNo = new BaseTrigger(`${this.getPerfix()}MatchNo`);
-    public matchOver = new BaseTrigger(`${this.getPerfix()}MatchOver`);
-    public moveContact = new BaseTrigger(`${this.getPerfix()}MoveContact`);
-    public moveGuarded = new BaseTrigger(`${this.getPerfix()}MoveGuarded`);
-    public moveHit = new BaseTrigger(`${this.getPerfix()}MoveHit`);
-    public moveReversed = new BaseTrigger(`${this.getPerfix()}MoveReversed`);
-    public moveType = new MoveType('MoveType', this.getPerfix());
-    public NumHelper = createBaseFunTrigger(`${this.getPerfix()}NumHelper`);
-    public NumExplod = createBaseFunTrigger(`${this.getPerfix()}NumExplod`);
-    public NumTarget = createBaseFunTrigger(`${this.getPerfix()}NumTarget`);
-    public NumEnemy = new BaseTrigger(`${this.getPerfix()}NumEnemy`);
-    public NumPartner = new BaseTrigger(`${this.getPerfix()}NumPartner`);
-    public NumProj = new BaseTrigger(`${this.getPerfix()}NumProj`);
-    public NumProjID(id: BaseValue) {
-        return new BaseTrigger(`${this.getPerfix()}NumProjID(${id})`);
+    public get ID() {
+        return new BaseTrigger(`${this.getPerfix()}ID`);
     }
-    public p2BodyDist = new BaseTrigger(`${this.getPerfix()}P2BodyDist`);
-    public p2DistX = new BaseTrigger(`${this.getPerfix()}P2Dist X`);
-    public p2DistY = new BaseTrigger(`${this.getPerfix()}P2Dist Y`);
-    public p2Life = new BaseTrigger(`${this.getPerfix()}P2Life`);
-    public p2MoveType  = new MoveType('P2MoveType', this.getPerfix());
-    public p2StateNo = new BaseTrigger(`${this.getPerfix()}P2StateNo`);
-    public p2StateType = new StateType('P2StateType', this.getPerfix());
-    public palNo = new BaseTrigger(`${this.getPerfix()}PalNo`);
-    public parentDistX = new BaseTrigger(`${this.getPerfix()}ParentDist X`);
-    public parentDistY = new BaseTrigger(`${this.getPerfix()}ParentDist Y`);
-    public posX = new BaseTrigger(`${this.getPerfix()}Pos X`);
-    public posY = new BaseTrigger(`${this.getPerfix()}Pos Y`);
-    public power = new BaseTrigger(`${this.getPerfix()}Power`);
-    public powerMax = new BaseTrigger(`${this.getPerfix()}PowerMax`);
-    public prevStateNo = new BaseTrigger(`${this.getPerfix()}PrevStateNo`);
-    public ProjCancelTime(id: BaseValue) {
-        return new BaseTrigger(`${this.getPerfix()}ProjCancelTime(${id})`);
+    public get inGuardDist() {
+        return new BaseTrigger(`${this.getPerfix()}InGuardDist`);
     }
-    public ProjContact(id?: BaseValue) {
-        return new BaseTrigger(`${this.getPerfix()}ProjContact${id || ''}`);
+    public get IsHelper() {
+        return createBaseFunTrigger(`${this.getPerfix()}IsHelper`);
     }
-    public ProjContactTime(id: BaseValue) {
-        return new BaseTrigger(`${this.getPerfix()}ProjContactTime(${id})`);
+    public get isHomeTeam() {
+        return new BaseTrigger(`${this.getPerfix()}IsHomeTeam`);
     }
-    public ProjGuarded(id?: BaseValue) {
-        return new BaseTrigger(`${this.getPerfix()}ProjGuarded${id || ''}`);
+    public get leftEdge() {
+        return new BaseTrigger(`${this.getPerfix()}LeftEdge`);
     }
-    public ProjGuardedTime(id: BaseValue) {
-        return new BaseTrigger(`${this.getPerfix()}ProjGuardedTime(${id})`);
+    public get life() {
+        return new BaseTrigger(`${this.getPerfix()}Life`);
     }
-    public ProjHit(id?: BaseValue) {
-        return new BaseTrigger(`${this.getPerfix()}ProjHit${id || ''}`);
+    public get lifeMax() {
+        return new BaseTrigger(`${this.getPerfix()}LifeMax`);
     }
-    public ProjHitTime(id: BaseValue) {
-        return new BaseTrigger(`${this.getPerfix()}ProjHitTime(${id})`);
+    public get lose() {
+        return new BaseTrigger(`${this.getPerfix()}Lose`);
     }
-    public rightEdge = new BaseTrigger(`${this.getPerfix()}RightEdge`);
-    public rootDistX = new BaseTrigger(`${this.getPerfix()}RootDist X`);
-    public rootDistY = new BaseTrigger(`${this.getPerfix()}RootDist Y`);
-    public roundsExisted = new BaseTrigger(`${this.getPerfix()}RoundsExisted`);
-    public stateNo = new BaseTrigger(`${this.getPerfix()}StateNo`);
-    public stateType = new StateType('StateType', this.getPerfix());
-    public teamMode = new TeamMode('TeamMode', this.getPerfix());
-    public teamSide = new BaseTrigger(`${this.getPerfix()}TeamSide`);
-    public time = new BaseTrigger(`${this.getPerfix()}Time`);
-    public topEdge = new BaseTrigger(`${this.getPerfix()}TopEdge`);
-    public uniqHitCount = new BaseTrigger(`${this.getPerfix()}UniqHitCount`);
-    public velX = new BaseTrigger(`${this.getPerfix()}Vel X`);
-    public velY = new BaseTrigger(`${this.getPerfix()}Vel Y`);
-    public win = new BaseTrigger(`${this.getPerfix()}Win`);
-    public winKO = new BaseTrigger(`${this.getPerfix()}WinKO`);
-    public winTime = new BaseTrigger(`${this.getPerfix()}WinTime`);
-    public winPerfect = new BaseTrigger(`${this.getPerfix()}WinPerfect`);
+    public get loseKO() {
+        return new BaseTrigger(`${this.getPerfix()}LoseKO`);
+    }
+    public get loseTime() {
+        return new BaseTrigger(`${this.getPerfix()}LoseTime`);
+    }
+    public get matchNo() {
+        return new BaseTrigger(`${this.getPerfix()}MatchNo`);
+    }
+    public get matchOver() {
+        return new BaseTrigger(`${this.getPerfix()}MatchOver`);
+    }
+    public get moveContact() {
+        return new BaseTrigger(`${this.getPerfix()}MoveContact`);
+    }
+    public get moveGuarded() {
+        return new BaseTrigger(`${this.getPerfix()}MoveGuarded`);
+    }
+    public get moveHit() {
+        return new BaseTrigger(`${this.getPerfix()}MoveHit`);
+    }
+    public get moveReversed() {
+        return new BaseTrigger(`${this.getPerfix()}MoveReversed`);
+    }
+    public get moveType() {
+        return new MoveType('MoveType', this.getPerfix());
+    }
+    public get NumHelper() {
+        return createBaseFunTrigger(`${this.getPerfix()}NumHelper`);
+    }
+    public get NumExplod() {
+        return createBaseFunTrigger(`${this.getPerfix()}NumExplod`);
+    }
+    public get NumTarget() {
+        return createBaseFunTrigger(`${this.getPerfix()}NumTarget`);
+    }
+    public get NumEnemy() {
+        return new BaseTrigger(`${this.getPerfix()}NumEnemy`);
+    }
+    public get NumPartner() {
+        return new BaseTrigger(`${this.getPerfix()}NumPartner`);
+    }
+    public get NumProj() {
+        return new BaseTrigger(`${this.getPerfix()}NumProj`);
+    }
+    public NumProjID(id: AttrValue) {
+        return new BaseTrigger(`${this.getPerfix()}NumProjID(${transAttrValue(id)})`);
+    }
+    public get p2BodyDist() {
+        return new BaseTrigger(`${this.getPerfix()}P2BodyDist`);
+    }
+    public get p2DistX() {
+        return new BaseTrigger(`${this.getPerfix()}P2Dist X`);
+    }
+    public get p2DistY() {
+        return new BaseTrigger(`${this.getPerfix()}P2Dist Y`);
+    }
+    public get p2Life() {
+        return new BaseTrigger(`${this.getPerfix()}P2Life`);
+    }
+    public get p2MoveType() {
+        return new MoveType('P2MoveType', this.getPerfix());
+    }
+    public get p2StateNo() {
+        return new BaseTrigger(`${this.getPerfix()}P2StateNo`);
+    }
+    public get p2StateType() {
+        return new StateType('P2StateType', this.getPerfix());
+    }
+    public get palNo() {
+        return new BaseTrigger(`${this.getPerfix()}PalNo`);
+    }
+    public get parentDistX() {
+        return new BaseTrigger(`${this.getPerfix()}ParentDist X`);
+    }
+    public get parentDistY() {
+        return new BaseTrigger(`${this.getPerfix()}ParentDist Y`);
+    }
+    public get posX() {
+        return new BaseTrigger(`${this.getPerfix()}Pos X`);
+    }
+    public get posY() {
+        return new BaseTrigger(`${this.getPerfix()}Pos Y`);
+    }
+    public get power() {
+        return new BaseTrigger(`${this.getPerfix()}Power`);
+    }
+    public get powerMax() {
+        return new BaseTrigger(`${this.getPerfix()}PowerMax`);
+    }
+    public get prevStateNo() {
+        return new BaseTrigger(`${this.getPerfix()}PrevStateNo`);
+    }
+    public ProjCancelTime(id: AttrValue) {
+        return new BaseTrigger(`${this.getPerfix()}ProjCancelTime(${transAttrValue(id)})`);
+    }
+    public ProjContact(id?: AttrValue) {
+        return new BaseTrigger(`${this.getPerfix()}ProjContact${transAttrValue(id || '')}`);
+    }
+    public ProjContactTime(id: AttrValue) {
+        return new BaseTrigger(`${this.getPerfix()}ProjContactTime(${transAttrValue(id)})`);
+    }
+    public ProjGuarded(id?: AttrValue) {
+        return new BaseTrigger(`${this.getPerfix()}ProjGuarded${transAttrValue(id || '')}`);
+    }
+    public ProjGuardedTime(id: AttrValue) {
+        return new BaseTrigger(`${this.getPerfix()}ProjGuardedTime(${transAttrValue(id)})`);
+    }
+    public ProjHit(id?: AttrValue) {
+        return new BaseTrigger(`${this.getPerfix()}ProjHit${transAttrValue(id || '')}`);
+    }
+    public ProjHitTime(id: AttrValue) {
+        return new BaseTrigger(`${this.getPerfix()}ProjHitTime(${transAttrValue(id)})`);
+    }
+    public get rightEdge() {
+        return new BaseTrigger(`${this.getPerfix()}RightEdge`);
+    }
+    public get rootDistX() {
+        return new BaseTrigger(`${this.getPerfix()}RootDist X`);
+    }
+    public get rootDistY() {
+        return new BaseTrigger(`${this.getPerfix()}RootDist Y`);
+    }
+    public get roundsExisted() {
+        return new BaseTrigger(`${this.getPerfix()}RoundsExisted`);
+    }
+    public get stateNo() {
+        return new BaseTrigger(`${this.getPerfix()}StateNo`);
+    }
+    public get stateType() {
+        return new StateType('StateType', this.getPerfix());
+    }
+    public get teamMode() {
+        return new TeamMode('TeamMode', this.getPerfix());
+    }
+    public get teamSide() {
+        return new BaseTrigger(`${this.getPerfix()}TeamSide`);
+    }
+    public get time() {
+        return new BaseTrigger(`${this.getPerfix()}Time`);
+    }
+    public get topEdge() {
+        return new BaseTrigger(`${this.getPerfix()}TopEdge`);
+    }
+    public get uniqHitCount() {
+        return new BaseTrigger(`${this.getPerfix()}UniqHitCount`);
+    }
+    public get velX() {
+        return new BaseTrigger(`${this.getPerfix()}Vel X`);
+    }
+    public get velY() {
+        return new BaseTrigger(`${this.getPerfix()}Vel Y`);
+    }
+    public get win() {
+        return new BaseTrigger(`${this.getPerfix()}Win`);
+    }
+    public get winKO() {
+        return new BaseTrigger(`${this.getPerfix()}WinKO`);
+    }
+    public get winTime() {
+        return new BaseTrigger(`${this.getPerfix()}WinTime`);
+    }
+    public get winPerfect() {
+        return new BaseTrigger(`${this.getPerfix()}WinPerfect`);
+    }
 
 
     // constant.ts
-    public data = new ConstData(this.perfix);
+    public get data() {
+        return new ConstData(this.perfix);
+    }
 
     // names.ts
-    public authorName = new Name('AuthorName', this.perfix);
-    public name = new Name('Name', this.perfix);
+    public get authorName() {
+        return new Name('AuthorName', this.perfix);
+    }
+    public get name() {
+        return new Name('Name', this.perfix);
+    }
 
     // anim.ts
-    public anim  = new BaseTrigger(`${this.getPerfix()}Anim`);
-    public animelem = new BaseTrigger(`${this.getPerfix()}AnimElem`);
-    public animtime = new BaseTrigger(`${this.getPerfix()}AnimTime`);
-    public AnimElemNo(id: BaseValue) {
-        return new BaseTrigger(`${this.getPerfix()}AnimElemNo(${id})`);
+    public get anim() {
+        return new BaseTrigger(`${this.getPerfix()}Anim`);
     }
-    public AnimElemTime(id: BaseValue) {
-        return new BaseTrigger(`${this.getPerfix()}AnimElemTime(${id})`);
+    public get animelem() {
+        return new BaseTrigger(`${this.getPerfix()}AnimElem`);
     }
-    public AnimExist(id: BaseValue) {
-        return new BaseTrigger(`${this.getPerfix()}AnimExist(${id})`);
+    public get animtime() {
+        return new BaseTrigger(`${this.getPerfix()}AnimTime`);
     }
-    public SelfAnimExist(id: BaseValue) {
-        return new BaseTrigger(`${this.getPerfix()}SelfAnimExist(${id})`);
+    public AnimElemNo(id: AttrValue) {
+        return new BaseTrigger(`${this.getPerfix()}AnimElemNo(${transAttrValue(id)})`);
+    }
+    public AnimElemTime(id: AttrValue) {
+        return new BaseTrigger(`${this.getPerfix()}AnimElemTime(${transAttrValue(id)})`);
+    }
+    public AnimExist(id: AttrValue) {
+        return new BaseTrigger(`${this.getPerfix()}AnimExist(${transAttrValue(id)})`);
+    }
+    public SelfAnimExist(id: AttrValue) {
+        return new BaseTrigger(`${this.getPerfix()}SelfAnimExist(${transAttrValue(id)})`);
     }
 
-    public var(index: number) {
-        return new BaseTrigger(`${this.getPerfix()}var(${index})`);
+    public var(index: AttrValue) {
+        return new BaseTrigger(`${this.getPerfix()}var(${transAttrValue(index)})`);
     }
-    public fvar(index: number) {
-        return new BaseTrigger(`${this.getPerfix()}fvar(${index})`);
+    public fvar(index: AttrValue) {
+        return new BaseTrigger(`${this.getPerfix()}fvar(${transAttrValue(index)})`);
     }
-    public sysFVar(index: number) {
-        return new BaseTrigger(`${this.getPerfix()}SysFVar(${index})`);
+    public sysFVar(index: AttrValue) {
+        return new BaseTrigger(`${this.getPerfix()}SysFVar(${transAttrValue(index)})`);
     }
-    public sysVar(index: number) {
-        return new BaseTrigger(`${this.getPerfix()}SysVar(${index})`);
+    public sysVar(index: AttrValue) {
+        return new BaseTrigger(`${this.getPerfix()}SysVar(${transAttrValue(index)})`);
     }
 
 }
@@ -159,13 +324,23 @@ export class Attributes extends BaseAttributes {
         super(perfix);
     }
     // attributes.ts
-    public root = new BaseAttributes(`${this.getPerfix()}root`);
-    public parent = new BaseAttributes(`${this.getPerfix()}parent`);
-    public partner = new BaseAttributes(`${this.getPerfix()}partner`);
-    public enemynear = new BaseAttributes(`${this.getPerfix()}enemynear`);
-    public target = new BaseAttributes(`${this.getPerfix()}target`);
-    public Helper(id: BaseValue) {
-        return new BaseAttributes(`${this.getPerfix()}Helper(${id})`);
+    public get root() {
+        return new BaseAttributes(`${this.getPerfix()}root`);
+    }
+    public get parent() {
+        return new BaseAttributes(`${this.getPerfix()}parent`);
+    }
+    public get partner() {
+        return new BaseAttributes(`${this.getPerfix()}partner`);
+    }
+    public get enemynear() {
+        return new BaseAttributes(`${this.getPerfix()}enemynear`);
+    }
+    public get target() {
+        return new BaseAttributes(`${this.getPerfix()}target`);
+    }
+    public Helper(id: AttrValue) {
+        return new BaseAttributes(`${this.getPerfix()}Helper(${transAttrValue(id)})`);
     }
     public EnemyNear(stateno: BaseValue) {
         return new BaseAttributes(`${this.getPerfix()}EnemyNear(${stateno})`);
@@ -180,6 +355,6 @@ export function EnemyNear(stateno: BaseValue) {
     return new Attributes(`EnemyNear(${stateno})`);
 }
 export const target = new Attributes('target');
-export function playerId(id: BaseValue) {
-    return new Attributes(`playerId(${id})`);
+export function playerId(id: AttrValue) {
+    return new Attributes(`playerId(${transAttrValue(id)})`);
 }

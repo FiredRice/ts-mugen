@@ -248,9 +248,9 @@ export class BaseTrigger {
     /**
      * 赋值
      */
-    public setValue(value: BaseValue) {
+    public setValue(value: AttrValue) {
         this.prevOpration = OperationWeight.setValue;
-        return `${this._innerName} := ${value}`;
+        return `${this._innerName} := ${transAttrValue(value)}`;
     }
 }
 
@@ -275,10 +275,10 @@ export class BasePerfix {
 }
 
 export function createBaseFunTrigger(name: string) {
-    return function (id?: BaseValue) {
+    return function (id?: AttrValue) {
         if (id == null) {
             return new BaseTrigger(name);
         }
-        return new BaseTrigger(`${name}(${id})`);
+        return new BaseTrigger(`${name}(${transAttrValue(id)})`);
     };
 }
