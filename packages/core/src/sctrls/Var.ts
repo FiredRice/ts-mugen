@@ -1,15 +1,15 @@
 import { currentWrite } from '../core';
-import { BaseSctrls, BaseValue } from '../types';
-import { objectToString, triggersToString } from '../utils';
+import { AttrValue, BaseSctrls } from '../types';
+import { objectToString, transAttrValue, triggersToString } from '../utils';
 import { isArray } from 'lodash';
 import { BaseTrigger } from '../triggers/base';
 
 interface VarParams extends BaseSctrls {
-    value?: BaseValue;
+    value?: AttrValue;
 }
 
 interface RandomVarParams extends BaseSctrls {
-    value?: BaseValue | [BaseValue, BaseValue];
+    value?: AttrValue | [AttrValue, AttrValue];
 }
 
 /**
@@ -17,14 +17,14 @@ interface RandomVarParams extends BaseSctrls {
  * - 该类实例化的变量【不会】附加输出到变量表中
  */
 export class NormalVar extends BaseTrigger {
-    protected index: BaseValue;
+    protected index: AttrValue;
 
     /**
      * 声名变量
      * @param index 变量索引
      */
-    constructor(index: BaseValue) {
-        super(`var(${index})`);
+    constructor(index: AttrValue) {
+        super(`var(${transAttrValue(index)})`);
         this.index = index;
     }
 
@@ -44,8 +44,8 @@ export class NormalVar extends BaseTrigger {
         let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
         result += `type = VarSet\n`;
         result += triggersToString(triggers);
-        result += `v = ${this.index}\n`;
-        result += `value = ${value}\n`;
+        result += `v = ${transAttrValue(this.index)}\n`;
+        result += `value = ${transAttrValue(value)}\n`;
         result += objectToString(others);
         currentWrite.append(result);
     }
@@ -59,8 +59,8 @@ export class NormalVar extends BaseTrigger {
         let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
         result += `type = VarAdd\n`;
         result += triggersToString(triggers);
-        result += `v = ${this.index}\n`;
-        result += `value = ${value}\n`;
+        result += `v = ${transAttrValue(this.index)}\n`;
+        result += `value = ${transAttrValue(value)}\n`;
         result += objectToString(others);
         currentWrite.append(result);
     }
@@ -74,8 +74,8 @@ export class NormalVar extends BaseTrigger {
         let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
         result += `type = VarRandom\n`;
         result += triggersToString(triggers);
-        result += `v = ${this.index}\n`;
-        result += `range = ${isArray(value) ? value.join(', ') : value}\n`;
+        result += `v = ${transAttrValue(this.index)}\n`;
+        result += `range = ${isArray(value) ? value.map(transAttrValue).join(', ') : transAttrValue(value)}\n`;
         result += objectToString(others);
         currentWrite.append(result);
     }
@@ -91,9 +91,9 @@ export class Var extends NormalVar {
      * @param index 索引
      * @param describe 描述
      */
-    constructor(index: BaseValue, describe: string = '') {
+    constructor(index: AttrValue, describe: string = '') {
         super(index);
-        currentWrite.addVar(index, describe);
+        currentWrite.addVar(transAttrValue(index), describe);
     }
 }
 
@@ -102,10 +102,10 @@ export class Var extends NormalVar {
  * - 该类实例化的变量【不会】附加输出到变量表中
  */
 export class NormalFVar extends BaseTrigger {
-    private index: BaseValue;
+    private index: AttrValue;
 
-    public constructor(index: BaseValue) {
-        super(`var(${index})`);
+    public constructor(index: AttrValue) {
+        super(`var(${transAttrValue(index)})`);
         this.index = index;
     }
 
@@ -118,8 +118,8 @@ export class NormalFVar extends BaseTrigger {
         let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
         result += `type = VarSet\n`;
         result += triggersToString(triggers);
-        result += `fv = ${this.index}\n`;
-        result += `value = ${value}\n`;
+        result += `fv = ${transAttrValue(this.index)}\n`;
+        result += `value = ${transAttrValue(value)}\n`;
         result += objectToString(others);
         currentWrite.append(result);
     }
@@ -134,8 +134,8 @@ export class NormalFVar extends BaseTrigger {
         let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
         result += `type = VarAdd\n`;
         result += triggersToString(triggers);
-        result += `fv = ${this.index}\n`;
-        result += `value = ${value}\n`;
+        result += `fv = ${transAttrValue(this.index)}\n`;
+        result += `value = ${transAttrValue(value)}\n`;
         result += objectToString(others);
         currentWrite.append(result);
     }
@@ -151,8 +151,8 @@ export class FVar extends NormalFVar {
      * @param index 变量索引
      * @param describe 描述
      */
-    public constructor(index: BaseValue, describe: string = '') {
+    public constructor(index: AttrValue, describe: string = '') {
         super(index);
-        currentWrite.addFVar(index, describe);
+        currentWrite.addFVar(transAttrValue(index), describe);
     }
 }

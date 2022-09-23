@@ -1,5 +1,5 @@
-import { BaseValue, TriggerValue } from '../types';
-import { transTriggerValue } from '../utils';
+import { BaseValue, AttrValue } from '../types';
+import { transAttrValue } from '../utils';
 
 /**
  * 操作权重
@@ -59,8 +59,8 @@ export class BaseTrigger {
     /**
      * 加
      */
-    public add(target: TriggerValue) {
-        this._innerName += ` + ${transTriggerValue(target)}`;
+    public add(target: AttrValue) {
+        this._innerName += ` + ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.add;
         return this;
     }
@@ -68,8 +68,8 @@ export class BaseTrigger {
     /**
      * 减
      */
-    public sub(target: TriggerValue) {
-        this._innerName += ` - ${transTriggerValue(target)}`;
+    public sub(target: AttrValue) {
+        this._innerName += ` - ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.sub;
         return this;
     }
@@ -77,8 +77,8 @@ export class BaseTrigger {
     /**
      * 乘
      */
-    public multiply(target: TriggerValue) {
-        this._innerName += ` * ${transTriggerValue(target)}`;
+    public multiply(target: AttrValue) {
+        this._innerName += ` * ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.multiply;
         return this;
     }
@@ -86,8 +86,8 @@ export class BaseTrigger {
     /**
      * 除
      */
-    public division(target: TriggerValue) {
-        this._innerName += ` / ${transTriggerValue(target)}`;
+    public division(target: AttrValue) {
+        this._innerName += ` / ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.division;
         return this;
     }
@@ -95,8 +95,8 @@ export class BaseTrigger {
     /**
      * 取余
      */
-    public remainder(target: TriggerValue) {
-        this._innerName += ` % ${transTriggerValue(target)}`;
+    public remainder(target: AttrValue) {
+        this._innerName += ` % ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.remainder;
         return this;
     }
@@ -104,8 +104,8 @@ export class BaseTrigger {
     /**
      * 幂运算
      */
-    public pow(target: TriggerValue) {
-        this._innerName += ` ** ${transTriggerValue(target)}`;
+    public pow(target: AttrValue) {
+        this._innerName += ` ** ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.pow;
         return this;
     }
@@ -113,8 +113,8 @@ export class BaseTrigger {
     /**
      * 逻辑与运算
      */
-    public and(target: TriggerValue) {
-        this._innerName += ` && ${transTriggerValue(target)}`;
+    public and(target: AttrValue) {
+        this._innerName += ` && ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.and;
         return this;
     }
@@ -122,8 +122,8 @@ export class BaseTrigger {
     /**
      * 逻辑或运算
      */
-    public or(target: TriggerValue) {
-        this._innerName += ` || ${transTriggerValue(target)}`;
+    public or(target: AttrValue) {
+        this._innerName += ` || ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.or;
         return this;
     }
@@ -131,8 +131,8 @@ export class BaseTrigger {
     /**
      * 逻辑异或运算
      */
-    public xor(target: TriggerValue) {
-        this._innerName += ` ^^ ${transTriggerValue(target)}`;
+    public xor(target: AttrValue) {
+        this._innerName += ` ^^ ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.xor;
         return this;
     }
@@ -140,8 +140,8 @@ export class BaseTrigger {
     /**
      * 按位取反运算符
      */
-    public byteReversed(target: TriggerValue) {
-        this._innerName += ` ~ ${transTriggerValue(target)}`;
+    public byteReversed(target: AttrValue) {
+        this._innerName += ` ~ ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.byteReversed;
         return this;
     }
@@ -149,8 +149,8 @@ export class BaseTrigger {
     /**
      * 按位与运算符
      */
-    public byteAnd(target: TriggerValue) {
-        this._innerName += ` & ${transTriggerValue(target)}`;
+    public byteAnd(target: AttrValue) {
+        this._innerName += ` & ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.byteAnd;
         return this;
     }
@@ -158,8 +158,8 @@ export class BaseTrigger {
     /**
      * 按位或运算符
      */
-    public byteOr(target: TriggerValue) {
-        this._innerName += ` | ${transTriggerValue(target)}`;
+    public byteOr(target: AttrValue) {
+        this._innerName += ` | ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.byteOr;
         return this;
     }
@@ -167,8 +167,8 @@ export class BaseTrigger {
     /**
      * 按位异或运算符
      */
-    public byteXor(target: TriggerValue) {
-        this._innerName += ` ^ ${transTriggerValue(target)}`;
+    public byteXor(target: AttrValue) {
+        this._innerName += ` ^ ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.byteXor;
         return this;
     }
@@ -176,8 +176,8 @@ export class BaseTrigger {
     /**
      * 等于
      */
-    public equal(target: TriggerValue) {
-        this._innerName += ` = ${transTriggerValue(target)}`;
+    public equal(target: AttrValue) {
+        this._innerName += ` = ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.equal;
         return this;
     }
@@ -185,8 +185,8 @@ export class BaseTrigger {
     /**
      * 不等于
      */
-    public notEqual(target: TriggerValue) {
-        this._innerName += ` != ${transTriggerValue(target)}`;
+    public notEqual(target: AttrValue) {
+        this._innerName += ` != ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.notEqual;
         return this._innerName;
     }
@@ -203,8 +203,8 @@ export class BaseTrigger {
     /**
      * 小于
      */
-    public less(target: TriggerValue) {
-        this._innerName += `${this.perfix()} < ${transTriggerValue(target)}`;
+    public less(target: AttrValue) {
+        this._innerName += `${this.perfix()} < ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.less;
         return this._innerName;
     }
@@ -212,8 +212,8 @@ export class BaseTrigger {
     /**
      * 大于
      */
-    public over(target: TriggerValue) {
-        this._innerName += `${this.perfix()} > ${transTriggerValue(target)}`;
+    public over(target: AttrValue) {
+        this._innerName += `${this.perfix()} > ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.over;
         return this._innerName;
     }
@@ -221,8 +221,8 @@ export class BaseTrigger {
     /**
      * 大于等于
      */
-    public overEqual(target: TriggerValue) {
-        this._innerName += `${this.perfix()} >= ${transTriggerValue(target)}`;
+    public overEqual(target: AttrValue) {
+        this._innerName += `${this.perfix()} >= ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.overEqual;
         return this._innerName;
     }
@@ -230,8 +230,8 @@ export class BaseTrigger {
     /**
      * 小于等于
      */
-    public lessEqual(target: TriggerValue) {
-        this._innerName += `${this.perfix()} <= ${transTriggerValue(target)}`;
+    public lessEqual(target: AttrValue) {
+        this._innerName += `${this.perfix()} <= ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.lessEqual;
         return this._innerName;
     }
@@ -239,8 +239,8 @@ export class BaseTrigger {
     /**
      * 介于
      */
-    public between(start: TriggerValue, end: TriggerValue) {
-        this._innerName += `${this.perfix()} = [${transTriggerValue(start)}, ${transTriggerValue(end)}]`;
+    public between(start: AttrValue, end: AttrValue) {
+        this._innerName += `${this.perfix()} = [${transAttrValue(start)}, ${transAttrValue(end)}]`;
         this.prevOpration = OperationWeight.between;
         return this._innerName;
     }

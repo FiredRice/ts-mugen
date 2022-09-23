@@ -6,7 +6,7 @@ export * from './file';
 
 export { MugenConfig, BaseValue, Version } from '@tsmugen/utils';
 
-export type TriggerValue = BaseValue | BaseTrigger | {
+export type AttrValue = BaseValue | BaseTrigger | {
     value: BaseValue;
     _setInnerName: (name: BaseValue) => void;
     [x: string]: any;
@@ -38,15 +38,15 @@ export interface CharFiles {
 
 export type MBoolean = 0 | 1;
 
-export type Triggers = ReturnType<typeof createTriggers> | TriggerValue;
+export type Triggers = ReturnType<typeof createTriggers> | AttrValue;
 
 export interface BaseSctrls {
     triggers: Triggers;
     describe?: string;
-    ignorehitpause?: number;
-    supermovetime?: number;
-    pausemovetime?: number;
-    persistent?: number;
+    ignorehitpause?: AttrValue;
+    supermovetime?: AttrValue;
+    pausemovetime?: AttrValue;
+    persistent?: AttrValue;
 }
 
 export type BasePostype = 'p1' | 'p2' | 'front' | 'back' | 'left' | 'right';

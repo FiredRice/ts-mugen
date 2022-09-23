@@ -1,5 +1,6 @@
 import { Triggers } from '../types';
 import { isArray, isObject } from 'lodash';
+import { isAttrValue, transAttrValue } from './calculate';
 
 export function objectToString(value, prevKey = '') {
     if (isObject(value)) {
@@ -9,11 +10,15 @@ export function objectToString(value, prevKey = '') {
             const key = keys[i];
             const currentValue = value[key];
             if (isArray(currentValue)) {
-                result += `${prevKey}${key} = ${currentValue.join(', ')}\n`;
+                result += `${prevKey}${key} = ${currentValue.map(transAttrValue).join(', ')}\n`;
             } else if (isObject(currentValue)) {
-                result += objectToString(currentValue, `${key}.`);
+                if (isAttrValue(currentValue)) {
+                    result += `${prevKey}${key} = ${transAttrValue(currentValue)}\n`;
+                } else {
+                    result += objectToString(currentValue, `${key}.`);
+                }
             } else {
-                result += `${prevKey}${key} = ${currentValue}\n`;
+                result += `${prevKey}${key} = ${transAttrValue(currentValue)}\n`;
             }
         }
         return result;

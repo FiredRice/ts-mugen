@@ -9,6 +9,8 @@ node_modules
 /packages/**/node_modules
 /packages/**/lib
 /packages/**/dist
+/example/node_modules/*
+/example/lib/*
 
 /docs/node_modules
 /lerna-debug.log

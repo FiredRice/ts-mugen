@@ -1,18 +1,28 @@
 import { isArray, isObject } from 'lodash';
 import { BaseTrigger } from '../triggers';
-import { BaseValue, TriggerValue } from '../types';
+import { BaseValue, AttrValue } from '../types';
 
-export function transTriggerValue(target: TriggerValue) {
+/**
+ * 判断是否为 TriggerValue
+ */
+export function isAttrValue(target: any): target is AttrValue {
+    return isObject(target) && Reflect.has(target, 'value') && Reflect.has(target, '_setInnerName');
+}
+
+/**
+ * TriggerValue 转换
+ */
+export function transAttrValue(target: AttrValue) {
     return isObject(target) ? target.value : target;
 }
 
 /**
  * 操作工厂
  */
-export function optFactory(values: TriggerValue[], opt: string) {
+export function optFactory(values: AttrValue[], opt: string) {
     let result = '';
     for (const value of values) {
-        const _value = transTriggerValue(value);
+        const _value = transAttrValue(value);
         if (!!result) {
             result += ` ${opt} ${_value}`;
         } else {
@@ -22,7 +32,7 @@ export function optFactory(values: TriggerValue[], opt: string) {
     return result;
 }
 
-function funcOptResult(values: TriggerValue[], opt: string) {
+function funcOptResult(values: AttrValue[], opt: string) {
     const result = optFactory(values, opt);
     return `(${result})`;
 }
@@ -30,159 +40,159 @@ function funcOptResult(values: TriggerValue[], opt: string) {
 /**
  * 加
  */
-export function Add(...values: TriggerValue[]) {
+export function Add(...values: AttrValue[]) {
     return funcOptResult(values, '+');
 }
 
 /**
  * 减
  */
-export function Sub(...values: TriggerValue[]) {
+export function Sub(...values: AttrValue[]) {
     return funcOptResult(values, '-');
 }
 
 /**
  * 乘
  */
-export function Multiply(...values: TriggerValue[]) {
+export function Multiply(...values: AttrValue[]) {
     return funcOptResult(values, '*');
 }
 
 /**
  * 除
  */
-export function Division(...values: TriggerValue[]) {
+export function Division(...values: AttrValue[]) {
     return funcOptResult(values, '/');
 }
 
 /**
  * 取余
  */
-export function Remainder(...values: TriggerValue[]) {
+export function Remainder(...values: AttrValue[]) {
     return funcOptResult(values, '%');
 }
 
 /**
  * 幂运算
  */
-export function Pow(x: TriggerValue, y: TriggerValue) {
-    return `${transTriggerValue(x)} ** ${transTriggerValue(y)}`;
+export function Pow(x: AttrValue, y: AttrValue) {
+    return `${transAttrValue(x)} ** ${transAttrValue(y)}`;
 }
 
 /**
  * 逻辑与运算
  */
-export function And(...values: TriggerValue[]) {
+export function And(...values: AttrValue[]) {
     return funcOptResult(values, '&&');
 }
 
 /**
  * 逻辑或运算
  */
-export function Or(...values: TriggerValue[]) {
+export function Or(...values: AttrValue[]) {
     return funcOptResult(values, '||');
 }
 
 /**
  * 逻辑异或运算
  */
-export function Xor(...values: TriggerValue[]) {
+export function Xor(...values: AttrValue[]) {
     return funcOptResult(values, '^^');
 }
 
 /**
  * 按位取反运算符
  */
-export function ByteReversed(...values: TriggerValue[]): string {
+export function ByteReversed(...values: AttrValue[]): string {
     return funcOptResult(values, '~');
 }
 
 /**
  * 按位与运算符
  */
-export function ByteAnd(...values: TriggerValue[]): string {
+export function ByteAnd(...values: AttrValue[]): string {
     return funcOptResult(values, '&');
 }
 
 /**
  * 按位或运算符
  */
-export function ByteOr(...values: TriggerValue[]): string {
+export function ByteOr(...values: AttrValue[]): string {
     return funcOptResult(values, '|');
 }
 
 /**
  * 按位异或运算符
  */
-export function ByteXor(...values: TriggerValue[]): string {
+export function ByteXor(...values: AttrValue[]): string {
     return funcOptResult(values, '^');
 }
 
 /**
  * 等于
  */
-export function Equal(x: TriggerValue | TriggerValue[], y: TriggerValue | TriggerValue[]) {
-    const xValue = isArray(x) ? `(${x.map(item => transTriggerValue(item)).join(', ')})` : transTriggerValue(x);
-    const yValue = isArray(y) ? `(${y.map(item => transTriggerValue(item)).join(', ')})` : transTriggerValue(y);
+export function Equal(x: AttrValue | AttrValue[], y: AttrValue | AttrValue[]) {
+    const xValue = isArray(x) ? `(${x.map(item => transAttrValue(item)).join(', ')})` : transAttrValue(x);
+    const yValue = isArray(y) ? `(${y.map(item => transAttrValue(item)).join(', ')})` : transAttrValue(y);
     return `(${xValue} = ${yValue})`;
 }
 
 /**
  * 不等于
  */
-export function NotEqual(x: TriggerValue | TriggerValue[], y: TriggerValue | TriggerValue[]) {
-    const xValue = isArray(x) ? `(${x.map(item => transTriggerValue(item)).join(', ')})` : transTriggerValue(x);
-    const yValue = isArray(y) ? `(${y.map(item => transTriggerValue(item)).join(', ')})` : transTriggerValue(y);
+export function NotEqual(x: AttrValue | AttrValue[], y: AttrValue | AttrValue[]) {
+    const xValue = isArray(x) ? `(${x.map(item => transAttrValue(item)).join(', ')})` : transAttrValue(x);
+    const yValue = isArray(y) ? `(${y.map(item => transAttrValue(item)).join(', ')})` : transAttrValue(y);
     return `(${xValue} != ${yValue})`;
 }
 
 /**
  * 逻辑非运算
  */
-export function Not(value: TriggerValue) {
-    return `!(${transTriggerValue(value)})`;
+export function Not(value: AttrValue) {
+    return `!(${transAttrValue(value)})`;
 }
 
 /**
  * 小于
  */
-export function Less(x: TriggerValue, y: TriggerValue) {
-    return `(${transTriggerValue(x)} < ${transTriggerValue(y)})`;
+export function Less(x: AttrValue, y: AttrValue) {
+    return `(${transAttrValue(x)} < ${transAttrValue(y)})`;
 }
 
 /**
  * 大于
  */
-export function Over(x: TriggerValue, y: TriggerValue) {
-    return `(${transTriggerValue(x)} > ${transTriggerValue(y)})`;
+export function Over(x: AttrValue, y: AttrValue) {
+    return `(${transAttrValue(x)} > ${transAttrValue(y)})`;
 }
 
 /**
  * 大于等于
  */
-export function OverEqual(x: TriggerValue, y: TriggerValue) {
-    return `(${transTriggerValue(x)} >= ${transTriggerValue(y)})`;
+export function OverEqual(x: AttrValue, y: AttrValue) {
+    return `(${transAttrValue(x)} >= ${transAttrValue(y)})`;
 }
 
 /**
  * 小于等于
  */
-export function LessEqual(x: TriggerValue, y: TriggerValue) {
-    return `(${transTriggerValue(x)} <= ${transTriggerValue(y)})`;
+export function LessEqual(x: AttrValue, y: AttrValue) {
+    return `(${transAttrValue(x)} <= ${transAttrValue(y)})`;
 }
 
 /**
  * 介于
  */
-export function Between(value: TriggerValue, range: [TriggerValue, TriggerValue]) {
-    return `(${transTriggerValue(value)} = [${transTriggerValue(range[0])}, ${transTriggerValue(range[1])}])`;
+export function Between(value: AttrValue, range: [AttrValue, AttrValue]) {
+    return `(${transAttrValue(value)} = [${transAttrValue(range[0])}, ${transAttrValue(range[1])}])`;
 }
 
 /**
  * 赋值
  */
-export function SetValue(value: TriggerValue, target: TriggerValue) {
-    return `(${transTriggerValue(value)} := ${transTriggerValue(target)})`;
+export function SetValue(value: AttrValue, target: AttrValue) {
+    return `(${transAttrValue(value)} := ${transAttrValue(target)})`;
 }
 
 /**

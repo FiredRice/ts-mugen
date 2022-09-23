@@ -1,5 +1,5 @@
 import { isObject } from 'lodash';
-import { TriggerValue } from '../types';
+import { AttrValue } from '../types';
 
 /**
  * 创建触发器
@@ -13,7 +13,7 @@ export function createTriggers() {
      * @param index 索引 
      * @param trigger 触发器
      */
-    function add(index: number | 'all', trigger: TriggerValue) {
+    function add(index: number | 'all', trigger: AttrValue) {
         const value = isObject(trigger) ? `(${trigger.value})` : trigger;
         if (index === 'all') {
             triggerAll += `TriggerAll = ${value}\n`;

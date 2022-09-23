@@ -1,10 +1,10 @@
 import { currentWrite } from '../core';
-import { BaseSctrls, BaseValue } from '../types';
+import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString } from '../utils/index';
 
 interface ChangeAnimParams extends BaseSctrls {
-    value: BaseValue;
-    elem?: BaseValue;
+    value: AttrValue;
+    elem?: AttrValue;
 }
 
 /**
