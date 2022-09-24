@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls, TransType } from '../types';
 import { objectToString, triggersToString } from '../utils/index';
 
-interface AfterImageParams extends BaseSctrls {
+export interface AfterImageParams extends BaseSctrls {
     time?: AttrValue;
     length?: AttrValue;
     palcolor?: AttrValue;

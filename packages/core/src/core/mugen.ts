@@ -45,7 +45,7 @@ export default class Mugen {
 
             // 复制静态资源
             fileService.copy('public', basePath, {
-                filter: src => !src.includes(exceptVersion) && !src.includes('index.def')
+                filter: src => !src.includes(exceptVersion) && !src.includes('.def')
             });
 
             // 获取模板信息

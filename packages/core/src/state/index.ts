@@ -1,11 +1,13 @@
+import { getVersion } from '@tsmugen/utils';
 import { isArray } from 'lodash';
 import { currentWrite } from '../core/index';
-import { BaseValue, MBoolean, MoveType, StateType } from '../types';
+import { BaseValue, MBoolean, MoveType, StateType, Version } from '../types';
 import { objectToString } from '../utils';
 
 interface Statedef {
     id: BaseValue;
     describe?: string;
+    version?: Version;
     type?: StateType;
     movetype?: MoveType;
     physics?: 'S' | 'C' | 'A' | 'N' | 'U';
@@ -58,19 +60,22 @@ export class State {
     }
 
     public toString() {
-        const { id, describe = '', ...otherParams } = this.statedef;
-        let result = `[Statedef ${id}]\n`;
-        if (!!describe) {
-            result = `; ${describe}\n${result}`;
+        const { id, describe = '', version, ...otherParams } = this.statedef;
+        if (version == null || version === getVersion()) {
+            let result = `[Statedef ${id}]\n`;
+            if (!!describe) {
+                result = `; ${describe}\n${result}`;
+            }
+            result += `${objectToString(otherParams)}\n`;
+            currentWrite.clean();
+            currentWrite.currentStateId = id;
+            this.commands.forEach(call => {
+                call(this.statedef);
+            });
+            result += currentWrite.getCode();
+            currentWrite.clean();
+            return result;
         }
-        result += `${objectToString(otherParams)}\n`;
-        currentWrite.clean();
-        currentWrite.currentStateId = id;
-        this.commands.forEach(call => {
-            call(this.statedef);
-        });
-        result += currentWrite.getCode();
-        currentWrite.clean();
-        return result;
+        return '';
     }
 }

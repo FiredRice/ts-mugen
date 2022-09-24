@@ -36,6 +36,8 @@ interface HelperParams extends BaseSctrls {
         };
         shadowoffset?: AttrValue;
     };
+    supermovetime?: AttrValue;
+    pausemovetime?: AttrValue;
 }
 
 export default class Helper extends Attributes {

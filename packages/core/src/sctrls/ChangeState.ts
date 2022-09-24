@@ -2,33 +2,34 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString } from '../utils/index';
 
-interface ChangeAnimParams extends BaseSctrls {
+interface ChangeStateParams extends BaseSctrls {
     value: AttrValue;
-    elem?: AttrValue;
+    ctrl?: AttrValue;
+    anim?: AttrValue;
 }
 
 /**
- * ChangeAnim 
- * - 改变玩家动作号
+ * ChangeState 
+ * - 改变玩家的状态号.
  */
-export function ChangeAnim(params: ChangeAnimParams) {
+export function ChangeState(params: ChangeStateParams) {
     const { triggers, describe = '', ...others } = params;
     let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
-    result += `type = ChangeAnim\n`;
+    result += `type = ChangeState\n`;
     result += triggersToString(triggers);
     result += objectToString(others);
     currentWrite.append(result);
 }
 
 /**
- * ChangeAnim2 
- * - 和ChangeAnim一样,只是此控制器应用在如下的情况中:
- * - 如果你已置P2于一个自定义状态且希望把P2的动作改为P1指定air文件中的动作.
+ * SelfState 
+ * - 同ChangeState,只是SelfState使玩家返回他自己状态数据中的状态.
+ * - 用于下列情况: 当通过一次攻击你已置对手于一个自定义状态,且希望恢复对手到他自己的状态
  */
-export function ChangeAnim2(params: ChangeAnimParams) {
+export function SelfState(params: ChangeStateParams) {
     const { triggers, describe = '', ...others } = params;
     let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
-    result += `type = ChangeAnim2\n`;
+    result += `type = SelfState\n`;
     result += triggersToString(triggers);
     result += objectToString(others);
     currentWrite.append(result);

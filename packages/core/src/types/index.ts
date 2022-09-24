@@ -44,10 +44,8 @@ export interface BaseSctrls {
     triggers: Triggers;
     describe?: string;
     ignorehitpause?: AttrValue;
-    supermovetime?: AttrValue;
-    pausemovetime?: AttrValue;
     persistent?: AttrValue;
 }
 
 export type BasePostype = 'p1' | 'p2' | 'front' | 'back' | 'left' | 'right';
-export type TransType = 'none' | 'add' | 'add1' | 'sub';
+export type TransType = 'none' | 'add' | 'add1' | 'sub' | 'addalpha' | 'default';

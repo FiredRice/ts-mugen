@@ -22,7 +22,7 @@ export default class ExamplePkg {
 
     public resetDep() {
         let pkg = fs.readFileSync(this.pkgPath).toString();
-        pkg = pkg.replace('\t\t"typescript": "^4.8.3"', `${this.deps}\t\t"typescript": "^4.8.3"`);
+        pkg = pkg.replace('\t\t"dependencies": {', `"dependencies": {\r\n${this.deps}`);
         fs.writeFileSync(this.pkgPath, pkg);
     }
 }
