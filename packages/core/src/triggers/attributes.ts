@@ -1,7 +1,7 @@
 import { AttrValue, BaseValue } from '../types';
 import { Name } from './names';
 import { BasePerfix, BaseTrigger, createBaseFunTrigger } from './base';
-import { ConstData } from './constant';
+import { ConstData, ConstMovement, ConstSize, ConstVelocity } from './constant';
 import { HitDefAttr, MoveType, StateType, TeamMode } from './model';
 import { transAttrValue } from '../utils';
 
@@ -272,6 +272,17 @@ class BaseAttributes extends BasePerfix {
     public get data() {
         return new ConstData(this.perfix);
     }
+    public get size() {
+        return new ConstSize(this.perfix);
+    }
+    public get velocity() {
+        return new ConstVelocity(this.perfix);
+    }
+    
+    public get movement() {
+        return new ConstMovement(this.perfix);
+    }
+    
 
     // names.ts
     public get authorName() {

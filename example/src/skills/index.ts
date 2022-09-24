@@ -1,4 +1,4 @@
-import { State, createTriggers, AfterImageTime, time, DisplayToClipboard, Var, Width, HitDef, NotHitBy, AssertSpecial, SelfState } from '@tsmugen/core';
+import { State, createTriggers, AfterImageTime, time, DisplayToClipboard, Var, Width, HitDef, NotHitBy, AssertSpecial, SelfState, Or, movement } from '@tsmugen/core';
 
 
 const letsStart = new State({
@@ -29,7 +29,10 @@ letsStart.appendControllers(function () {
     const triggers = createTriggers();
     defaultHelper();
     HitDef({
-        triggers: time.equal(0),
+        triggers: Or(
+            time.equal(0),
+            movement.air.gethit.groundrecover.ground.threshold.add(movement.air.gethit.groundrecover.groundlevel).lessEqual(200)
+        ),
         attr: 'SCA, NA',
         fall: {
             animtype: 'hard',
