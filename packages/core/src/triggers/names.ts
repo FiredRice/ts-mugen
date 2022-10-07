@@ -35,11 +35,3 @@ export class Name extends BasePerfix {
         return `${this._innerName} != "${transStr(value)}"`;
     }
 }
-
-export const name = new Name('Name');
-export const p1Name = new Name('p1Name');
-export const p2Name = new Name('p2Name');
-export const p3Name = new Name('p3Name');
-export const p4Name = new Name('p4Name');
-export const authorName = new Name('AuthorName');
-export const command  = new Name('Command');

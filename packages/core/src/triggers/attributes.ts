@@ -278,11 +278,10 @@ class BaseAttributes extends BasePerfix {
     public get velocity() {
         return new ConstVelocity(this.perfix);
     }
-    
     public get movement() {
         return new ConstMovement(this.perfix);
     }
-    
+
 
     // names.ts
     public get authorName() {
@@ -314,6 +313,7 @@ class BaseAttributes extends BasePerfix {
     public SelfAnimExist(id: AttrValue) {
         return new BaseTrigger(`${this.getPerfix()}SelfAnimExist(${transAttrValue(id)})`);
     }
+
 
     public var(index: AttrValue) {
         return new BaseTrigger(`${this.getPerfix()}var(${transAttrValue(index)})`);
@@ -357,6 +357,98 @@ export class Attributes extends BaseAttributes {
         return new BaseAttributes(`${this.getPerfix()}EnemyNear(${stateno})`);
     }
 }
+
+class MugenGlobal extends Attributes {
+    constructor() {
+        super();
+    }
+    // name.ts
+    public get p1Name() {
+        return new Name('p1Name');
+    }
+    public get p2Name() {
+        return new Name('p2Name');
+    }
+    public get p3Name() {
+        return new Name('p3Name');
+    }
+    public get p4Name() {
+        return new Name('p4Name');
+    }
+    public get command() {
+        return new Name('Command');
+    }
+
+    // calculate.ts
+    /**
+     * 返回自然数 e 的值(2.718281828...)
+     */
+    public get E() {
+        return new BaseTrigger('E');
+    }
+    /**
+     * 圆周率 PI
+     */
+    public get Pi() {
+        return new BaseTrigger('Pi');
+    }
+    /**
+     * 随机数
+     */
+    public get Random() {
+        return new BaseTrigger('Random');
+    }
+    /**
+     * 返回每秒的帧数.用于计算时间方面.
+     */
+    public get TicksPerSecond() {
+        return new BaseTrigger('TicksPerSecond');
+    }
+
+    // variable.ts
+    public get cameraPosX() {
+        return new BaseTrigger('CameraPos X');
+    }
+    public get cameraPosY() {
+        return new BaseTrigger('CameraPos Y');
+    }
+    public get cameraZoom() {
+        return new BaseTrigger('CameraZoom');
+    }
+    public get drawGame() {
+        return new BaseTrigger('DrawGame');
+    }
+    public get gameHeight() {
+        return new BaseTrigger('GameHeight');
+    }
+    public get gameTime() {
+        return new BaseTrigger('GameTime');
+    }
+    public get gameWidth() {
+        return new BaseTrigger('GameWidth');
+    }
+    public get roundNo() {
+        return new BaseTrigger('RoundNo');
+    }
+    public get roundState() {
+        return new BaseTrigger('RoundState');
+    }
+    public get screenHeight() {
+        return new BaseTrigger('ScreenHeight');
+    }
+    public get screenPosX() {
+        return new BaseTrigger('ScreenPos X');
+    }
+    public get screenPosY() {
+        return new BaseTrigger('ScreenPos Y');
+    }
+    public get screenWidth() {
+        return new BaseTrigger('ScreenWidth');
+    }
+}
+
+// 全局变量
+export const global = new MugenGlobal();
 
 export const root = new Attributes('root');
 export const parent = new Attributes('parent');

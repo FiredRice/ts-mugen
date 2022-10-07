@@ -73,11 +73,6 @@ export function Cos(value: AttrValue) {
 }
 
 /**
- * 返回自然数 e 的值(2.718281828...)
- */
-export const E = new BaseTrigger('E');
-
-/**
  * 计算自然数 e 的参数次幂.
  * 这种计算方式略微比等价的表达式e**(参数)精确些.
  */
@@ -116,21 +111,11 @@ export function Log(a: AttrValue, b: AttrValue) {
 }
 
 /**
- * 圆周率 PI
- */
-export const Pi = new BaseTrigger('Pi');
-
-/**
  * 如果指定ID号的玩家存在则返回1,否则返回0.
  */
 export function PlayerIDExist(value: AttrValue) {
     return new BaseTrigger(`PlayerIDExist(${transAttrValue(value)})`);
 }
-
-/**
- * 随机数
- */
-export const Random = new BaseTrigger('Random');
 
 /**
  * 计算指定参数正弦值(用弧度制表示)
@@ -145,8 +130,3 @@ export function Sin(value: AttrValue) {
 export function Tan(value: AttrValue) {
     return new BaseTrigger(`tan(${transAttrValue(value)})`);
 }
-
-/**
- * 返回每秒的帧数.用于计算时间方面.
- */
-export const TicksPerSecond = new BaseTrigger('TicksPerSecond');

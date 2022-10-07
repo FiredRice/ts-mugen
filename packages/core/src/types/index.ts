@@ -1,6 +1,6 @@
 import { BaseValue, Version } from '@tsmugen/utils';
-import { createTriggers } from '../core';
-import { BaseTrigger } from '../triggers';
+import { Triggers } from '../core';
+import { BaseTrigger } from '../triggers/base';
 
 export * from './file';
 
@@ -38,10 +38,10 @@ export interface CharFiles {
 
 export type MBoolean = 0 | 1;
 
-export type Triggers = ReturnType<typeof createTriggers> | AttrValue;
+export type TriggersType = Triggers | AttrValue;
 
 export interface BaseSctrls {
-    triggers: Triggers;
+    triggers: TriggersType;
     describe?: string;
     ignorehitpause?: AttrValue;
     persistent?: AttrValue;

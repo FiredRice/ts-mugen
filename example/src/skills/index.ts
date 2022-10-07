@@ -1,4 +1,4 @@
-import { State, createTriggers, AfterImageTime, time, DisplayToClipboard, Var, Width, HitDef, NotHitBy, AssertSpecial, SelfState, Or, movement } from '@tsmugen/core';
+import { State, AfterImageTime, DisplayToClipboard, Var, HitDef, NotHitBy, AssertSpecial, Triggers, global } from '@tsmugen/core';
 
 
 const letsStart = new State({
@@ -26,12 +26,20 @@ function defaultHelper() {
 }
 
 letsStart.appendControllers(function () {
-    const triggers = createTriggers();
+    const triggers = new Triggers();
+    const animNums = [1, 3, 4, 5, 8, 10];
+    animNums.forEach(item => {
+        triggers.appendAnd(
+            global.animelem.equal(item),
+            global.movement.airjump.num.equal(item)
+        );
+    });
+    const charWidth = global.size.ground.back.add(global.size.ground.front);
     defaultHelper();
     HitDef({
-        triggers: Or(
-            time.equal(0),
-            movement.air.gethit.groundrecover.ground.threshold.add(movement.air.gethit.groundrecover.groundlevel).lessEqual(200)
+        triggers: new Triggers().appendOr(
+            global.time.equal(0),
+            charWidth.less(300)
         ),
         attr: 'SCA, NA',
         fall: {
@@ -40,7 +48,7 @@ letsStart.appendControllers(function () {
         }
     });
     AfterImageTime({
-        triggers: time.equal(0),
+        triggers: triggers,
         time: 30
     });
 

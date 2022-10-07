@@ -1,4 +1,4 @@
-import { BaseValue, Triggers } from '../types';
+import { BaseValue, TriggersType } from '../types';
 import { isArray, isObject, isString } from 'lodash';
 import { isAttrValue, transAttrValue } from './calculate';
 
@@ -26,7 +26,7 @@ export function objectToString(value, prevKey = '') {
     return '';
 };
 
-export function triggersToString(triggers: Triggers) {
+export function triggersToString(triggers: TriggersType) {
     if (isObject(triggers)) {
         if (triggers['value'] != null) {
             return `trigger1 = ${triggers['value']}\n`;

@@ -1,52 +1,44 @@
 import { isObject } from 'lodash';
 import { AttrValue } from '../types';
 
-/**
- * 创建触发器
- */
-export function createTriggers() {
-    let triggerMap: any = {};
-    let triggerAll = '';
+export class Triggers {
+    private triggerAll = '';
+    private triggerNums = '';
+    private index = 0;
 
-    /**
-     * 添加触发器
-     * @param index 索引 
-     * @param trigger 触发器
-     */
-    function add(index: number | 'all', trigger: AttrValue) {
-        const value = isObject(trigger) ? `(${trigger.value})` : trigger;
-        if (index === 'all') {
-            triggerAll += `TriggerAll = ${value}\n`;
-        } else {
-            if (triggerMap[index] != null) {
-                triggerMap[index] += ` && ${value}`;
-            } else {
-                triggerMap[index] = value;
-            }
+    public clear() {
+        this.triggerAll = '';
+        this.triggerNums = '';
+        this.index = 0;
+    }
+
+    public appendAll(...triggers: AttrValue[]) {
+        for (const trigger of triggers) {
+            const value = isObject(trigger) ? trigger.value : trigger;
+            this.triggerAll += `TriggerAll = ${value}\n`;
         }
+        return this;
     }
 
-    /**
-     * 清空触发器内容
-     */
-    function clean() {
-        triggerAll = '';
-        triggerMap = {};
-    }
-
-    function toString() {
-        let result = triggerAll;
-        const triggerKeys = Object.keys(triggerMap).sort((a, b) => Number(a) - Number(b));
-        for (let i = 0; i < triggerKeys.length; i++) {
-            const index = triggerKeys[i];
-            result += `trigger${index} = ${triggerMap[index]}\n`;
+    public appendOr(...triggers: AttrValue[]) {
+        for (const trigger of triggers) {
+            this.index++;
+            const value = isObject(trigger) ? trigger.value : trigger;
+            this.triggerNums += `trigger${this.index} = ${value}\n`;
         }
-        return result;
+        return this;
     }
 
-    return {
-        add,
-        clear: clean,
-        toString
-    };
+    public appendAnd(...triggers: AttrValue[]) {
+        this.index++;
+        for (const trigger of triggers) {
+            const value = isObject(trigger) ? trigger.value : trigger;
+            this.triggerNums += `trigger${this.index} = ${value}\n`;
+        }
+        return this;
+    }
+
+    public toString() {
+        return `${this.triggerAll}${this.triggerNums}`;
+    }
 }

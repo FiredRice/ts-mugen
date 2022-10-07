@@ -27,8 +27,6 @@ export class ConstData extends BasePerfix {
     public FloatPersistIndex = new BaseTrigger(`${this.getPerfix()}Const(data.FloatPersistIndex)`);
 }
 
-export const data = new ConstData();
-
 export class ConstSize extends BasePerfix {
     public constructor(perfix = '') {
         super(perfix);
@@ -74,8 +72,6 @@ export class ConstSize extends BasePerfix {
         }
     };
 }
-
-export const size = new ConstSize();
 
 export class ConstVelocity extends BasePerfix {
     public constructor(perfix = '') {
@@ -156,8 +152,6 @@ export class ConstVelocity extends BasePerfix {
     };
 }
 
-export const velocity = new ConstVelocity();
-
 export class ConstMovement extends BasePerfix {
     public constructor(perfix = '') {
         super(perfix);
@@ -217,5 +211,3 @@ export class ConstMovement extends BasePerfix {
         }
     }
 }
-
-export const movement = new ConstMovement();
