@@ -1,6 +1,6 @@
 {
 	"name": "@tsmugen/cli",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "ts-mugen脚手架",
 	"author": "破晓雪风",
 	"homepage": "https://github.com/FiredRice/ts-mugen/tree/master/packages/cli",
@@ -11,7 +11,7 @@
 	],
 	"scripts": {
 		"build": "ts-node bin/build.ts",
-		"publish": "npm publish"
+		"release": "npm publish --access public"
 	},
 	"devDependencies": {
 		"@types/fs-extra": "^9.0.13",

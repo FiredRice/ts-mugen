@@ -12,7 +12,7 @@
 	],
 	"scripts": {
 		"build": "ts-node bin/build.ts",
-		"publish": "npm publish"
+		"release": "npm publish --access public"
 	},
 	"devDependencies": {
 		"@types/fs-extra": "^9.0.13",
