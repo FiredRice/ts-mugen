@@ -9,8 +9,7 @@ export default class ExamplePkg {
         this.pkgPath = `${process.cwd()}/example/package.json`;
         this.deps = joinDep([
             `"@tsmugen/cli": "latest",`,
-            `"@tsmugen/core": "latest",`,
-            `"@tsmugen/utils": "latest",`,
+            `"@tsmugen/core": "latest"`,
         ]);
     }
 
