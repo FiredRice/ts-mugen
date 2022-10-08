@@ -1,5 +1,4 @@
 import { getVersion } from '@tsmugen/utils';
-import { isArray } from 'lodash';
 import { currentWrite } from '../core/index';
 import { BaseValue, MBoolean, MoveType, StateType, Version } from '../types';
 import { objectToString } from '../utils';
@@ -50,12 +49,8 @@ export class State {
      * 追加控制器
      * @param callbacks 
      */
-    public appendControllers(callbacks: CallbackFun | CallbackFun[]) {
-        if (isArray(callbacks)) {
-            this.commands.push(...callbacks);
-        } else {
-            this.commands.push(callbacks);
-        }
+    public appendControllers(...callbacks: CallbackFun[]) {
+        this.commands.push(...callbacks);
         return this;
     }
 
