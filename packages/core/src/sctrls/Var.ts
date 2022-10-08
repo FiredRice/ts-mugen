@@ -29,6 +29,14 @@ export class NormalVar extends BaseTrigger {
     }
 
     /**
+     * 清除缓存
+     * - 建议每次对变量进行计算后调用
+     */
+    protected reset() {
+        this._setInnerName(`var(${transAttrValue(this.index)})`);
+    }
+
+    /**
      * 获取变量索引
      */
     public getIndex() {
@@ -105,8 +113,16 @@ export class NormalFVar extends BaseTrigger {
     private index: AttrValue;
 
     public constructor(index: AttrValue) {
-        super(`var(${transAttrValue(index)})`);
+        super(`fvar(${transAttrValue(index)})`);
         this.index = index;
+    }
+
+    /**
+     * 清除缓存
+     * - 建议每次对变量进行计算后调用
+     */
+    protected reset() {
+        this._setInnerName(`fvar(${transAttrValue(this.index)})`);
     }
 
     /**
