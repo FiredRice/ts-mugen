@@ -34,6 +34,7 @@ export class NormalVar extends BaseTrigger {
      */
     protected reset() {
         this._setInnerName(`var(${transAttrValue(this.index)})`);
+        return this;
     }
 
     /**
@@ -123,6 +124,7 @@ export class NormalFVar extends BaseTrigger {
      */
     protected reset() {
         this._setInnerName(`fvar(${transAttrValue(this.index)})`);
+        return this;
     }
 
     /**
