@@ -1,5 +1,5 @@
 import { isArray, isObject } from 'lodash';
-import { BaseTrigger } from '../triggers';
+import { BaseTrigger } from '../triggers/base';
 import { BaseValue, AttrValue } from '../types';
 
 /**
@@ -193,6 +193,13 @@ export function LessEqual(x: AttrValue, y: AttrValue) {
  */
 export function Between(value: AttrValue, range: [AttrValue, AttrValue]) {
     return `(${transAttrValue(value)} = [${transAttrValue(range[0])}, ${transAttrValue(range[1])}])`;
+}
+
+/**
+ * 不介于
+ */
+export function NotBetween(value: AttrValue, range: [AttrValue, AttrValue]) {
+    return `(${transAttrValue(value)} != [${transAttrValue(range[0])}, ${transAttrValue(range[1])}])`;
 }
 
 /**

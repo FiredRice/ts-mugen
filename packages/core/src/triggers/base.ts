@@ -27,6 +27,7 @@ enum OperationWeight {
     over = 80,
     overEqual = 81,
     between = 90,
+    notBetween = 91,
     setValue = 100,
 }
 
@@ -242,6 +243,15 @@ export class BaseTrigger {
     public between(start: AttrValue, end: AttrValue) {
         this._innerName += `${this.perfix()} = [${transAttrValue(start)}, ${transAttrValue(end)}]`;
         this.prevOpration = OperationWeight.between;
+        return this._innerName;
+    }
+
+    /**
+     * 不介于
+     */
+    public notBetween(start: AttrValue, end: AttrValue) {
+        this._innerName += `${this.perfix()} != [${transAttrValue(start)}, ${transAttrValue(end)}]`;
+        this.prevOpration = OperationWeight.notBetween;
         return this._innerName;
     }
 

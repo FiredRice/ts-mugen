@@ -93,3 +93,5 @@ export { default as VelSet } from './VelSet';
 export { default as VictoryQuote } from './VictoryQuote';
 
 export { default as Width } from './Width';
+
+export { default as Zoom } from './Zoom';
