@@ -178,7 +178,7 @@ export class BaseTrigger {
      * 等于
      */
     public equal(target: AttrValue) {
-        this._innerName += ` = ${transAttrValue(target)}`;
+        this._innerName += `${this.perfix()} = ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.equal;
         return this;
     }
@@ -187,7 +187,7 @@ export class BaseTrigger {
      * 不等于
      */
     public notEqual(target: AttrValue) {
-        this._innerName += ` != ${transAttrValue(target)}`;
+        this._innerName += `${this.perfix()} != ${transAttrValue(target)}`;
         this.prevOpration = OperationWeight.notEqual;
         return this._innerName;
     }
