@@ -60,7 +60,7 @@ export const isHomeTeam = new BaseTrigger('IsHomeTeam');
 /**
  * 是否为 helper
  */
-export const IsHelper = createBaseFunTrigger('IsHelper');
+export const isHelper = createBaseFunTrigger('IsHelper');
 
 
 export const leftEdge = new BaseTrigger('LeftEdge');
