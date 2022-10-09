@@ -35,8 +35,9 @@ export class BaseTrigger {
     protected _innerName: BaseValue = '';
     private prevOpration: OperationWeight = OperationWeight.none;
 
-    public constructor(name: BaseValue) {
+    public constructor(name: BaseValue, prevOpration: number = OperationWeight.none) {
         this._innerName = name;
+        this.prevOpration = prevOpration;
     }
 
     private perfix() {
@@ -61,206 +62,161 @@ export class BaseTrigger {
      * 加
      */
     public add(target: AttrValue) {
-        this._innerName += ` + ${transAttrValue(target)}`;
-        this.prevOpration = OperationWeight.add;
-        return this;
+        return new BaseTrigger(`${this._innerName} + ${transAttrValue(target)}`, OperationWeight.add);
     }
 
     /**
      * 减
      */
     public sub(target: AttrValue) {
-        this._innerName += ` - ${transAttrValue(target)}`;
-        this.prevOpration = OperationWeight.sub;
-        return this;
+        return new BaseTrigger(`${this._innerName} - ${transAttrValue(target)}`, OperationWeight.sub);
     }
 
     /**
      * 乘
      */
     public multiply(target: AttrValue) {
-        this._innerName += ` * ${transAttrValue(target)}`;
-        this.prevOpration = OperationWeight.multiply;
-        return this;
+        return new BaseTrigger(`${this._innerName} * ${transAttrValue(target)}`, OperationWeight.multiply);
     }
 
     /**
      * 除
      */
     public division(target: AttrValue) {
-        this._innerName += ` / ${transAttrValue(target)}`;
-        this.prevOpration = OperationWeight.division;
-        return this;
+        return new BaseTrigger(`${this._innerName} / ${transAttrValue(target)}`, OperationWeight.division);
     }
 
     /**
      * 取余
      */
     public remainder(target: AttrValue) {
-        this._innerName += ` % ${transAttrValue(target)}`;
-        this.prevOpration = OperationWeight.remainder;
-        return this;
+        return new BaseTrigger(`${this._innerName} % ${transAttrValue(target)}`, OperationWeight.remainder);
     }
 
     /**
      * 幂运算
      */
     public pow(target: AttrValue) {
-        this._innerName += ` ** ${transAttrValue(target)}`;
-        this.prevOpration = OperationWeight.pow;
-        return this;
+        return new BaseTrigger(`${this._innerName} ** ${transAttrValue(target)}`, OperationWeight.pow);
     }
 
     /**
      * 逻辑与运算
      */
     public and(target: AttrValue) {
-        this._innerName += ` && ${transAttrValue(target)}`;
-        this.prevOpration = OperationWeight.and;
-        return this;
+        return new BaseTrigger(`${this._innerName} && ${transAttrValue(target)}`, OperationWeight.and);
     }
 
     /**
      * 逻辑或运算
      */
     public or(target: AttrValue) {
-        this._innerName += ` || ${transAttrValue(target)}`;
-        this.prevOpration = OperationWeight.or;
-        return this;
+        return new BaseTrigger(`${this._innerName} || ${transAttrValue(target)}`, OperationWeight.or);
     }
 
     /**
      * 逻辑异或运算
      */
     public xor(target: AttrValue) {
-        this._innerName += ` ^^ ${transAttrValue(target)}`;
-        this.prevOpration = OperationWeight.xor;
-        return this;
+        return new BaseTrigger(`${this._innerName} ^^ ${transAttrValue(target)}`, OperationWeight.xor);
     }
 
     /**
      * 按位取反运算符
      */
     public byteReversed(target: AttrValue) {
-        this._innerName += ` ~ ${transAttrValue(target)}`;
-        this.prevOpration = OperationWeight.byteReversed;
-        return this;
+        return new BaseTrigger(`${this._innerName} ~ ${transAttrValue(target)}`, OperationWeight.byteReversed);
     }
 
     /**
      * 按位与运算符
      */
     public byteAnd(target: AttrValue) {
-        this._innerName += ` & ${transAttrValue(target)}`;
-        this.prevOpration = OperationWeight.byteAnd;
-        return this;
+        return new BaseTrigger(`${this._innerName} & ${transAttrValue(target)}`, OperationWeight.byteAnd);
     }
 
     /**
      * 按位或运算符
      */
     public byteOr(target: AttrValue) {
-        this._innerName += ` | ${transAttrValue(target)}`;
-        this.prevOpration = OperationWeight.byteOr;
-        return this;
+        return new BaseTrigger(`${this._innerName} | ${transAttrValue(target)}`, OperationWeight.byteOr);
     }
 
     /**
      * 按位异或运算符
      */
     public byteXor(target: AttrValue) {
-        this._innerName += ` ^ ${transAttrValue(target)}`;
-        this.prevOpration = OperationWeight.byteXor;
-        return this;
+        return new BaseTrigger(`${this._innerName} ^ ${transAttrValue(target)}`, OperationWeight.byteXor);
     }
 
     /**
      * 等于
      */
     public equal(target: AttrValue) {
-        this._innerName += `${this.perfix()} = ${transAttrValue(target)}`;
-        this.prevOpration = OperationWeight.equal;
-        return this;
+        return new BaseTrigger(`${this._innerName}${this.perfix()} = ${transAttrValue(target)}`, OperationWeight.equal);
     }
 
     /**
      * 不等于
      */
     public notEqual(target: AttrValue) {
-        this._innerName += `${this.perfix()} != ${transAttrValue(target)}`;
-        this.prevOpration = OperationWeight.notEqual;
-        return this._innerName;
+        return new BaseTrigger(`${this._innerName}${this.perfix()} != ${transAttrValue(target)}`, OperationWeight.notEqual);
     }
 
     /**
      * 非
      */
     public not() {
-        this._innerName = `!${this._innerName}`;
-        this.prevOpration = OperationWeight.not;
-        return this;
+        return new BaseTrigger(`!(${this._innerName})`, OperationWeight.not);
     }
 
     /**
      * 小于
      */
     public less(target: AttrValue) {
-        this._innerName += `${this.perfix()} < ${transAttrValue(target)}`;
-        this.prevOpration = OperationWeight.less;
-        return this._innerName;
+        return new BaseTrigger(`${this._innerName}${this.perfix()} < ${transAttrValue(target)}`, OperationWeight.less);
     }
 
     /**
      * 大于
      */
     public over(target: AttrValue) {
-        this._innerName += `${this.perfix()} > ${transAttrValue(target)}`;
-        this.prevOpration = OperationWeight.over;
-        return this._innerName;
+        return new BaseTrigger(`${this._innerName}${this.perfix()} > ${transAttrValue(target)}`, OperationWeight.over);
     }
 
     /**
      * 大于等于
      */
     public overEqual(target: AttrValue) {
-        this._innerName += `${this.perfix()} >= ${transAttrValue(target)}`;
-        this.prevOpration = OperationWeight.overEqual;
-        return this._innerName;
+        return new BaseTrigger(`${this._innerName}${this.perfix()} >= ${transAttrValue(target)}`, OperationWeight.overEqual);
     }
 
     /**
      * 小于等于
      */
     public lessEqual(target: AttrValue) {
-        this._innerName += `${this.perfix()} <= ${transAttrValue(target)}`;
-        this.prevOpration = OperationWeight.lessEqual;
-        return this._innerName;
+        return new BaseTrigger(`${this._innerName}${this.perfix()} <= ${transAttrValue(target)}`, OperationWeight.lessEqual);
     }
 
     /**
      * 介于
      */
     public between(start: AttrValue, end: AttrValue) {
-        this._innerName += `${this.perfix()} = [${transAttrValue(start)}, ${transAttrValue(end)}]`;
-        this.prevOpration = OperationWeight.between;
-        return this._innerName;
+        return new BaseTrigger(`${this._innerName}${this.perfix()} = [${transAttrValue(start)}, ${transAttrValue(end)}]`, OperationWeight.between);
     }
 
     /**
      * 不介于
      */
     public notBetween(start: AttrValue, end: AttrValue) {
-        this._innerName += `${this.perfix()} != [${transAttrValue(start)}, ${transAttrValue(end)}]`;
-        this.prevOpration = OperationWeight.notBetween;
-        return this._innerName;
+        return new BaseTrigger(`${this._innerName}${this.perfix()} != [${transAttrValue(start)}, ${transAttrValue(end)}]`, OperationWeight.notBetween);
     }
 
     /**
      * 赋值
      */
     public setValue(value: AttrValue) {
-        this.prevOpration = OperationWeight.setValue;
-        return `${this._innerName} := ${transAttrValue(value)}`;
+        return new BaseTrigger(`${this._innerName} := ${transAttrValue(value)}`, OperationWeight.setValue);
     }
 }
 

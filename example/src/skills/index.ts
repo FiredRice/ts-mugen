@@ -1,5 +1,32 @@
-import { State, AfterImageTime, DisplayToClipboard, Var, HitDef, NotHitBy, AssertSpecial, Triggers, global } from '@tsmugen/core';
+import { animelem, AttrValue, Helper, movement, Null, Or, root, State, Triggers, HelperVar, NumHelper } from '@tsmugen/core';
 
+class SuperHelper extends Helper {
+    public jiasudu: HelperVar;
+    constructor(id: AttrValue) {
+        super(id)
+        this.jiasudu = new HelperVar(id, 1);
+    }
+}
+
+class Proj extends State {
+    public start = new SuperHelper(1300);
+
+    constructor(statedef) {
+        super(statedef);
+    }
+}
+
+const projState = new Proj({
+    id: 1200,
+    type: 'S',
+    movetype: 'I',
+    physics: 'S',
+    anim: 0
+});
+
+projState.appendControllers(function () {
+    Null({ triggers: 1 });
+});
 
 const letsStart = new State({
     id: 1000,
@@ -10,53 +37,22 @@ const letsStart = new State({
     anim: 0
 });
 
-const velTest = new Var(17);
-
-function defaultHelper() {
-    NotHitBy({
-        triggers: 1,
-        value: 'SCA'
-    });
-
-    AssertSpecial({
-        triggers: 1,
-        flag: 'noshadow',
-        flag2: 'invisible'
-    });
-}
-
 letsStart.appendControllers(function () {
     const triggers = new Triggers();
     const animNums = [1, 3, 4, 5, 8, 10];
+    triggers.appendAll(NumHelper(projState.start.id))
     animNums.forEach(item => {
         triggers.appendAnd(
-            global.animelem.equal(item),
-            global.movement.airjump.num.equal(item)
+            animelem.equal(item),
+            movement.airjump.num.equal(item),
+            Or(
+                projState.start.jiasudu.equal(5),
+                projState.start.jiasudu.add(10).less(300)
+            )
         );
     });
-    const charWidth = global.size.ground.back.add(global.size.ground.front);
-    defaultHelper();
-    HitDef({
-        triggers: new Triggers().appendOr(
-            global.time.equal(0),
-            charWidth.less(300)
-        ),
-        attr: 'SCA, NA',
-        fall: {
-            animtype: 'hard',
-            xvelocity: 10
-        }
-    });
-    AfterImageTime({
-        triggers: triggers,
-        time: 30
-    });
 
-    DisplayToClipboard({
-        triggers: 1,
-        text: 'The value of var(17) is %d, which is %f%% of 23.\n\t--Kiwi.',
-        params: [velTest.setValue(1), velTest.division(0.230)]
-    });
+    Null({ triggers });
 });
 
-export default [letsStart];
+export default [letsStart, projState];

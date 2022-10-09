@@ -11,189 +11,78 @@ class BaseAttributes extends BasePerfix {
     }
 
     // variable.ts
-    public get AILevel() {
-        return new BaseTrigger(`${this.getPerfix()}AILevel`);
-    }
-    public get alive() {
-        return new BaseTrigger(`${this.getPerfix()}Alive`);
-    }
-    public get backEdge() {
-        return new BaseTrigger(`${this.getPerfix()}BackEdge`);
-    }
-    public get backEdgeBodyDist() {
-        return new BaseTrigger(`${this.getPerfix()}BackEdgeBodyDist`);
-    }
-    public get backEdgeDist() {
-        return new BaseTrigger(`${this.getPerfix()}BackEdgeDist`);
-    }
-    public get bottomEdge() {
-        return new BaseTrigger(`${this.getPerfix()}BottomEdge`);
-    }
-    public get canRecover() {
-        return new BaseTrigger(`${this.getPerfix()}CanRecover`);
-    }
-    public get ctrl() {
-        return new BaseTrigger(`${this.getPerfix()}Ctrl`);
-    }
-    public get facing() {
-        return new BaseTrigger(`${this.getPerfix()}facing`);
-    }
-    public get frontEdge() {
-        return new BaseTrigger(`${this.getPerfix()}FrontEdge`);
-    }
-    public get frontEdgeBodyDist() {
-        return new BaseTrigger(`${this.getPerfix()}FrontEdgeBodyDist`);
-    }
-    public get frontEdgeDist() {
-        return new BaseTrigger(`${this.getPerfix()}FrontEdgeDist`);
-    }
-    public get getHitVar() {
-        return new BaseTrigger(`${this.getPerfix()}GetHitVar`);
-    }
-    public get hitCount() {
-        return new BaseTrigger(`${this.getPerfix()}HitCount`);
-    }
-    public get hitDefAttr() {
-        return new HitDefAttr(this.getPerfix());
-    }
-    public get hitFall() {
-        return new BaseTrigger(`${this.getPerfix()}HitFall`);
-    }
-    public get hitOver() {
-        return new BaseTrigger(`${this.getPerfix()}HitOver`);
-    }
-    public get hitPauseTime() {
-        return new BaseTrigger(`${this.getPerfix()}HitPauseTime`);
-    }
-    public get hitShakeOver() {
-        return new BaseTrigger(`${this.getPerfix()}HitShakeOver`);
-    }
-    public get hitVelX() {
-        return new BaseTrigger(`${this.getPerfix()}HitVel X`);
-    }
-    public get hitVelY() {
-        return new BaseTrigger(`${this.getPerfix()}HitVel Y`);
-    }
+    public readonly AILevel = new BaseTrigger(`${this.getPerfix()}AILevel`);
+    public readonly alive = new BaseTrigger(`${this.getPerfix()}Alive`);
+    public readonly backEdge = new BaseTrigger(`${this.getPerfix()}BackEdge`);
+    public readonly backEdgeBodyDist = new BaseTrigger(`${this.getPerfix()}BackEdgeBodyDist`);
+    public readonly backEdgeDist = new BaseTrigger(`${this.getPerfix()}BackEdgeDist`);
+    public readonly bottomEdge = new BaseTrigger(`${this.getPerfix()}BottomEdge`);
+    public readonly cameraPosX = new BaseTrigger(`${this.getPerfix()}CameraPos X`);
+    public readonly cameraPosY = new BaseTrigger(`${this.getPerfix()}CameraPos Y`);
+    public readonly cameraZoom = new BaseTrigger(`${this.getPerfix()}CameraZoom`);
+    public readonly canRecover = new BaseTrigger(`${this.getPerfix()}CanRecover`);
+    public readonly ctrl = new BaseTrigger(`${this.getPerfix()}Ctrl`);
+    public readonly drawGame = new BaseTrigger(`${this.getPerfix()}DrawGame`);
+    public readonly facing = new BaseTrigger(`${this.getPerfix()}facing`);
+    public readonly frontEdge = new BaseTrigger(`${this.getPerfix()}FrontEdge`);
+    public readonly frontEdgeBodyDist = new BaseTrigger(`${this.getPerfix()}FrontEdgeBodyDist`);
+    public readonly frontEdgeDist = new BaseTrigger(`${this.getPerfix()}FrontEdgeDist`);
+    public readonly gameHeight = new BaseTrigger(`${this.getPerfix()}GameHeight`);
+    public readonly gameTime = new BaseTrigger(`${this.getPerfix()}GameTime`);
+    public readonly gameWidth = new BaseTrigger(`${this.getPerfix()}GameWidth`);
+    public readonly getHitVar = new BaseTrigger(`${this.getPerfix()}GetHitVar`);
+    public readonly hitCount = new BaseTrigger(`${this.getPerfix()}HitCount`);
+    public readonly hitDefAttr = new HitDefAttr(`${this.getPerfix()}HitDefAttr`);
+    public readonly hitFall = new BaseTrigger(`${this.getPerfix()}HitFall`);
+    public readonly hitOver = new BaseTrigger(`${this.getPerfix()}HitOver`);
+    public readonly hitPauseTime = new BaseTrigger(`${this.getPerfix()}HitPauseTime`);
+    public readonly hitShakeOver = new BaseTrigger(`${this.getPerfix()}HitShakeOver`);
+    public readonly hitVelX = new BaseTrigger(`${this.getPerfix()}HitVel X`);
+    public readonly hitVelY = new BaseTrigger(`${this.getPerfix()}HitVel Y`);
     /**
      * 返回玩家的ID号
      */
-    public get ID() {
-        return new BaseTrigger(`${this.getPerfix()}ID`);
-    }
-    public get inGuardDist() {
-        return new BaseTrigger(`${this.getPerfix()}InGuardDist`);
-    }
-    public get IsHelper() {
-        return createBaseFunTrigger(`${this.getPerfix()}IsHelper`);
-    }
-    public get isHomeTeam() {
-        return new BaseTrigger(`${this.getPerfix()}IsHomeTeam`);
-    }
-    public get leftEdge() {
-        return new BaseTrigger(`${this.getPerfix()}LeftEdge`);
-    }
-    public get life() {
-        return new BaseTrigger(`${this.getPerfix()}Life`);
-    }
-    public get lifeMax() {
-        return new BaseTrigger(`${this.getPerfix()}LifeMax`);
-    }
-    public get lose() {
-        return new BaseTrigger(`${this.getPerfix()}Lose`);
-    }
-    public get loseKO() {
-        return new BaseTrigger(`${this.getPerfix()}LoseKO`);
-    }
-    public get loseTime() {
-        return new BaseTrigger(`${this.getPerfix()}LoseTime`);
-    }
-    public get matchNo() {
-        return new BaseTrigger(`${this.getPerfix()}MatchNo`);
-    }
-    public get matchOver() {
-        return new BaseTrigger(`${this.getPerfix()}MatchOver`);
-    }
-    public get moveContact() {
-        return new BaseTrigger(`${this.getPerfix()}MoveContact`);
-    }
-    public get moveGuarded() {
-        return new BaseTrigger(`${this.getPerfix()}MoveGuarded`);
-    }
-    public get moveHit() {
-        return new BaseTrigger(`${this.getPerfix()}MoveHit`);
-    }
-    public get moveReversed() {
-        return new BaseTrigger(`${this.getPerfix()}MoveReversed`);
-    }
-    public get moveType() {
-        return new MoveType('MoveType', this.getPerfix());
-    }
-    public get NumHelper() {
-        return createBaseFunTrigger(`${this.getPerfix()}NumHelper`);
-    }
-    public get NumExplod() {
-        return createBaseFunTrigger(`${this.getPerfix()}NumExplod`);
-    }
-    public get NumTarget() {
-        return createBaseFunTrigger(`${this.getPerfix()}NumTarget`);
-    }
-    public get NumEnemy() {
-        return new BaseTrigger(`${this.getPerfix()}NumEnemy`);
-    }
-    public get NumPartner() {
-        return new BaseTrigger(`${this.getPerfix()}NumPartner`);
-    }
-    public get NumProj() {
-        return new BaseTrigger(`${this.getPerfix()}NumProj`);
-    }
+    public readonly ID = new BaseTrigger(`${this.getPerfix()}ID`);
+    public readonly inGuardDist = new BaseTrigger(`${this.getPerfix()}InGuardDist`);
+    public readonly isHelper = createBaseFunTrigger(`${this.getPerfix()}IsHelper`);
+    public readonly isHomeTeam = new BaseTrigger(`${this.getPerfix()}IsHomeTeam`);
+    public readonly leftEdge = new BaseTrigger(`${this.getPerfix()}LeftEdge`);
+    public readonly life = new BaseTrigger(`${this.getPerfix()}Life`);
+    public readonly lifeMax = new BaseTrigger(`${this.getPerfix()}LifeMax`);
+    public readonly lose = new BaseTrigger(`${this.getPerfix()}Lose`);
+    public readonly loseKO = new BaseTrigger(`${this.getPerfix()}LoseKO`);
+    public readonly loseTime = new BaseTrigger(`${this.getPerfix()}LoseTime`);
+    public readonly matchNo = new BaseTrigger(`${this.getPerfix()}MatchNo`);
+    public readonly matchOver = new BaseTrigger(`${this.getPerfix()}MatchOver`);
+    public readonly moveContact = new BaseTrigger(`${this.getPerfix()}MoveContact`);
+    public readonly moveGuarded = new BaseTrigger(`${this.getPerfix()}MoveGuarded`);
+    public readonly moveHit = new BaseTrigger(`${this.getPerfix()}MoveHit`);
+    public readonly moveReversed = new BaseTrigger(`${this.getPerfix()}MoveReversed`);
+    public readonly moveType = new MoveType('MoveType', this.getPerfix());
+    public readonly numHelper = createBaseFunTrigger(`${this.getPerfix()}NumHelper`);
+    public readonly numExplod = createBaseFunTrigger(`${this.getPerfix()}NumExplod`);
+    public readonly numTarget = createBaseFunTrigger(`${this.getPerfix()}NumTarget`);
+    public readonly numEnemy = new BaseTrigger(`${this.getPerfix()}NumEnemy`);
+    public readonly numPartner = new BaseTrigger(`${this.getPerfix()}NumPartner`);
+    public readonly numProj = new BaseTrigger(`${this.getPerfix()}NumProj`);
     public NumProjID(id: AttrValue) {
         return new BaseTrigger(`${this.getPerfix()}NumProjID(${transAttrValue(id)})`);
     }
-    public get p2BodyDist() {
-        return new BaseTrigger(`${this.getPerfix()}P2BodyDist`);
-    }
-    public get p2DistX() {
-        return new BaseTrigger(`${this.getPerfix()}P2Dist X`);
-    }
-    public get p2DistY() {
-        return new BaseTrigger(`${this.getPerfix()}P2Dist Y`);
-    }
-    public get p2Life() {
-        return new BaseTrigger(`${this.getPerfix()}P2Life`);
-    }
-    public get p2MoveType() {
-        return new MoveType('P2MoveType', this.getPerfix());
-    }
-    public get p2StateNo() {
-        return new BaseTrigger(`${this.getPerfix()}P2StateNo`);
-    }
-    public get p2StateType() {
-        return new StateType('P2StateType', this.getPerfix());
-    }
-    public get palNo() {
-        return new BaseTrigger(`${this.getPerfix()}PalNo`);
-    }
-    public get parentDistX() {
-        return new BaseTrigger(`${this.getPerfix()}ParentDist X`);
-    }
-    public get parentDistY() {
-        return new BaseTrigger(`${this.getPerfix()}ParentDist Y`);
-    }
-    public get posX() {
-        return new BaseTrigger(`${this.getPerfix()}Pos X`);
-    }
-    public get posY() {
-        return new BaseTrigger(`${this.getPerfix()}Pos Y`);
-    }
-    public get power() {
-        return new BaseTrigger(`${this.getPerfix()}Power`);
-    }
-    public get powerMax() {
-        return new BaseTrigger(`${this.getPerfix()}PowerMax`);
-    }
-    public get prevStateNo() {
-        return new BaseTrigger(`${this.getPerfix()}PrevStateNo`);
-    }
+    public readonly p2BodyDist = new BaseTrigger(`${this.getPerfix()}P2BodyDist`);
+    public readonly p2DistX = new BaseTrigger(`${this.getPerfix()}P2Dist X`);
+    public readonly p2DistY = new BaseTrigger(`${this.getPerfix()}P2Dist Y`);
+    public readonly p2Life = new BaseTrigger(`${this.getPerfix()}P2Life`);
+    public readonly p2MoveType = new MoveType('P2MoveType', this.getPerfix());
+    public readonly p2StateNo = new BaseTrigger(`${this.getPerfix()}P2StateNo`);
+    public readonly p2StateType = new StateType('P2StateType', this.getPerfix());
+    public readonly palNo = new BaseTrigger(`${this.getPerfix()}PalNo`);
+    public readonly parentDistX = new BaseTrigger(`${this.getPerfix()}ParentDist X`);
+    public readonly parentDistY = new BaseTrigger(`${this.getPerfix()}ParentDist Y`);
+    public readonly posX = new BaseTrigger(`${this.getPerfix()}Pos X`);
+    public readonly posY = new BaseTrigger(`${this.getPerfix()}Pos Y`);
+    public readonly power = new BaseTrigger(`${this.getPerfix()}Power`);
+    public readonly powerMax = new BaseTrigger(`${this.getPerfix()}PowerMax`);
+    public readonly prevStateNo = new BaseTrigger(`${this.getPerfix()}PrevStateNo`);
     public ProjCancelTime(id: AttrValue) {
         return new BaseTrigger(`${this.getPerfix()}ProjCancelTime(${transAttrValue(id)})`);
     }
@@ -215,92 +104,52 @@ class BaseAttributes extends BasePerfix {
     public ProjHitTime(id: AttrValue) {
         return new BaseTrigger(`${this.getPerfix()}ProjHitTime(${transAttrValue(id)})`);
     }
-    public get rightEdge() {
-        return new BaseTrigger(`${this.getPerfix()}RightEdge`);
-    }
-    public get rootDistX() {
-        return new BaseTrigger(`${this.getPerfix()}RootDist X`);
-    }
-    public get rootDistY() {
-        return new BaseTrigger(`${this.getPerfix()}RootDist Y`);
-    }
-    public get roundsExisted() {
-        return new BaseTrigger(`${this.getPerfix()}RoundsExisted`);
-    }
-    public get stateNo() {
-        return new BaseTrigger(`${this.getPerfix()}StateNo`);
-    }
-    public get stateType() {
-        return new StateType('StateType', this.getPerfix());
-    }
-    public get teamMode() {
-        return new TeamMode('TeamMode', this.getPerfix());
-    }
-    public get teamSide() {
-        return new BaseTrigger(`${this.getPerfix()}TeamSide`);
-    }
-    public get time() {
-        return new BaseTrigger(`${this.getPerfix()}Time`);
-    }
-    public get topEdge() {
-        return new BaseTrigger(`${this.getPerfix()}TopEdge`);
-    }
-    public get uniqHitCount() {
-        return new BaseTrigger(`${this.getPerfix()}UniqHitCount`);
-    }
-    public get velX() {
-        return new BaseTrigger(`${this.getPerfix()}Vel X`);
-    }
-    public get velY() {
-        return new BaseTrigger(`${this.getPerfix()}Vel Y`);
-    }
-    public get win() {
-        return new BaseTrigger(`${this.getPerfix()}Win`);
-    }
-    public get winKO() {
-        return new BaseTrigger(`${this.getPerfix()}WinKO`);
-    }
-    public get winTime() {
-        return new BaseTrigger(`${this.getPerfix()}WinTime`);
-    }
-    public get winPerfect() {
-        return new BaseTrigger(`${this.getPerfix()}WinPerfect`);
-    }
+    public readonly rightEdge = new BaseTrigger(`${this.getPerfix()}RightEdge`);
+    public readonly rootDistX = new BaseTrigger(`${this.getPerfix()}RootDist X`);
+    public readonly rootDistY = new BaseTrigger(`${this.getPerfix()}RootDist Y`);
+    public readonly roundsExisted = new BaseTrigger(`${this.getPerfix()}RoundsExisted`);
+    public readonly roundNo = new BaseTrigger(`${this.getPerfix()}RoundNo`);
+    public readonly roundState = new BaseTrigger(`${this.getPerfix()}RoundState`);
+    public readonly screenHeight = new BaseTrigger(`${this.getPerfix()}ScreenHeight`);
+    public readonly screenPosX = new BaseTrigger(`${this.getPerfix()}ScreenPos X`);
+    public readonly screenPosY = new BaseTrigger(`${this.getPerfix()}ScreenPos Y`);
+    public readonly screenWidth = new BaseTrigger(`${this.getPerfix()}ScreenWidth`);
+    public readonly stateNo = new BaseTrigger(`${this.getPerfix()}StateNo`);
+    public readonly stateType = new StateType('StateType', this.getPerfix());
+    public readonly teamMode = new TeamMode('TeamMode', this.getPerfix());
+    public readonly teamSide = new BaseTrigger(`${this.getPerfix()}TeamSide`);
+    public readonly time = new BaseTrigger(`${this.getPerfix()}Time`);
+    public readonly topEdge = new BaseTrigger(`${this.getPerfix()}TopEdge`);
+    public readonly uniqHitCount = new BaseTrigger(`${this.getPerfix()}UniqHitCount`);
+    public readonly velX = new BaseTrigger(`${this.getPerfix()}Vel X`);
+    public readonly velY = new BaseTrigger(`${this.getPerfix()}Vel Y`);
+    public readonly win = new BaseTrigger(`${this.getPerfix()}Win`);
+    public readonly winKO = new BaseTrigger(`${this.getPerfix()}WinKO`);
+    public readonly winTime = new BaseTrigger(`${this.getPerfix()}WinTime`);
+    public readonly winPerfect = new BaseTrigger(`${this.getPerfix()}WinPerfect`);
 
 
     // constant.ts
-    public get data() {
-        return new ConstData(this.perfix);
-    }
-    public get size() {
-        return new ConstSize(this.perfix);
-    }
-    public get velocity() {
-        return new ConstVelocity(this.perfix);
-    }
-    public get movement() {
-        return new ConstMovement(this.perfix);
-    }
+    public readonly data = new ConstData(this.perfix);
+    public readonly size = new ConstSize(this.perfix);
+    public readonly velocity = new ConstVelocity(this.perfix);
+    public readonly movement = new ConstMovement(this.perfix);
 
 
     // names.ts
-    public get authorName() {
-        return new Name('AuthorName', this.perfix);
-    }
-    public get name() {
-        return new Name('Name', this.perfix);
-    }
+    public readonly authorName = new Name('AuthorName', this.perfix);
+    public readonly name = new Name('Name', this.perfix);
+    public readonly p1Name = new Name('p1Name', this.perfix);
+    public readonly p2Name = new Name('p2Name', this.perfix);
+    public readonly p3Name = new Name('p3Name', this.perfix);
+    public readonly p4Name = new Name('p4Name', this.perfix);
+    public readonly command = new Name('Command', this.perfix);
+
 
     // anim.ts
-    public get anim() {
-        return new BaseTrigger(`${this.getPerfix()}Anim`);
-    }
-    public get animelem() {
-        return new BaseTrigger(`${this.getPerfix()}AnimElem`);
-    }
-    public get animtime() {
-        return new BaseTrigger(`${this.getPerfix()}AnimTime`);
-    }
+    public readonly anim = new BaseTrigger(`${this.getPerfix()}Anim`);
+    public readonly animelem = new BaseTrigger(`${this.getPerfix()}AnimElem`);
+    public readonly animtime = new BaseTrigger(`${this.getPerfix()}AnimTime`);
     public AnimElemNo(id: AttrValue) {
         return new BaseTrigger(`${this.getPerfix()}AnimElemNo(${transAttrValue(id)})`);
     }
@@ -313,6 +162,24 @@ class BaseAttributes extends BasePerfix {
     public SelfAnimExist(id: AttrValue) {
         return new BaseTrigger(`${this.getPerfix()}SelfAnimExist(${transAttrValue(id)})`);
     }
+
+    // calculate.ts
+    /**
+     * 返回自然数 e 的值(2.718281828...)
+     */
+    public readonly E = new BaseTrigger(`${this.getPerfix()}E`);
+    /**
+     * 圆周率 PI
+     */
+    public readonly PI = new BaseTrigger(`${this.getPerfix()}Pi`);
+    /**
+     * 随机数
+     */
+    public readonly random = new BaseTrigger(`${this.getPerfix()}Random`);
+    /**
+     * 返回每秒的帧数.用于计算时间方面.
+     */
+    public readonly ticksPerSecond = new BaseTrigger(`${this.getPerfix()}TicksPerSecond`);
 
 
     public var(index: AttrValue) {
@@ -327,7 +194,6 @@ class BaseAttributes extends BasePerfix {
     public sysVar(index: AttrValue) {
         return new BaseTrigger(`${this.getPerfix()}SysVar(${transAttrValue(index)})`);
     }
-
 }
 
 export class Attributes extends BaseAttributes {
@@ -335,21 +201,11 @@ export class Attributes extends BaseAttributes {
         super(perfix);
     }
     // attributes.ts
-    public get root() {
-        return new BaseAttributes(`${this.getPerfix()}root`);
-    }
-    public get parent() {
-        return new BaseAttributes(`${this.getPerfix()}parent`);
-    }
-    public get partner() {
-        return new BaseAttributes(`${this.getPerfix()}partner`);
-    }
-    public get enemynear() {
-        return new BaseAttributes(`${this.getPerfix()}enemynear`);
-    }
-    public get target() {
-        return new BaseAttributes(`${this.getPerfix()}target`);
-    }
+    public readonly root = new BaseAttributes(`${this.getPerfix()}root`);
+    public readonly parent = new BaseAttributes(`${this.getPerfix()}parent`);
+    public readonly partner = new BaseAttributes(`${this.getPerfix()}partner`);
+    public readonly enemynear = new BaseAttributes(`${this.getPerfix()}enemynear`);
+    public readonly target = new BaseAttributes(`${this.getPerfix()}target`);
     public Helper(id: AttrValue) {
         return new BaseAttributes(`${this.getPerfix()}Helper(${transAttrValue(id)})`);
     }
@@ -358,97 +214,6 @@ export class Attributes extends BaseAttributes {
     }
 }
 
-class MugenGlobal extends Attributes {
-    constructor() {
-        super();
-    }
-    // name.ts
-    public get p1Name() {
-        return new Name('p1Name');
-    }
-    public get p2Name() {
-        return new Name('p2Name');
-    }
-    public get p3Name() {
-        return new Name('p3Name');
-    }
-    public get p4Name() {
-        return new Name('p4Name');
-    }
-    public get command() {
-        return new Name('Command');
-    }
-
-    // calculate.ts
-    /**
-     * 返回自然数 e 的值(2.718281828...)
-     */
-    public get E() {
-        return new BaseTrigger('E');
-    }
-    /**
-     * 圆周率 PI
-     */
-    public get Pi() {
-        return new BaseTrigger('Pi');
-    }
-    /**
-     * 随机数
-     */
-    public get Random() {
-        return new BaseTrigger('Random');
-    }
-    /**
-     * 返回每秒的帧数.用于计算时间方面.
-     */
-    public get TicksPerSecond() {
-        return new BaseTrigger('TicksPerSecond');
-    }
-
-    // variable.ts
-    public get cameraPosX() {
-        return new BaseTrigger('CameraPos X');
-    }
-    public get cameraPosY() {
-        return new BaseTrigger('CameraPos Y');
-    }
-    public get cameraZoom() {
-        return new BaseTrigger('CameraZoom');
-    }
-    public get drawGame() {
-        return new BaseTrigger('DrawGame');
-    }
-    public get gameHeight() {
-        return new BaseTrigger('GameHeight');
-    }
-    public get gameTime() {
-        return new BaseTrigger('GameTime');
-    }
-    public get gameWidth() {
-        return new BaseTrigger('GameWidth');
-    }
-    public get roundNo() {
-        return new BaseTrigger('RoundNo');
-    }
-    public get roundState() {
-        return new BaseTrigger('RoundState');
-    }
-    public get screenHeight() {
-        return new BaseTrigger('ScreenHeight');
-    }
-    public get screenPosX() {
-        return new BaseTrigger('ScreenPos X');
-    }
-    public get screenPosY() {
-        return new BaseTrigger('ScreenPos Y');
-    }
-    public get screenWidth() {
-        return new BaseTrigger('ScreenWidth');
-    }
-}
-
-// 全局变量
-export const global = new MugenGlobal();
 
 export const root = new Attributes('root');
 export const parent = new Attributes('parent');

@@ -211,3 +211,8 @@ export class ConstMovement extends BasePerfix {
         }
     }
 }
+
+export const data = new ConstData();
+export const size = new ConstSize();
+export const velocity = new ConstVelocity();
+export const movement = new ConstMovement();

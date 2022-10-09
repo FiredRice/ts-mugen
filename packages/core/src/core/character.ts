@@ -3,9 +3,9 @@ import { State } from '../state';
 import { CharInfo } from '../types';
 import { transStr } from '../utils';
 
-export default class Character {
+export default class Character<T extends State> {
     private info: CharInfo;
-    private states: State[] = [];
+    private states: T[] = [];
 
     constructor() {
         const date = new Date();
@@ -17,7 +17,7 @@ export default class Character {
         };
     }
 
-    public injectStates(states: State[]) {
+    public injectStates(states: T[]) {
         this.states = states;
     }
 

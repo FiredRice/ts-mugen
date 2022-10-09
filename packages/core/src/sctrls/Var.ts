@@ -1,5 +1,5 @@
 import { currentWrite } from '../core';
-import { AttrValue, BaseSctrls } from '../types';
+import { AttrValue, BaseSctrls, BaseValue } from '../types';
 import { objectToString, transAttrValue, triggersToString } from '../utils';
 import { isArray } from 'lodash';
 import { BaseTrigger } from '../triggers/base';
@@ -13,28 +13,20 @@ interface RandomVarParams extends BaseSctrls {
 }
 
 /**
- * 非本体整型变量
- * - 该类实例化的变量【不会】附加输出到变量表中
+ * 整型变量
+ * - 若设置 describe，则该类实例化的变量【会】附加输出到变量表中
  */
-export class NormalVar extends BaseTrigger {
+export class Var extends BaseTrigger {
     protected index: AttrValue;
 
     /**
      * 声名变量
      * @param index 变量索引
      */
-    constructor(index: AttrValue) {
+    constructor(index: AttrValue, describe: string = '') {
         super(`var(${transAttrValue(index)})`);
         this.index = index;
-    }
-
-    /**
-     * 清除缓存
-     * - 建议每次对变量进行计算后调用
-     */
-    public reset() {
-        this._setInnerName(`var(${transAttrValue(this.index)})`);
-        return this;
+        !!describe && currentWrite.addVar(transAttrValue(index), describe);
     }
 
     /**
@@ -91,40 +83,32 @@ export class NormalVar extends BaseTrigger {
 }
 
 /**
- * 本体整型变量
- * - 该类实例化的变量【会】附加输出到变量表中
+ * Helper 中使用的整型变量
  */
-export class Var extends NormalVar {
+export class HelperVar extends Var {
     /**
-     * 实例化变量
-     * @param index 索引
-     * @param describe 描述
+     * 
+     * @param id
+     * @param index 变量索引
      */
-    constructor(index: AttrValue, describe: string = '') {
+    public constructor(id: AttrValue, index: AttrValue) {
         super(index);
-        currentWrite.addVar(transAttrValue(index), describe);
+        this._setInnerName(`helper(${transAttrValue(id)}), var(${index})`);
     }
 }
 
+
 /**
- * 非本体浮点型变量
- * - 该类实例化的变量【不会】附加输出到变量表中
+ * 浮点型变量
+ * - 若设置 describe，则该类实例化的变量【会】附加输出到变量表中
  */
-export class NormalFVar extends BaseTrigger {
+export class FVar extends BaseTrigger {
     private index: AttrValue;
 
-    public constructor(index: AttrValue) {
+    public constructor(index: AttrValue, describe: string = '') {
         super(`fvar(${transAttrValue(index)})`);
         this.index = index;
-    }
-
-    /**
-     * 清除缓存
-     * - 建议每次对变量进行计算后调用
-     */
-    public reset() {
-        this._setInnerName(`fvar(${transAttrValue(this.index)})`);
-        return this;
+        !!describe && currentWrite.addFVar(transAttrValue(index), describe);
     }
 
     /**
@@ -166,18 +150,19 @@ export class NormalFVar extends BaseTrigger {
     }
 }
 
+
+
 /**
- * 本体浮点型变量
- * - 该类实例化的变量【会】附加输出到变量表中
+ * Helper 中使用的浮点型变量
  */
-export class FVar extends NormalFVar {
+export class HelperFVar extends FVar {
     /**
-     * 声名变量
+     * 
+     * @param id
      * @param index 变量索引
-     * @param describe 描述
      */
-    public constructor(index: AttrValue, describe: string = '') {
+    public constructor(id: AttrValue, index: AttrValue) {
         super(index);
-        currentWrite.addFVar(transAttrValue(index), describe);
+        this._setInnerName(`helper(${transAttrValue(id)}), fvar(${index})`);
     }
 }

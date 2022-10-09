@@ -1,10 +1,11 @@
 import { getMugenConfig, MugenConfig } from '@tsmugen/utils';
+import { State } from '../state';
 import { fileService } from '../utils';
 import Character from './character';
 import { currentWrite } from './currentWrite';
 
-export default class Mugen {
-    protected char?: Character;
+export default class Mugen<T extends State> {
+    protected char?: Character<T>;
     private rootPath: string;
     private config: MugenConfig;
 
@@ -16,7 +17,7 @@ export default class Mugen {
     /**
      * 注入角色
      */
-    public injectCharacter(char: Character) {
+    public injectCharacter(char: Character<T>) {
         this.char = char;
     }
 

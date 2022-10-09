@@ -130,3 +130,23 @@ export function Sin(value: AttrValue) {
 export function Tan(value: AttrValue) {
     return new BaseTrigger(`tan(${transAttrValue(value)})`);
 }
+
+/**
+ * 返回自然数 e 的值(2.718281828...)
+ */
+export const E = new BaseTrigger('E');
+
+/**
+* 圆周率 PI
+*/
+export const PI = new BaseTrigger('Pi');
+
+/**
+ * 随机数
+ */
+export const Random = new BaseTrigger('Random');
+
+/**
+* 返回每秒的帧数.用于计算时间方面.
+*/
+export const TicksPerSecond = new BaseTrigger('TicksPerSecond');
