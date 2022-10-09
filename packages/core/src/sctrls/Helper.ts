@@ -57,7 +57,7 @@ export default class Helper extends Attributes {
      * Helper
      * - 创建玩家的另一个实例作为一个helper(援助)人物
      */
-    public create(params: HelperParams) {
+    public Create(params: HelperParams) {
         const {
             triggers,
             describe = '',
