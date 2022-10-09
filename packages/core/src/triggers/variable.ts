@@ -184,7 +184,7 @@ export function sysVar(value: AttrValue) {
 
 
 export const teamMode = new TeamMode('TeamMode');
-export const teamSide = new StateType('TeamSide');
+export const teamSide = new BaseTrigger('TeamSide');
 export const topEdge = new BaseTrigger('TopEdge');
 export const time = new BaseTrigger('Time');
 
