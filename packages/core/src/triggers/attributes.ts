@@ -5,7 +5,7 @@ import { ConstData, ConstMovement, ConstSize, ConstVelocity } from './constant';
 import { HitDefAttr, MoveType, StateType, TeamMode } from './model';
 import { transAttrValue } from '../utils';
 
-class BaseAttributes extends BasePerfix {
+export class BaseAttributes extends BasePerfix {
     constructor(perfix: string = '') {
         super(perfix);
     }

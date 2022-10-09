@@ -1,5 +1,6 @@
 import { AttrValue, BaseValue } from '../types';
 import { transAttrValue, transStr } from '../utils';
+import { BaseAttributes } from './attributes';
 import { BaseTrigger, createBaseFunTrigger } from './base';
 import { HitDefAttr, MoveType, StateType, TeamMode } from './model';
 
@@ -37,7 +38,12 @@ export const gameTime = new BaseTrigger('GameTime');
 export const gameWidth = new BaseTrigger('GameWidth');
 export const getHitVar = new BaseTrigger('GetHitVar');
 
-
+/**
+ * mugen 内置关键字，便于与非 Helper 类创建的 helper 区分使用
+ */
+export function helper(id: AttrValue) {
+    return new BaseAttributes(`Helper(${transAttrValue(id)})`);
+}
 export const hitCount = new BaseTrigger('HitCount');
 export const hitDefAttr = new HitDefAttr('HitDefAttr');
 export const hitFall = new BaseTrigger('HitFall');
