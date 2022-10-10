@@ -1,6 +1,6 @@
 {
 	"name": "@tsmugen/cli",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "ts-mugen脚手架",
 	"author": "破晓雪风",
 	"homepage": "https://github.com/FiredRice/ts-mugen/tree/master/packages/cli",

@@ -1,6 +1,6 @@
 {
 	"name": "@tsmugen/utils",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "ts-mugen 工具模块",
 	"author": "破晓雪风",
 	"homepage": "https://github.com/FiredRice/ts-mugen/tree/master/packages/utils",
