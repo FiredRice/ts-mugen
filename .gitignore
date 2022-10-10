@@ -9,7 +9,6 @@ node_modules
 /packages/**/node_modules
 /packages/**/lib
 /packages/**/dist
-/packages/create-tsmugen-app
 /example/node_modules
 /example/lib
 
