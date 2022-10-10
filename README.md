@@ -5,6 +5,7 @@
 - [特性](#特性)<br>
 - [适用人群](#适用人群)<br>
 - [各包说明](#各包说明)<br>
+- [安装](#安装)<br>
 
 ## 介绍
 ts-mugen 是一款可以让您使用 `typescript` 开发 `mugen` 人物的框架。
@@ -34,7 +35,18 @@ ts-mugen 是一款可以让您使用 `typescript` 开发 `mugen` 人物的框架
 
 |包名|说明|
 |---|---|
-|`@tsmugen/cli`|对人物进行打包与调试的脚手架|
+|<a href="./packages/cli">@tsmugen/cli</a>|对人物进行打包与调试的脚手架|
 |<a href="./packages/core">@tsmugen/core</a>|核心包|
-|`@tsmugen/create-tsmugen-app`|快速创建项目的脚手架，您可能并不需要这个|
-|`@tsmugen/utils`|`@tsmugen/cli` 与 `@tsmugen/core`依赖的工具库|
+|<a href="./packages/create-tsmugen-app">@tsmugen/create-tsmugen-app</a>|快速创建项目的脚手架，您可能并不需要这个|
+|<a href="./packages/utils">@tsmugen/utils</a>|`@tsmugen/cli` 与 `@tsmugen/core`依赖的工具库|
+
+## 安装
+
+npm：
+```sh
+npm install @tsmugen/cli @tsmugen/core
+```
+yarn：
+```sh
+yarn add @tsmugen/cli @tsmugen/core
+```
