@@ -7,7 +7,7 @@ export default class CorePkg {
 
     constructor() {
         this.pkgPath = `${process.cwd()}/packages/core/package.json`;
-        this.deps = joinDep([`"@tsmugen/utils": "latest",`]);
+        this.deps = joinDep([`"@tsmugen/utils": "^1.0.6",`]);
     }
 
     public removeDep() {

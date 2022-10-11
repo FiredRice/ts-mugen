@@ -7,7 +7,7 @@ export default class CliPkg {
 
     constructor() {
         this.pkgPath = `${process.cwd()}/packages/cli/package.json`;
-        this.deps = joinDep([`"@tsmugen/utils": "latest",`]);
+        this.deps = joinDep([`"@tsmugen/utils": "^1.0.6",`]);
     }
 
     public removeDep() {
