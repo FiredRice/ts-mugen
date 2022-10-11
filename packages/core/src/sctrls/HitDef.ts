@@ -1,6 +1,6 @@
 import { currentWrite } from '../core';
 import { AttrValue, BasePostype, BaseSctrls } from '../types';
-import { objectToString, triggersToString } from '../utils/index';
+import { objectToString, triggersToString, versionCheck } from '../utils';
 import { AfterImageParams } from './AfterImage';
 
 type AnimType = 'light' | 'medium' | 'hard' | 'back' | 'up' | 'diagup';
@@ -119,12 +119,14 @@ interface HitDefParams extends BaseSctrls {
  * - 定义玩家攻击中的单个hit(属性).
  */
 export function HitDef(params: HitDefParams) {
-    const { triggers, describe = '', ...others } = params;
-    let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
-    result += `type = HitDef\n`;
-    result += triggersToString(triggers);
-    result += objectToString(others);
-    currentWrite.append(result);
+    const { triggers, describe = '', version, ...others } = params;
+    versionCheck(function () {
+        let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
+        result += `type = HitDef\n`;
+        result += triggersToString(triggers);
+        result += objectToString(others);
+        currentWrite.append(result);
+    }, version);
 }
 
 interface ProjectileParams extends HitDefParams {
@@ -162,10 +164,12 @@ interface ProjectileParams extends HitDefParams {
  * - 为玩家创建一个飞行道具.
  */
 export function Projectile(params: ProjectileParams) {
-    const { triggers, describe = '', ...others } = params;
-    let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
-    result += `type = Projectile\n`;
-    result += triggersToString(triggers);
-    result += objectToString(others);
-    currentWrite.append(result);
+    const { triggers, describe = '', version, ...others } = params;
+    versionCheck(function () {
+        let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
+        result += `type = Projectile\n`;
+        result += triggersToString(triggers);
+        result += objectToString(others);
+        currentWrite.append(result);
+    }, version);
 }

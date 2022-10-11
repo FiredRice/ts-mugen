@@ -1,6 +1,6 @@
 import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
-import { objectToString, triggersToString } from '../utils/index';
+import { objectToString, triggersToString, versionCheck } from '../utils';
 
 interface RemapPalParams extends BaseSctrls {
     source: [AttrValue, AttrValue];
@@ -12,10 +12,12 @@ interface RemapPalParams extends BaseSctrls {
  * - 更换玩家的色表.
  */
 export default function RemapPal(params: RemapPalParams) {
-    const { triggers, describe = '', ...others } = params;
-    let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
-    result += `type = RemapPal\n`;
-    result += triggersToString(triggers);
-    result += objectToString(others);
-    currentWrite.append(result);
+    const { triggers, describe = '', version, ...others } = params;
+    versionCheck(function () {
+        let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
+        result += `type = RemapPal\n`;
+        result += triggersToString(triggers);
+        result += objectToString(others);
+        currentWrite.append(result);
+    }, version);
 }

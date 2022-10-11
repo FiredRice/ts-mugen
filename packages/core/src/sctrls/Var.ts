@@ -1,6 +1,6 @@
 import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls, BaseValue } from '../types';
-import { objectToString, transAttrValue, triggersToString } from '../utils';
+import { objectToString, transAttrValue, triggersToString, versionCheck } from '../utils';
 import { isArray } from 'lodash';
 import { BaseTrigger } from '../triggers/base';
 
@@ -41,14 +41,16 @@ export class Var extends BaseTrigger {
      * - value 整型变量的值
      */
     public Set(params: VarParams) {
-        const { value = 0, triggers, describe = '', ...others } = params;
-        let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
-        result += `type = VarSet\n`;
-        result += triggersToString(triggers);
-        result += `v = ${transAttrValue(this.index)}\n`;
-        result += `value = ${transAttrValue(value)}\n`;
-        result += objectToString(others);
-        currentWrite.append(result);
+        const { value = 0, triggers, describe = '', version, ...others } = params;
+        versionCheck(function () {
+            let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
+            result += `type = VarSet\n`;
+            result += triggersToString(triggers);
+            result += `v = ${transAttrValue(this.index)}\n`;
+            result += `value = ${transAttrValue(value)}\n`;
+            result += objectToString(others);
+            currentWrite.append(result);
+        }, version);
     }
 
     /**
@@ -56,14 +58,16 @@ export class Var extends BaseTrigger {
      * - value 是加到当前索引号的整型变量上的值
      */
     public Add(params: VarParams) {
-        const { value = 0, triggers, describe = '', ...others } = params;
-        let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
-        result += `type = VarAdd\n`;
-        result += triggersToString(triggers);
-        result += `v = ${transAttrValue(this.index)}\n`;
-        result += `value = ${transAttrValue(value)}\n`;
-        result += objectToString(others);
-        currentWrite.append(result);
+        const { value = 0, triggers, describe = '', version, ...others } = params;
+        versionCheck(function () {
+            let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
+            result += `type = VarAdd\n`;
+            result += triggersToString(triggers);
+            result += `v = ${transAttrValue(this.index)}\n`;
+            result += `value = ${transAttrValue(value)}\n`;
+            result += objectToString(others);
+            currentWrite.append(result);
+        }, version);
     }
 
     /**
@@ -71,14 +75,16 @@ export class Var extends BaseTrigger {
      * - value least_val 和 greatest_val 指定此控制器分别指定的最大和最小值.给变量指定的值是将在这个范围中随机选择的一个整数.范围默认是[0,1000].如果只指定一个参数,则被认为的指定范围是[0,参数].
      */
     public Random(params: RandomVarParams) {
-        const { value = 0, triggers, describe = '', ...others } = params;
-        let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
-        result += `type = VarRandom\n`;
-        result += triggersToString(triggers);
-        result += `v = ${transAttrValue(this.index)}\n`;
-        result += `range = ${isArray(value) ? value.map(transAttrValue).join(', ') : transAttrValue(value)}\n`;
-        result += objectToString(others);
-        currentWrite.append(result);
+        const { value = 0, triggers, describe = '', version, ...others } = params;
+        versionCheck(function () {
+            let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
+            result += `type = VarRandom\n`;
+            result += triggersToString(triggers);
+            result += `v = ${transAttrValue(this.index)}\n`;
+            result += `range = ${isArray(value) ? value.map(transAttrValue).join(', ') : transAttrValue(value)}\n`;
+            result += objectToString(others);
+            currentWrite.append(result);
+        }, version);
     }
 }
 
@@ -123,14 +129,16 @@ export class FVar extends BaseTrigger {
      * - value 浮点型变量的值
      */
     public Set(params: VarParams) {
-        const { value = 0, triggers, describe = '', ...others } = params;
-        let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
-        result += `type = VarSet\n`;
-        result += triggersToString(triggers);
-        result += `fv = ${transAttrValue(this.index)}\n`;
-        result += `value = ${transAttrValue(value)}\n`;
-        result += objectToString(others);
-        currentWrite.append(result);
+        const { value = 0, triggers, describe = '', version, ...others } = params;
+        versionCheck(function () {
+            let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
+            result += `type = VarSet\n`;
+            result += triggersToString(triggers);
+            result += `fv = ${transAttrValue(this.index)}\n`;
+            result += `value = ${transAttrValue(value)}\n`;
+            result += objectToString(others);
+            currentWrite.append(result);
+        }, version);
     }
 
 
@@ -139,14 +147,16 @@ export class FVar extends BaseTrigger {
      * - value 是加到当前索引号的浮点型变量上的值
      */
     public Add(params: VarParams) {
-        const { value = 0, triggers, describe = '', ...others } = params;
-        let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
-        result += `type = VarAdd\n`;
-        result += triggersToString(triggers);
-        result += `fv = ${transAttrValue(this.index)}\n`;
-        result += `value = ${transAttrValue(value)}\n`;
-        result += objectToString(others);
-        currentWrite.append(result);
+        const { value = 0, triggers, describe = '', version, ...others } = params;
+        versionCheck(function () {
+            let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
+            result += `type = VarAdd\n`;
+            result += triggersToString(triggers);
+            result += `fv = ${transAttrValue(this.index)}\n`;
+            result += `value = ${transAttrValue(value)}\n`;
+            result += objectToString(others);
+            currentWrite.append(result);
+        }, version);
     }
 }
 

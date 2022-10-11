@@ -1,6 +1,6 @@
 import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
-import { objectToString, triggersToString } from '../utils/index';
+import { objectToString, triggersToString, versionCheck } from '../utils';
 
 interface ForceFeedbackParams extends BaseSctrls {
     waveform?: AttrValue;
@@ -17,10 +17,12 @@ interface ForceFeedbackParams extends BaseSctrls {
  * - ForceFeedback控制器中的参数也许不能用算术表达式来指定.
  */
 export default function ForceFeedback(params: ForceFeedbackParams) {
-    const { triggers, describe = '', ...others } = params;
-    let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
-    result += `type = ForceFeedback\n`;
-    result += triggersToString(triggers);
-    result += objectToString(others);
-    currentWrite.append(result);
+    const { triggers, describe = '', version, ...others } = params;
+    versionCheck(function () {
+        let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
+        result += `type = ForceFeedback\n`;
+        result += triggersToString(triggers);
+        result += objectToString(others);
+        currentWrite.append(result);
+    }, version);
 }

@@ -1,6 +1,6 @@
 import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
-import { objectToString, triggersToString } from '../utils/index';
+import { objectToString, triggersToString, versionCheck } from '../utils';
 
 interface PlayerPushParams extends BaseSctrls {
     value: AttrValue;
@@ -12,10 +12,12 @@ interface PlayerPushParams extends BaseSctrls {
  * - 通过暂时停止推挤检测,dodge(闪避)类型的招式(玩家能穿过另一个人,但是仍然能被击中)能被实现.
  */
 export default function PlayerPush(params: PlayerPushParams) {
-    const { triggers, describe = '', ...others } = params;
-    let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
-    result += `type = PlayerPush\n`;
-    result += triggersToString(triggers);
-    result += objectToString(others);
-    currentWrite.append(result);
+    const { triggers, describe = '', version, ...others } = params;
+    versionCheck(function () {
+        let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
+        result += `type = PlayerPush\n`;
+        result += triggersToString(triggers);
+        result += objectToString(others);
+        currentWrite.append(result);
+    }, version);
 }

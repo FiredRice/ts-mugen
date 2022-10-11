@@ -1,6 +1,6 @@
 import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
-import { objectToString, triggersToString } from '../utils/index';
+import { objectToString, triggersToString, versionCheck } from '../utils';
 
 interface PosSetParams extends BaseSctrls {
     x?: AttrValue;
@@ -14,10 +14,12 @@ interface PosSetParams extends BaseSctrls {
  * - Y坐标相对于地面,负值向上移动.
  */
 export default function PosSet(params: PosSetParams) {
-    const { triggers, describe = '', ...others } = params;
-    let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
-    result += `type = PosSet\n`;
-    result += triggersToString(triggers);
-    result += objectToString(others);
-    currentWrite.append(result);
+    const { triggers, describe = '', version, ...others } = params;
+    versionCheck(function () {
+        let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
+        result += `type = PosSet\n`;
+        result += triggersToString(triggers);
+        result += objectToString(others);
+        currentWrite.append(result);
+    }, version);
 }

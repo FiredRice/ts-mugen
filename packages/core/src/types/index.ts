@@ -43,6 +43,7 @@ export type TriggersType = Triggers | AttrValue;
 export interface BaseSctrls {
     triggers: TriggersType;
     describe?: string;
+    version?: Version;
     ignorehitpause?: AttrValue;
     persistent?: AttrValue;
 }

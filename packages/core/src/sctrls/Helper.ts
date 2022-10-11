@@ -1,7 +1,7 @@
 import { currentWrite } from '../core';
 import { Attributes } from '../triggers';
 import { BasePostype, BaseSctrls, BaseValue, AttrValue } from '../types';
-import { triggersToString, objectToString, transAttrValue, transStr } from '../utils';
+import { triggersToString, objectToString, transAttrValue, transStr, versionCheck } from '../utils';
 
 interface HelperParams extends BaseSctrls {
     helpertype?: 'normal' | 'player';
@@ -61,20 +61,23 @@ export default class Helper extends Attributes {
         const {
             triggers,
             describe = '',
+            version,
             stateno,
             name,
             ...others
         } = params;
 
-        let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
-        result += `type = Helper\n`;
-        result += triggersToString(triggers);
-        result += `stateno = ${stateno}\n`;
-        result += `id = ${this.innerId}\n`;
-        if (!!name) {
-            result += `name = "${transStr(name)}"\n`;
-        }
-        result += objectToString(others);
-        currentWrite.append(result);
+        versionCheck(function () {
+            let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
+            result += `type = Helper\n`;
+            result += triggersToString(triggers);
+            result += `stateno = ${stateno}\n`;
+            result += `id = ${this.innerId}\n`;
+            if (!!name) {
+                result += `name = "${transStr(name)}"\n`;
+            }
+            result += objectToString(others);
+            currentWrite.append(result);
+        }, version);
     }
 }

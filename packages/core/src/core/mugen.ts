@@ -127,15 +127,19 @@ export default class Mugen<T extends State> {
         try {
             if (this.char) {
                 const { name, version } = this.char.getInfo();
-                console.log(`开始构建人物包`);
-                console.log(`[name]: ${name}`);
-                console.log(`[version]: ${version}`);
-                await Promise.all([
-                    this.createDef(),
-                    this.createBundle(),
-                    this.createVarLog()
-                ]);
-                console.log(`构建完毕`);
+                if (/^[^？\\*|“<>:/+?%#&=\s]*$/.test(name)) {
+                    console.log(`开始构建人物包`);
+                    console.log(`[name]: ${name}`);
+                    console.log(`[version]: ${version}`);
+                    await Promise.all([
+                        this.createDef(),
+                        this.createBundle(),
+                        this.createVarLog()
+                    ]);
+                    console.log(`构建完毕`);
+                } else {
+                    throw new Error('name 不能包含特殊字符');
+                }
             } else {
                 console.log('[No Character]：请注入角色');
             }

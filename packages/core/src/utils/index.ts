@@ -1,6 +1,7 @@
-import { BaseValue, TriggersType } from '../types';
+import { BaseValue, TriggersType, Version } from '../types';
 import { isArray, isObject, isString } from 'lodash';
 import { isAttrValue, transAttrValue } from './calculate';
+import { getVersion } from '@tsmugen/utils';
 
 export function objectToString(value, prevKey = '') {
     if (isObject(value)) {
@@ -49,6 +50,17 @@ const tableMap = {
  */
 export function transStr(target: BaseValue) {
     return isString(target) ? target.replace(/(?=[^ ])(\s)/g, str => tableMap[str] || ' ') : target;
+}
+
+// 当前版本号
+export const currentVersion = getVersion();
+/**
+ * 版本检测
+ */
+export function versionCheck(callback: Function, version?: Version) {
+    if (version == null || version === currentVersion) {
+        callback();
+    }
 }
 
 export * from './calculate';

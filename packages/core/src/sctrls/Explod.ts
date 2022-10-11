@@ -1,6 +1,6 @@
 import { currentWrite } from '../core';
 import { AttrValue, BasePostype, BaseSctrls, TransType } from '../types';
-import { objectToString, triggersToString } from '../utils/index';
+import { objectToString, triggersToString, versionCheck } from '../utils';
 
 interface ExplodParams extends BaseSctrls {
     anim: AttrValue;
@@ -38,12 +38,14 @@ interface ExplodParams extends BaseSctrls {
  * - 显示诸如火花,尘土以及其他视觉效果动画的灵活工具.
  */
 export function Explod(params: ExplodParams) {
-    const { triggers, describe = '', ...others } = params;
-    let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
-    result += `type = Explod\n`;
-    result += triggersToString(triggers);
-    result += objectToString(others);
-    currentWrite.append(result);
+    const { triggers, describe = '', version, ...others } = params;
+    versionCheck(function () {
+        let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
+        result += `type = Explod\n`;
+        result += triggersToString(triggers);
+        result += objectToString(others);
+        currentWrite.append(result);
+    }, version);
 }
 
 /**
@@ -53,10 +55,12 @@ export function Explod(params: ExplodParams) {
  * - 对某些explod的参数貌似无效.
  */
 export function ModifyExplod(params: ExplodParams) {
-    const { triggers, describe = '', ...others } = params;
-    let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
-    result += `type = ModifyExplod\n`;
-    result += triggersToString(triggers);
-    result += objectToString(others);
-    currentWrite.append(result);
+    const { triggers, describe = '', version, ...others } = params;
+    versionCheck(function () {
+        let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
+        result += `type = ModifyExplod\n`;
+        result += triggersToString(triggers);
+        result += objectToString(others);
+        currentWrite.append(result);
+    }, version);
 }

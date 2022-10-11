@@ -1,6 +1,6 @@
 import { currentWrite } from '../core';
 import { BaseSctrls } from '../types';
-import { objectToString, triggersToString } from '../utils/index';
+import { objectToString, triggersToString, versionCheck } from '../utils/index';
 
 type SpecialFlag =
     | 'intro'
@@ -34,10 +34,12 @@ interface AssertSpecialParams extends BaseSctrls {
  * - 此控制器此允许你同时断言3个特殊的标示.
  */
 export default function AssertSpecial(params: AssertSpecialParams) {
-    const { triggers, describe = '', ...others } = params;
-    let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
-    result += `type = AssertSpecial\n`;
-    result += triggersToString(triggers);
-    result += objectToString(others);
-    currentWrite.append(result);
+    const { triggers, describe = '', version, ...others } = params;
+    versionCheck(function () {
+        let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
+        result += `type = AssertSpecial\n`;
+        result += triggersToString(triggers);
+        result += objectToString(others);
+        currentWrite.append(result);
+    }, version);
 }
