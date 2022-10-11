@@ -100,4 +100,6 @@ tsmugen clean
   - 在 `output` 目录下创建新的 [version]/[name]/[name].def 文件。（即人物包入口文件）
 - 将 public 文件夹下除 .def 以外的所有文件复制到 `output` 目录下 [version]/[name] 中。
 - 将构建好的代码输出到 `output` 目录下 [version]/[name]/cns/bundle.cns 中。
+  - 其中若构建 1.0 版本人物包，则路径中包含 1.1 的文件不会参与复制。
+  - 其中若构建 1.1 版本人物包，则路径中包含 1.0 的文件不会参与复制。
 - 构建结束。
