@@ -32,6 +32,7 @@ module.exports = createMugenConfig({
         author: '',
         localcoord: [320, 240],
     },
+    rootDir: 'src',
     output: 'lib',
     entry: 'src/index.ts',
     buildVariableTable: true,

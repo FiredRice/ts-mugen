@@ -17,7 +17,7 @@ class Proj extends State {
 }
 
 const projState = new Proj({
-    id: 1200,
+    id: 1300,
     type: 'S',
     movetype: 'I',
     physics: 'S',
@@ -29,7 +29,7 @@ projState.appendControllers(function () {
 });
 
 const letsStart = new State({
-    id: 1000,
+    id: 1200,
     describe: 'Hello World!',
     type: 'S',
     movetype: 'I',

@@ -1,3 +1,5 @@
+import { WatchOptions } from 'chokidar';
+
 export type BaseValue = string | number;
 
 export type Version = '1.0' | '1.1';
@@ -10,10 +12,12 @@ export interface MugenConfig {
         localcoord: [BaseValue, BaseValue];
         palDefaults?: BaseValue[];
     };
-    output: string;
+    rootDir: string;
     entry: string;
+    output: string;
     cacheName?: string;
     buildVariableTable?: boolean;
+    watchOptions?: WatchOptions;
     programs?: {
         name: string;
         version: Version;
@@ -24,10 +28,12 @@ export interface MugenConfig {
 /**
  * 创建 ts-mugen 配置信息
  * - character 人物默认配置信息
- * - output 输出目录
+ * - rootDir 项目根目录
  * - entry 项目入口
+ * - output 输出目录
  * - cacheName 快速启动时缓存的文件夹名
  * - buildVariableTable 构建变量表
+ * - watchOptions 监听配置项
  * - programs 快速启动 mugen 对局配置
  * - programs[].name 别名
  * - programs[].version 主程序版本

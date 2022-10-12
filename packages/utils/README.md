@@ -13,7 +13,7 @@
 |---|---|---|
 |createMugenConfig|创建 tsmugen.config.js 中全局配置项的助手函数|(config: [MugenConfig](#MugenConfig)) => [MugenConfig](#MugenConfig)|
 |getMugenConfig|获取 tsmugen.config.js 文件中的配置信息|() => [MugenConfig](#MugenConfig)|
-|getVersion|获取当前构建中的人物包版本。**通过该函数可轻松对控制器进行版本控制**|() => '1.0' \| '1.1'|
+|getVersion|获取当前构建中的人物包版本。|() => '1.0' \| '1.1'|
 
 ## <div id='Interface'>Interface</div>
 **<div id='MugenConfig'>MugenConfig</div>**
@@ -27,6 +27,8 @@ type MugenConfig = {
         localcoord: [BaseValue, BaseValue];
         palDefaults?: BaseValue[];
     };
+    // 监听目录
+    rootDir: string;
     // 输出目录
     output: string;
     // 项目入口
@@ -35,6 +37,8 @@ type MugenConfig = {
     cacheName?: string;
     // 是否构建变量表
     buildVariableTable?: boolean;
+    // 监听配置项
+    watchOptions?: WatchOptions;
     // 主程序配置
     programs?: {
         // 主程序别名

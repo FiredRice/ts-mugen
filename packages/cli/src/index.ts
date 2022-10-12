@@ -3,6 +3,7 @@ import { program } from 'commander';
 import start from './core/start';
 import clean from './core/clean';
 import build from './core/build';
+import dev from './core/dev';
 
 try {
     const { version } = require('../package.json');
@@ -13,13 +14,18 @@ try {
 
     program
         .command('start')
-        .description('开始调试')
+        .description('启动 mugen 主程序')
         .action(start);
 
     program
         .command('build [version]')
         .description('构建人物包')
         .action(build);
+
+    program
+        .command('dev [version]')
+        .description('调试人物包')
+        .action(dev);
 
     program
         .command('clean')

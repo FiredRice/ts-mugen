@@ -21,7 +21,7 @@ export default class ExamplePkg {
 
     public resetDep() {
         let pkg = fs.readFileSync(this.pkgPath).toString();
-        pkg = pkg.replace('\t\t"dependencies": {', `"dependencies": {\r\n${this.deps}`);
+        pkg = pkg.replace('\t"dependencies": {', `"dependencies": {\r\n${this.deps}`);
         fs.writeFileSync(this.pkgPath, pkg);
     }
 }
