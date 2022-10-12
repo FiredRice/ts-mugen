@@ -42,7 +42,7 @@ export class Var extends BaseTrigger {
      */
     public Set(params: VarParams) {
         const { value = 0, triggers, describe = '', version, ...others } = params;
-        versionCheck(function () {
+        versionCheck(() => {
             let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
             result += `type = VarSet\n`;
             result += triggersToString(triggers);
@@ -59,7 +59,7 @@ export class Var extends BaseTrigger {
      */
     public Add(params: VarParams) {
         const { value = 0, triggers, describe = '', version, ...others } = params;
-        versionCheck(function () {
+        versionCheck(() => {
             let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
             result += `type = VarAdd\n`;
             result += triggersToString(triggers);
@@ -76,7 +76,7 @@ export class Var extends BaseTrigger {
      */
     public Random(params: RandomVarParams) {
         const { value = 0, triggers, describe = '', version, ...others } = params;
-        versionCheck(function () {
+        versionCheck(() => {
             let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
             result += `type = VarRandom\n`;
             result += triggersToString(triggers);
@@ -130,7 +130,7 @@ export class FVar extends BaseTrigger {
      */
     public Set(params: VarParams) {
         const { value = 0, triggers, describe = '', version, ...others } = params;
-        versionCheck(function () {
+        versionCheck(() => {
             let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
             result += `type = VarSet\n`;
             result += triggersToString(triggers);
@@ -148,7 +148,7 @@ export class FVar extends BaseTrigger {
      */
     public Add(params: VarParams) {
         const { value = 0, triggers, describe = '', version, ...others } = params;
-        versionCheck(function () {
+        versionCheck(() => {
             let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
             result += `type = VarAdd\n`;
             result += triggersToString(triggers);

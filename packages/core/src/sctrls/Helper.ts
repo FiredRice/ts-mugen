@@ -67,7 +67,7 @@ export default class Helper extends Attributes {
             ...others
         } = params;
 
-        versionCheck(function () {
+        versionCheck(() => {
             let result = `[State ${currentWrite.currentStateId}, ${describe}]\n`;
             result += `type = Helper\n`;
             result += triggersToString(triggers);
