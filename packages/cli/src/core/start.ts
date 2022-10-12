@@ -1,8 +1,8 @@
 import shell from 'shelljs';
 import inquirer from 'inquirer';
 import path from 'path';
-import fs from 'fs-extra';
 import { getMugenConfig } from '@tsmugen/utils';
+import build from './build';
 
 const {
     character,
@@ -11,12 +11,10 @@ const {
     cacheName = 'tsmugen_debug'
 } = getMugenConfig();
 
-function run(program) {
+async function run(program) {
     const { path: programsPath, version } = program;
     const charPath = path.join(process.cwd(), `${output}/${version}`);
-    if (!fs.existsSync(charPath)) {
-        throw new Error('[No Character]：未找到人物包，请先对人物包进行构建');
-    }
+    await build(version);
     const charName = character.name;
     const targetPath = `${programsPath}/chars/${cacheName}`;
     const name = `${cacheName}/${charName}/${charName}.def`;

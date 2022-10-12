@@ -1,6 +1,6 @@
 {
 	"name": "@tsmugen/create-tsmugen-app",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "快速初始化 ts-mugen 项目的脚手架",
 	"author": "破晓雪风",
 	"homepage": "https://github.com/FiredRice/ts-mugen/tree/master/packages/create-tsmugen-app",

@@ -5,6 +5,7 @@ import build from './build';
 
 function rebuild(version?: string) {
     return async function () {
+        console.log('=============');
         await build(version);
     };
 }
