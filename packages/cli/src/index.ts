@@ -24,6 +24,7 @@ try {
 
     program
         .command('dev [version]')
+        .option('-c', '将人物包缓存到主程序中')
         .description('调试人物包')
         .action(dev);
 

@@ -1,4 +1,4 @@
-import { animelem, AttrValue, Helper, movement, Null, Or, root, State, Triggers, HelperVar, NumHelper, AfterImage } from '@tsmugen/core';
+import { animelem, AttrValue, Helper, movement, Null, Or, State, Triggers, HelperVar, NumHelper, AfterImage } from '@tsmugen/core';
 
 class SuperHelper extends Helper {
     public jiasudu: HelperVar;

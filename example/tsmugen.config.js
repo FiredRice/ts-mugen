@@ -15,12 +15,12 @@ module.exports = createMugenConfig({
 		{
 			name: '1.0 主程序',
 			version: '1.0',
-			path: 'D:/Games/Mugen/Mugen_1.0',
+			path: '',
 		},
 		{
 			name: '1.1 主程序',
 			version: '1.1',
-			path: 'D:/Games/Mugen/Mugen_1.1',
+			path: '',
 		},
 	],
 });

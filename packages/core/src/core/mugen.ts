@@ -73,15 +73,19 @@ export default class Mugen<T extends State> {
     private createBundle(): Promise<boolean> {
         return new Promise(async resolve => {
             const { version, name } = this.char!.getInfo();
-            const basePath = `${this.rootPath}/${version}/${name}`;
-            await fileService.createFile(`${basePath}/cns/bundle.cns`);
-            const stWs = fileService.createWriteStream(`${basePath}/cns/bundle.cns`);
+            const bundlePath = `${this.rootPath}/${version}/${name}/cns/bundle.cns`;
+            await fileService.createFile(bundlePath);
+            const stWs = fileService.createWriteStream(bundlePath);
             const states = this.char!.getStates();
             for (const state of states) {
                 stWs.write(state.toString());
             }
             stWs.close();
             stWs.on('close', function () {
+                // fileService.setAttributesSync(bundlePath, {
+                //     IS_HIDDEN: true,
+                //     IS_READ_ONLY: true
+                // });
                 resolve(true);
             });
         });

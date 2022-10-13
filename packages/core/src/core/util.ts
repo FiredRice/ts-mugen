@@ -3,13 +3,13 @@ import { AttrValue } from '../types';
 
 export class Triggers {
     private triggerAll = '';
-    private triggerNums = '';
-    private index = 0;
+    private triggerMap: any = {};
+    private _innerIndex = 0;
 
     public clear() {
         this.triggerAll = '';
-        this.triggerNums = '';
-        this.index = 0;
+        this._innerIndex = 0;
+        this.triggerMap = {};
     }
 
     public appendAll(...triggers: AttrValue[]) {
@@ -20,25 +20,26 @@ export class Triggers {
         return this;
     }
 
-    public appendOr(...triggers: AttrValue[]) {
-        for (const trigger of triggers) {
-            this.index++;
-            const value = isObject(trigger) ? trigger.value : trigger;
-            this.triggerNums += `trigger${this.index} = ${value}\n`;
-        }
+    public appendAnd(...triggers: AttrValue[]) {
+        this._innerIndex++;
+        this.add(this._innerIndex, ...triggers);
         return this;
     }
 
-    public appendAnd(...triggers: AttrValue[]) {
-        this.index++;
+    public add(index: number, ...triggers: AttrValue[]) {
         for (const trigger of triggers) {
             const value = isObject(trigger) ? trigger.value : trigger;
-            this.triggerNums += `trigger${this.index} = ${value}\n`;
+            this.triggerMap[index] = this.triggerMap[index] || '';
+            this.triggerMap[index] += `trigger${index} = ${value}\n`;
         }
         return this;
     }
 
     public toString() {
-        return `${this.triggerAll}${this.triggerNums}`;
+        let triggerNums = '';
+        Object.keys(this.triggerMap).sort((a, b) => Number(a) - Number(b)).forEach(key => {
+            triggerNums += this.triggerMap[key];
+        });
+        return `${this.triggerAll}${triggerNums}`;
     }
 }

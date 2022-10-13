@@ -8,14 +8,12 @@
 	"scripts": {
 		"start": "tsmugen start",
 		"dev": "tsmugen dev",
-		"dev:1.0": "tsmugen dev 1.0",
-		"dev:1.1": "tsmugen dev 1.1",
+		"dev:1.0": "tsmugen dev 1.0 -c",
+		"dev:1.1": "tsmugen dev 1.1 -c",
 		"build": "tsmugen build",
 		"build:1.0": "tsmugen build 1.0",
 		"build:1.1": "tsmugen build 1.1",
-		"clean": "tsmugen clean",
-		"clean:1.0": "tsmugen clean 1.0",
-		"clean:1.1": "tsmugen clean 1.1"
+		"clean": "tsmugen clean"
 	},
 	"devDependencies": {
 		"ts-node": "^10.9.1",

@@ -4,6 +4,18 @@ import { FileReturnData, FileType, PathLike, StatSyncOptions } from '../types';
 const writeStreamMap = new Map<PathLike, WriteStream>();
 const readStreamMap = new Map<PathLike, ReadStream>();
 
+// type FileAttributes = {
+//     IS_ARCHIVED?: boolean;
+//     IS_HIDDEN?: boolean;
+//     IS_NOT_CONTENT_INDEXED?: boolean; //remove this attribute if you don't want to change it
+//     IS_OFFLINE?: boolean;
+//     IS_READ_ONLY?: boolean;
+//     IS_SYSTEM?: boolean;
+//     IS_TEMPORARY?: boolean;
+//     IS_UNPINNED?: boolean;
+//     IS_PINNED?: boolean;
+// };
+
 class FileService {
 
     /**
@@ -133,6 +145,26 @@ class FileService {
 
     public move = fs.move;
     public moveSync = fs.moveSync;
+
+    /**
+     * 更改文件的权限。
+     */
+    public chmod = fs.promises.chmod;
+    public chmodSync = fs.chmodSync;
+
+    // /**
+    //  * 设置文件属性
+    //  */
+    // public setAttributes(pathToFileOrDir: string, attributes: FileAttributes = {}): Promise<boolean> {
+    //     return new Promise(resolve => {
+    //         fswin.setAttributes(pathToFileOrDir, attributes, function (succeeded) {
+    //             resolve(succeeded);
+    //         });
+    //     });
+    // };
+    // public setAttributesSync(pathToFileOrDir: string, attributes: FileAttributes = {}): boolean {
+    //     return fswin.setAttributesSync(pathToFileOrDir, attributes);
+    // };
 }
 
 const fileService = new FileService();
