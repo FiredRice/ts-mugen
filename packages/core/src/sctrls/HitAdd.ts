@@ -3,12 +3,16 @@ import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
 interface HitAddParams extends BaseSctrls {
+    /**
+     * 指定增加到当前连击上的打击数字。
+     */
     value: AttrValue;
 }
 
 /**
  * HitAdd 
- * - 增加当前连击数。
+ * 
+ * 增加当前连击数。
  */
 export default function HitAdd(params: HitAddParams) {
     const { triggers, describe = '', version, ...others } = params;

@@ -16,6 +16,7 @@ export default class Mugen<T extends State> {
 
     /**
      * 注入角色
+     * @param char
      */
     public injectCharacter(char: Character<T>) {
         this.char = char;
@@ -76,6 +77,7 @@ export default class Mugen<T extends State> {
             const bundlePath = `${this.rootPath}/${version}/${name}/cns/bundle.cns`;
             await fileService.createFile(bundlePath);
             const stWs = fileService.createWriteStream(bundlePath);
+            stWs.write('; Created by ts-mugen\n\n');
             const states = this.char!.getStates();
             for (const state of states) {
                 stWs.write(state.toString());
@@ -125,7 +127,6 @@ export default class Mugen<T extends State> {
 
     /**
      * 开始构建
-     * @param versions 构建版本（1.0，1.1）
      */
     public async build() {
         try {

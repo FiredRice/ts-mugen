@@ -7,8 +7,10 @@ interface MoveHitResetParams extends BaseSctrls {
 
 /**
  * MoveHitReset 
- * - 重置movehit标示到0.
- * - 就是说,执行了MoveHitReset后,MoveContact, MoveGuarded, MoveHit触发器将都返回0
+ * 
+ * 重置movehit标示到0.
+ * 
+ * 就是说,执行了MoveHitReset后,MoveContact, MoveGuarded, MoveHit触发器将都返回0
  */
 export default function MoveHitReset(params: MoveHitResetParams) {
     const { triggers, describe = '', version, ...others } = params;

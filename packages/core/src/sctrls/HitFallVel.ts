@@ -7,7 +7,8 @@ interface HitFallVelParams extends BaseSctrls {
 
 /**
  * HitFallVel 
- * - 如果玩家被击中且处于下落状态,设置玩家在HitDef中指定的下落速度(中的速度值).(fall.xvel和fall.yvel)
+ * 
+ * 如果玩家被击中且处于下落状态,设置玩家在HitDef中指定的下落速度(中的速度值).(fall.xvel和fall.yvel)
  */
 export default function HitFallVel(params: HitFallVelParams) {
     const { triggers, describe = '', version, ...others } = params;

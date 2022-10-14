@@ -3,13 +3,21 @@ import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
 interface TargetStateParams extends BaseSctrls {
+    /**
+     * 指定目标要进入的状态号.
+     */
     value: AttrValue;
+    /**
+     * 指定要作用的目标ID号.只有此ID号的目标将被影响.
+     * - 默认为-1.(对所有目标起作用)
+     */
     ID?: AttrValue;
 }
 
 /**
  * TargetState 
- * - 使所有目标进入指定的状态号.
+ * 
+ * 使所有目标进入指定的状态号.
  */
 export default function TargetState(params: TargetStateParams) {
     const { triggers, describe = '', version, ...others } = params;

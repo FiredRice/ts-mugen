@@ -3,12 +3,16 @@ import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils/index';
 
 interface AngleMulParams extends BaseSctrls {
-    value?: AttrValue;
+    /**
+     * 绘制的角度乘以 value (浮点型) .
+     */
+    value: AttrValue;
 }
 
 /**
  * AngleMul 
- * - 用于AngleDraw控制器绘制的旋转角度乘以指定因数.
+ * 
+ * 用于AngleDraw控制器绘制的旋转角度乘以指定因数.
  */
 export default function AngleMul(params: AngleMulParams) {
     const { triggers, describe = '', version, ...others } = params;

@@ -6,12 +6,20 @@ export class Triggers {
     private triggerMap: any = {};
     private _innerIndex = 0;
 
+    /**
+     * 清空控制器所有条件
+     */
     public clear() {
         this.triggerAll = '';
         this._innerIndex = 0;
         this.triggerMap = {};
     }
 
+    /**
+     * 追加 All 控制器
+     * @param triggers 控制器
+     * @return this
+     */
     public appendAll(...triggers: AttrValue[]) {
         for (const trigger of triggers) {
             const value = isObject(trigger) ? trigger.value : trigger;
@@ -20,12 +28,61 @@ export class Triggers {
         return this;
     }
 
+    /**
+     * 追加控制器，每次执行内置索引自增 1
+     * - triggers 间的关系为【与】
+     * - appendAnd 之间的关系为【或】
+     * 
+     * 例1：
+     * ```ts
+     * const triggers = new Triggers();
+     * triggers.appendAnd(time.equal(0), time.less(10));
+     * ```
+     * 输出 =>
+     * ```
+     * trigger1 = time = 0
+     * trigger1 = time < 10
+     * ```
+     * 例2：
+     * ```ts
+     * const triggers = new Triggers();
+     * triggers.appendAnd(time.equal(0), time.less(10));
+     * triggers.appendAnd(time.over(20));
+     * ```
+     * 输出 =>
+     * ```
+     * trigger1 = time = 0
+     * trigger1 = time < 10
+     * trigger2 = time > 20
+     * ```
+     * @param triggers 控制器
+     * @return this
+     */
     public appendAnd(...triggers: AttrValue[]) {
         this._innerIndex++;
         this.add(this._innerIndex, ...triggers);
         return this;
     }
 
+    /**
+     * 追加指定索引控制器。
+     * ```ts
+     * const triggers = new Triggers();
+     * triggers.appendAnd(time.equal(0), time.less(10));
+     * triggers.appendAnd(time.over(20));
+     * triggers.add(1, anim.equal(2000));
+     * ```
+     * 输出 =>
+     * ```
+     * trigger1 = time = 0
+     * trigger1 = time < 10
+     * trigger1 = anim = 2000
+     * trigger2 = time > 20
+     * ```
+     * @param index 
+     * @param triggers 
+     * @returns this
+     */
     public add(index: number, ...triggers: AttrValue[]) {
         for (const trigger of triggers) {
             const value = isObject(trigger) ? trigger.value : trigger;
