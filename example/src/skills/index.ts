@@ -42,7 +42,7 @@ letsStart.appendControllers(function () {
     const animNums = [1, 3, 4, 5, 8, 10];
     triggers.appendAll(NumHelper(projState.start.id))
     animNums.forEach(item => {
-        triggers.appendAnd(
+        triggers.append(
             animelem.equal(item),
             movement.airjump.num.equal(item),
             Or(

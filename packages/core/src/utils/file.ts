@@ -1,5 +1,5 @@
-import fs, { ReadStream, WriteStream } from 'fs-extra';
-import { FileReturnData, FileType, PathLike, StatSyncOptions } from '../types';
+import fs, { ReadStream, WriteStream, PathOrFileDescriptor } from 'fs-extra';
+import { FileReturnData, FileType, PathLike, ReadFileSyncOptions, StatSyncOptions } from '../types';
 
 const writeStreamMap = new Map<PathLike, WriteStream>();
 const readStreamMap = new Map<PathLike, ReadStream>();
@@ -152,6 +152,7 @@ class FileService {
     public chmod = fs.promises.chmod;
     public chmodSync = fs.chmodSync;
 
+
     // /**
     //  * 设置文件属性
     //  */
@@ -167,6 +168,16 @@ class FileService {
     // };
 }
 
-const fileService = new FileService();
+export const fileService = new FileService();
 
-export default fileService;
+/**
+ * 读取代码
+ */
+export function readFile(path: PathOrFileDescriptor, options?: ReadFileSyncOptions) {
+    try {
+        return fileService.readFileSync(path, options).toString() || '';
+    } catch (error) {
+        console.log(error);
+        return '';
+    }
+}

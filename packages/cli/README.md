@@ -80,17 +80,30 @@ public 文件夹内存放必要的人物包文件（.cmd、.sff、.air、.snd、
 tsmugen build [version]
 ```
 构建指定版本的人物包，`version` 可选值为 1.0、1.1。若未指定版本，则构建全部版本的人物。
-
+<br>
 ```sh
 tsmugen start
 ```
 启动 MUGEN 主程序，需要您预先构建好人物包，并在项目根目录下的 tsmugen.config.js 文件中配置 `programs` 属性（主程序信息）。
 若 `programs` 属性仅有一个主程序，则直接运行该主程序。若存在多个主程序，则需您手动选择需要执行的主程序。
+<br>
+
+```sh
+tsmugen dev [options] [version]
+```
+热更新人物包。指令执行后当 `rootDir` 下的文件产生更新或 tsmugen.config.js 内容发生变化时会自动重新构建人物包。
+- 若传入 [version]，则精确构建指定版本人物包。
+- 若未传入 [version]，则构建所有版本人物包。
+- 当传入 [options] 为 `-c` 时，读取项目根目录下 tsmugen.config.js 文件中配置 `programs` 属性。根据匹配的主程序信息，将当前人物包实时输出到主程序下的 `chars` 文件夹中。**便于使用十德等工具调试。** 主程序匹配规则如下：
+  - 若未传入 [version]，且配置了两个及以上的主程序，则需手动选择主程序。
+  - 若未传入 [version]，且仅配置了一个主程序，则自动选择该主程序。
+  - 若传入 [version]，则在 `programs` 中寻找匹配版本的主程序。
+<br>
 
 ```sh
 tsmugen clean
 ```
-清除调试时因异常退出导致的主程序中残留的缓存。
+清除调试时因异常退出或 `tsmugen dev -c` 指令导致的主程序中残留的缓存。
 
 ## 构建流程
 - 读取 tsmugen.config.js 文件内的配置信息，以 `entry` 为项目入口开始执行 `ts-mugen` 引擎。

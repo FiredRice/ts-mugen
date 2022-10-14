@@ -31,12 +31,12 @@ export class Triggers {
     /**
      * 追加控制器，每次执行内置索引自增 1
      * - triggers 间的关系为【与】
-     * - appendAnd 之间的关系为【或】
+     * - append 之间的关系为【或】
      * 
      * 例1：
      * ```ts
      * const triggers = new Triggers();
-     * triggers.appendAnd(time.equal(0), time.less(10));
+     * triggers.append(time.equal(0), time.less(10));
      * ```
      * 输出 =>
      * ```
@@ -46,8 +46,8 @@ export class Triggers {
      * 例2：
      * ```ts
      * const triggers = new Triggers();
-     * triggers.appendAnd(time.equal(0), time.less(10));
-     * triggers.appendAnd(time.over(20));
+     * triggers.append(time.equal(0), time.less(10));
+     * triggers.append(time.over(20));
      * ```
      * 输出 =>
      * ```
@@ -58,7 +58,7 @@ export class Triggers {
      * @param triggers 控制器
      * @return this
      */
-    public appendAnd(...triggers: AttrValue[]) {
+    public append(...triggers: AttrValue[]) {
         this._innerIndex++;
         this.add(this._innerIndex, ...triggers);
         return this;
@@ -68,8 +68,8 @@ export class Triggers {
      * 追加指定索引控制器。
      * ```ts
      * const triggers = new Triggers();
-     * triggers.appendAnd(time.equal(0), time.less(10));
-     * triggers.appendAnd(time.over(20));
+     * triggers.append(time.equal(0), time.less(10));
+     * triggers.append(time.over(20));
      * triggers.add(1, anim.equal(2000));
      * ```
      * 输出 =>

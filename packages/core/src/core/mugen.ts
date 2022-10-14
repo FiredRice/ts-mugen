@@ -1,10 +1,11 @@
 import { getMugenConfig, MugenConfig } from '@tsmugen/utils';
+import { isString } from 'lodash';
 import { State } from '../state';
 import { fileService } from '../utils';
 import Character from './character';
 import { currentWrite } from './currentWrite';
 
-export default class Mugen<T extends State> {
+export default class Mugen<T extends State | string> {
     protected char?: Character<T>;
     private rootPath: string;
     private config: MugenConfig;
@@ -80,7 +81,11 @@ export default class Mugen<T extends State> {
             stWs.write('; Created by ts-mugen\n\n');
             const states = this.char!.getStates();
             for (const state of states) {
-                stWs.write(state.toString());
+                if (isString(state)) {
+                    stWs.write(`${state}\n`);
+                } else {
+                    stWs.write(state.toString());
+                }
             }
             stWs.close();
             stWs.on('close', function () {

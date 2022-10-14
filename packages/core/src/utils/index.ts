@@ -64,4 +64,4 @@ export function versionCheck(callback: Function, version?: Version) {
 }
 
 export * from './calculate';
-export { default as fileService } from './file';
+export * from './file';

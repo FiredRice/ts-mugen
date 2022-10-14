@@ -48,6 +48,7 @@ export { default as LifeSet } from './LifeSet';
 export { default as MakeDust } from './MakeDust';
 export { default as MoveHitReset } from './MoveHitReset';
 
+export { default as NativeCode } from './NativeCode';
 export { default as NotHitBy } from './NotHitBy';
 export { default as Null } from './Null';
 

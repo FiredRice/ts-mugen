@@ -9,6 +9,10 @@
   - [Helper](#Helper)<br> 
   - [Var 与 FVar](#Var)<br> 
   - [Triggers](#Triggers)<br> 
+  - [原生代码注入](#原生代码注入)<br> 
+    - [在 state.appendControllers 的函数中随控制器一同注入](#ControllerInject)<br> 
+    - [随 states 一同注入](#StatesInject)<br> 
+    - [注入 API](#InjectAPIS)<br> 
   - [其它](#其它)<br> 
 - [Interface](#Interface)<br>
 
@@ -96,7 +100,7 @@ state.appendControllers(function () {
 ```
 通过实例化 `State` 创建一个 state，并可以通过**多次**调用 `appendControllers` 方法追加控制器。
 
-实例化 `State` 时可以传入 `version` 属性。当传入 `version` 属性时，仅在构建时的版本号与 `version` 一致时，该 `State` 才会参与构建。
+实例化 `State` 时可以传入 `version` 属性。当传入 `version` 属性时，当且仅当构建时的版本号与 `version` 一致时，该 `State` 才会参与构建。
 
 例如：
 ```ts
@@ -194,9 +198,81 @@ Null({ triggers });
 |名称|说明|类型|
 |---|---|---|
 |clear|清空 triggers 内容，便于公用同一变量|() => void|
-|appendAll|追加【与】关系触发器，同一方法中所有条件均为与运算|(...triggers: AttrValue[]) => this|
-|appendOr|追加【或】关系触发器，同一方法中所有条件均为或运算（每增加一个条件，触发器索引便自增 1，请格外注意）|(...triggers: AttrValue[]) => this|
-|appendAll|追加【与】关系的 `TriggerAll`|(...triggers: AttrValue[]) => this|
+|append|追加【与】关系触发器，同一方法中所有条件均为与运算|(...triggers: AttrValue[]) => this|
+|add|追加指定索引触发器，同一方法中所有条件均为与运算|(index: number, ...triggers: AttrValue[]) => this|
+|appendAll|追加 `TriggerAll` 触发器|(...triggers: AttrValue[]) => this|
+
+### 原生代码注入
+或许你会因为习惯了原生代码的编写方式而对这种编写方式感到厌烦。
+不用担心，我为你准备了原生代码注入的功能。
+注入方式有两种：
+- 在 state.appendControllers 的函数中随控制器一同注入（主要用于追加原生代码编写的控制器）。
+- 随 states 一同注入（主要用于追加原生代码编写的大量 `state`）。
+
+#### <div id='ControllerInject'>在 state.appendControllers 的函数中随控制器一同注入</div>
+```
+; 同目录下的 native.cns 文件
+[State 1300, 原生注入测试]
+type = Null
+trigger1 = 1
+```
+```ts
+import { State, Null, time, readFile, NativeCode } from '@tsmugen/core';
+import path from 'path';
+
+// 读取原生代码
+const code = readFile(path.join(__dirname, './native.cns'));
+
+const state = new State({ id: 1000 })；
+
+state.appendControllers(function () {
+    Null({ triggers: time.equal(0) });
+
+    // 注入原生代码
+    NativeCode(code);
+});
+
+```
+#### <div id='StatesInject'>随 states 一同注入</div>
+```
+; 同目录下的 native.cns 文件
+[State 1300, 原生注入测试]
+type = Null
+trigger1 = 1
+```
+```ts
+import { State, Null, time, readFile, Character, Mugen, NativeStates } from '@tsmugen/core';
+import path from 'path';
+
+const letsStart = new State({ id: 1000 });
+
+letsStart.appendControllers(function () {
+    Null({ triggers: time.equal(0) });
+});
+
+const character = new Character();
+
+// 读取原生代码
+const code = readFile(path.join(__dirname, './native.cns'));
+
+character.injectStates([
+    letsStart,
+    // 在此处随 state 一同注入
+    NativeStates(code)
+]);
+
+const mugen = new Mugen();
+mugen.injectCharacter(character);
+mugen.build();
+```
+#### <div id='InjectAPIS'>注入 API</div>
+`NativeCode` 与 `NativeStates` 的第二个can顺均为可选属性 `version`，用于区分原生代码参与构建的人物包版本。
+**若未传 `version` 则原生代码会参与所有版本的构建。**
+
+|名称|说明|类型|
+|---|---|---|
+|NativeCode|在 `state.appendControllers` 中使用的注入函数|(code: string, version?: '1.0' \| '1.1') => void|
+|NativeStates|随 `state` 一同注入的助手函数|(code: string, version?: '1.0' \| '1.1') => void|
 
 ### 其它
 除以上特殊类以外，

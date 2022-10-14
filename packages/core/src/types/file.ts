@@ -1,4 +1,4 @@
-import { statSync } from 'fs';
+import { statSync, readFileSync } from 'fs';
 
 export { PathLike } from 'fs';
 
@@ -12,3 +12,5 @@ export type FileType = 'file' | 'folder' | 'unknown';
 
 export type CloseCallback = (err?: NodeJS.ErrnoException | null) => void;
 export type CloseFunction = (callback?: CloseCallback) => void;
+
+export type ReadFileSyncOptions = Parameters<typeof readFileSync>['1'];

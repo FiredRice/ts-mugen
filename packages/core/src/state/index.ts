@@ -222,3 +222,16 @@ export class State {
         return '';
     }
 }
+
+/**
+ * 原生代码
+ * - 仅与 states 一并注入到角色中
+ * @param code 
+ * @param version 匹配版本号
+ */
+export function NativeStates(code: string, version?: Version) {
+    if (version == null || version === getVersion()) {
+        return `${code}\n`;
+    }
+    return '';
+}

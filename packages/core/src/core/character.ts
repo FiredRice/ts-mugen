@@ -3,7 +3,7 @@ import { State } from '../state';
 import { CharInfo } from '../types';
 import { transStr } from '../utils';
 
-export default class Character<T extends State> {
+export default class Character<T extends State | string> {
     private info: CharInfo;
     private states: T[] = [];
 
