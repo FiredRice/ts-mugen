@@ -3,7 +3,7 @@ import { currentWrite } from '../core/index';
 import { BaseValue, MBoolean, MoveType, StateType, Version } from '../types';
 import { objectToString } from '../utils';
 
-interface Statedef {
+export interface Statedef {
     /**
      * 状态号
      */
