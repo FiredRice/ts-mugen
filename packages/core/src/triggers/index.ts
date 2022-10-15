@@ -1,6 +1,7 @@
 
-export * from './variable';
 export * from './anim';
-export * from './calculate';
 export * from './attributes';
+export * from './calculate';
 export * from './constant';
+export * from './names';
+export * from './variable';
