@@ -151,6 +151,15 @@ interface ExplodParams extends BaseSctrls {
      */
     ontop?: AttrValue;
     /**
+     * 设置 under = 1 使得explod绘制在所有图片层和背景层的下方.
+     * 
+     * ---
+     * **注意：**
+     * **文档中并未明确提出该参数，但在 mugen 中似乎确实可生效，因此我也在此加上该参数**
+     * @deprecated
+     */
+    under?: AttrValue;
+    /**
      * 如果shadow不为0,将绘制阴影,否则不会.
      * - 默认为0.
      */

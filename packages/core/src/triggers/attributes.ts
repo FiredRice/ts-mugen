@@ -222,6 +222,10 @@ export const enemynear = new Attributes('enemynear');
 export function EnemyNear(stateno: BaseValue) {
     return new Attributes(`EnemyNear(${stateno})`);
 }
+export const enemy = new Attributes('enemy');
+export function Enemy(index: BaseValue) {
+    return new Attributes(`Enemy(${index})`);
+}
 export const target = new Attributes('target');
 export function playerId(id: AttrValue) {
     return new Attributes(`playerId(${transAttrValue(id)})`);
