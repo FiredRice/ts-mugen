@@ -1,4 +1,4 @@
-import { AttrValue, BaseValue } from '../types';
+import { AttrValue } from '../types';
 import { Name } from './names';
 import { BasePerfix, BaseTrigger, createBaseFunTrigger } from './base';
 import { ConstData, ConstMovement, ConstSize, ConstVelocity } from './constant';
@@ -205,12 +205,16 @@ export class Attributes extends BaseAttributes {
     public readonly parent = new BaseAttributes(`${this.getPerfix()}parent`);
     public readonly partner = new BaseAttributes(`${this.getPerfix()}partner`);
     public readonly enemynear = new BaseAttributes(`${this.getPerfix()}enemynear`);
+    public readonly enemy = new BaseAttributes(`${this.getPerfix()}enemy`);
     public readonly target = new BaseAttributes(`${this.getPerfix()}target`);
     public Helper(id: AttrValue) {
         return new BaseAttributes(`${this.getPerfix()}Helper(${transAttrValue(id)})`);
     }
-    public EnemyNear(stateno: BaseValue) {
-        return new BaseAttributes(`${this.getPerfix()}EnemyNear(${stateno})`);
+    public EnemyNear(stateno: AttrValue) {
+        return new BaseAttributes(`${this.getPerfix()}EnemyNear(${transAttrValue(stateno)})`);
+    }
+    public Enemy(index: AttrValue) {
+        return new BaseAttributes(`${this.getPerfix()}Enemy(${transAttrValue(index)})`);
     }
 }
 
@@ -219,12 +223,12 @@ export const root = new Attributes('root');
 export const parent = new Attributes('parent');
 export const partner = new Attributes('partner');
 export const enemynear = new Attributes('enemynear');
-export function EnemyNear(stateno: BaseValue) {
-    return new Attributes(`EnemyNear(${stateno})`);
+export function EnemyNear(stateno: AttrValue) {
+    return new Attributes(`EnemyNear(${transAttrValue(stateno)})`);
 }
 export const enemy = new Attributes('enemy');
-export function Enemy(index: BaseValue) {
-    return new Attributes(`Enemy(${index})`);
+export function Enemy(index: AttrValue) {
+    return new Attributes(`Enemy(${transAttrValue(index)})`);
 }
 export const target = new Attributes('target');
 export function playerId(id: AttrValue) {
