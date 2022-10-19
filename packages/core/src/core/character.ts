@@ -1,9 +1,8 @@
 import { getMugenConfig, getVersion } from '@tsmugen/utils';
-import { State } from '../state';
-import { CharInfo } from '../types';
+import { CharInfo, StatedefType } from '../types';
 import { transStr } from '../utils';
 
-export default class Character<T extends State | string> {
+export default class Character<T extends StatedefType | string> {
     private info: CharInfo;
     private states: T[] = [];
 

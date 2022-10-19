@@ -3,6 +3,9 @@
 	"compilerOptions": {
 		"rootDir": "src"
 	},
+	"include": [
+		"@tsmugen/core/types/global.d.ts"
+	],
 	"references": [
 		{
 			"path": "../packages/cli"

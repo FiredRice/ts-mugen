@@ -1,12 +1,16 @@
+import { Statedef } from '../state';
 import { BaseValue } from '../types';
+import { currentVersion, objectToString } from '../utils';
 
 class CurrentWrite {
     private text: string;
     public currentStateId?: BaseValue;
+    private currentState: String;;
     private rootVarMap: any = {};
     private rootFVarMap: any = {};
 
     constructor() {
+        this.currentState = '';
         this.text = '';
     }
 
@@ -26,15 +30,30 @@ class CurrentWrite {
         return this.rootFVarMap;
     }
 
+    public setState(statedef: Statedef) {
+        const { id, describe = '', version, ...otherParams } = statedef;
+        let result = '';
+        if (version == null || version === currentVersion) {
+            result = `[Statedef ${id}]\n`;
+            if (!!describe) {
+                result = `; ${describe}\n${result}`;
+            }
+            result += `${objectToString(otherParams)}\n`;
+            this.currentStateId = id;
+        }
+        this.currentState = result;
+    }
+
     public append(code: string) {
         this.text = `${this.text}${code}\n`;
     }
 
     public getCode() {
-        return this.text;
+        return `${this.currentState}${this.text}`;
     }
 
     public clean() {
+        this.currentState = '';
         this.text = '';
     }
 }

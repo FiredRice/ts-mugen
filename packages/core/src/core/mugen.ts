@@ -1,11 +1,12 @@
 import { getMugenConfig, MugenConfig } from '@tsmugen/utils';
 import { isString } from 'lodash';
-import { State } from '../state';
+import { StatedefType } from '../types';
+// import { State } from '../state';
 import { fileService } from '../utils';
 import Character from './character';
 import { currentWrite } from './currentWrite';
 
-export default class Mugen<T extends State | string> {
+export default class Mugen<T extends StatedefType | string> {
     protected char?: Character<T>;
     private rootPath: string;
     private config: MugenConfig;
@@ -84,7 +85,9 @@ export default class Mugen<T extends State | string> {
                 if (isString(state)) {
                     stWs.write(`${state}\n`);
                 } else {
-                    stWs.write(state.toString());
+                    state();
+                    stWs.write(currentWrite.getCode());
+                    currentWrite.clean();
                 }
             }
             stWs.close();

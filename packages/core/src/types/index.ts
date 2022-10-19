@@ -1,10 +1,13 @@
 import { BaseValue, Version } from '@tsmugen/utils';
 import { Triggers } from '../core';
 import { BaseTrigger } from '../triggers/base';
+import './global';
 
 export * from './file';
 
 export { MugenConfig, BaseValue, Version } from '@tsmugen/utils';
+
+export type StatedefType = () => void;
 
 export type AttrValue = BaseValue | BaseTrigger | {
     value: BaseValue;
