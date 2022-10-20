@@ -5,7 +5,7 @@
 - [安装](#安装)<br>
 - [使用方法](#使用方法)<br>
 - [API](#API)<br>
-  - [State](#State)<br> 
+  - [Statedef](#State)<br> 
   - [Helper](#Helper)<br> 
   - [Var 与 FVar](#Var)<br> 
   - [Triggers](#Triggers)<br> 
@@ -80,14 +80,14 @@ trigger1 = time = 0
 
 ## <div id='API'>API</div>
 
-### <div id='State'>State</div>
-`state` 通过钩子函数 `createState` 在函数内声名。
-**注意：若您在一个函数多次调用 `createState`，则后面的声名会覆盖前面的声名。**
+### <div id='State'>Statedef</div>
+`state` 通过钩子函数 `useStatedef` 在函数内声名。
+**注意：若您在一个函数多次调用 `useStatedef`，则后面的声名会覆盖前面的声名。**
 ```ts
-import { createState, Null, time } from '@tsmugen/core';
+import { useStatedef, Null, time } from '@tsmugen/core';
 
 function Start() {
-    createState({
+    useStatedef({
         // id 为状态号真实值
         id: 1000,
         describe: 'Hello World!',
@@ -101,14 +101,14 @@ function Start() {
 }
 ```
 
-`createState` 中可以传入 `version` 属性。当传入 `version` 属性时，当且仅当构建时的版本号与 `version` 一致时，该 `State` 才会参与构建。
+`useStatedef` 中可以传入 `version` 属性。当传入 `version` 属性时，当且仅当构建时的版本号与 `version` 一致时，该 `State` 才会参与构建。
 
 例如：
 ```ts
-import { createState, Null, time } from '@tsmugen/core';
+import { useStatedef, Null, time } from '@tsmugen/core';
 
 function Start() {
-    createState({
+    useStatedef({
         id: 1000,
         version: '1.1',
         describe: 'Hello World!',
@@ -201,6 +201,11 @@ Null({ triggers });
 |append|追加【与】关系触发器，同一方法中所有条件均为与运算|(...triggers: AttrValue[]) => this|
 |add|追加指定索引触发器，同一方法中所有条件均为与运算|(index: number, ...triggers: AttrValue[]) => this|
 |appendAll|追加 `TriggerAll` 触发器|(...triggers: AttrValue[]) => this|
+#### Triggers 的钩子函数
+|名称|说明|类型|
+|---|---|---|
+|useTriggers|创建一个 `triggers` 实例，仅为对 `new Triggers()` 的一层封装。|() => Triggers|
+|createTriggers|牺牲灵活性使编码更加接近**原生编码风格的** `triggers` 实例化函数。|(params: [CreateTriggersParams](#CreateTriggersParams)) => Triggers|
 
 ### 原生代码注入
 或许你会因为习惯了原生代码的编写方式而对这种编写方式感到厌烦。
@@ -293,4 +298,12 @@ type CallbackFun = (stateInfo: Statedef) => void;
 **<div id='BaseValue'>BaseValue</div>**
 ```ts
 type BaseValue = string | number;
+```
+
+**<div id='CreateTriggersParams'>CreateTriggersParams</div>**
+```
+interface CreateTriggersParams {
+    All?: AttrValue;
+    [x: number]: AttrValue;
+}
 ```

@@ -1,7 +1,6 @@
 import { getMugenConfig, MugenConfig } from '@tsmugen/utils';
 import { isString } from 'lodash';
 import { StatedefType } from '../types';
-// import { State } from '../state';
 import { fileService } from '../utils';
 import Character from './character';
 import { currentWrite } from './currentWrite';

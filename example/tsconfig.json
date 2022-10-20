@@ -3,9 +3,7 @@
 	"compilerOptions": {
 		"rootDir": "src"
 	},
-	"include": [
-		"@tsmugen/core/types/global.d.ts"
-	],
+	"exclude": ["node_modules/typescript/lib/lib.dom.d.ts"],
 	"references": [
 		{
 			"path": "../packages/cli"

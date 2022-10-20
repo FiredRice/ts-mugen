@@ -1,5 +1,5 @@
 import { currentWrite } from '../core';
-import { AttrValue, BaseSctrls, BaseValue } from '../types';
+import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, transAttrValue, triggersToString, versionCheck } from '../utils';
 import { isArray } from 'lodash';
 import { BaseTrigger } from '../triggers/base';
@@ -190,21 +190,6 @@ export class Var extends BaseTrigger {
     }
 }
 
-/**
- * Helper 中使用的整型变量
- */
-export class HelperVar extends Var {
-    /**
-     * 
-     * @param id
-     * @param index 变量索引
-     */
-    public constructor(id: AttrValue, index: AttrValue) {
-        super(index);
-        this._setInnerName(`helper(${transAttrValue(id)}), var(${index})`);
-    }
-}
-
 
 /**
  * 浮点型变量
@@ -284,22 +269,5 @@ export class FVar extends BaseTrigger {
             result += objectToString(others);
             currentWrite.append(result);
         }, version);
-    }
-}
-
-
-
-/**
- * Helper 中使用的浮点型变量
- */
-export class HelperFVar extends FVar {
-    /**
-     * 
-     * @param id
-     * @param index 变量索引
-     */
-    public constructor(id: AttrValue, index: AttrValue) {
-        super(index);
-        this._setInnerName(`helper(${transAttrValue(id)}), fvar(${index})`);
     }
 }

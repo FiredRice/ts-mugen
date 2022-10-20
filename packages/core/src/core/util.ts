@@ -100,3 +100,31 @@ export class Triggers {
         return `${this.triggerAll}${triggerNums}`;
     }
 }
+
+/**
+ * @returns 返回触发器实例
+ */
+export function useTriggers() {
+    return new Triggers();
+}
+
+interface CreateTriggersParams {
+    All?: AttrValue;
+    [x: number]: AttrValue;
+}
+
+/**
+ * 快速创建简易 triggers 的钩子函数
+ * @returns 返回触发器实例
+ */
+export function createTriggers(params: CreateTriggersParams) {
+    const triggers = useTriggers();
+    Object.keys(params).forEach(key => {
+        if (key === 'All') {
+            triggers.appendAll(params[key]!);
+        } else {
+            triggers.add(Number(key) || 1, params[key]);
+        }
+    });
+    return triggers;
+}

@@ -1,6 +1,6 @@
 import { Attributes, AttrValue, BaseAttributes, BaseValue, ConstData, ConstMovement, ConstSize, ConstVelocity, MoveType, Name, StateType } from '@tsmugen/core';
 import { BaseTrigger } from '@tsmugen/core/lib/types/triggers/base';
-import { HitDefAttr, TeamMode } from '@tsmugen/core/lib/types/triggers/model';
+import { HitDefAttr, SysFVar, SysVar, TeamMode } from '@tsmugen/core/lib/types/triggers/model';
 
 type InfoParams = 'info.name' | 'info.displayname' | 'info.authorname';
 declare global {
@@ -12,28 +12,45 @@ declare global {
     function AnimExist(elementValue: AttrValue): BaseTrigger;
     function SelfAnimExist(elementValue: AttrValue): BaseTrigger;
 
-    const root: Attributes;
-    // const parent: Attributes;
-    const partner: Attributes;
-    const enemynear: Attributes;
-    function EnemyNear(stateno: AttrValue): Attributes;
-    const enemy: Attributes;
-    function Enemy(index: AttrValue): Attributes;
-    const target: Attributes;
-    function playerId(id: AttrValue): Attributes;
+
+    interface Root extends Attributes { }
+    const root: Root;
+
+    interface Parent extends Attributes { }
+    const parent: Parent;
+
+    interface Partner extends Attributes { }
+    const partner: Partner;
+
+    interface Enemynear extends Attributes { }
+    const enemynear: Enemynear;
+    function EnemyNear(stateno: AttrValue): Enemynear;
+    
+    interface Enemy extends Attributes { }
+    const enemy: Enemy;
+    function Enemy(index: AttrValue): Enemy;
+    
+    interface Target extends Attributes { }
+    const target: Target;
+    
+    interface PlayerId extends Attributes { }
+    function playerId(id: AttrValue): PlayerId;
+
 
     const data: ConstData;
     const size: ConstSize;
     const velocity: ConstVelocity;
     const movement: ConstMovement;
 
-    // const name: Name;
+
+    const name: Name;
     const p1Name: Name;
     const p2Name: Name;
     const p3Name: Name;
     const p4Name: Name;
     const authorName: Name;
     const command: Name;
+
 
     const AILevel: BaseTrigger;
     const alive: BaseTrigger;
@@ -147,7 +164,6 @@ declare global {
     const screenPosX: BaseTrigger;
     const screenPosY: BaseTrigger;
     const screenWidth: BaseTrigger;
-
     function StageVar(value: InfoParams): {
         value: string;
         equal: (value: BaseValue) => string;
@@ -155,8 +171,8 @@ declare global {
     };
     const stateNo: BaseTrigger;
     const stateType: StateType;
-    function sysFVar(value: AttrValue): BaseTrigger;
-    function sysVar(value: AttrValue): BaseTrigger;
+    function sysFVar(value: AttrValue): SysFVar;
+    function sysVar(value: AttrValue): SysVar;
     const teamMode: TeamMode;
     const teamSide: BaseTrigger;
     const topEdge: BaseTrigger;
@@ -168,6 +184,7 @@ declare global {
     const winKO: BaseTrigger;
     const winTime: BaseTrigger;
     const winPerfect: BaseTrigger;
+
 
     /**
      * 计算参数的绝对值

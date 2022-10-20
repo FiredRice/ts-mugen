@@ -2,7 +2,7 @@ import { AttrValue, BaseValue } from '../types';
 import { transAttrValue, transStr } from '../utils';
 import { BaseAttributes } from './attributes';
 import { BaseTrigger, createBaseFunTrigger } from './base';
-import { HitDefAttr, MoveType, StateType, TeamMode } from './model';
+import { HitDefAttr, MoveType, StateType, SysFVar, SysVar, TeamMode } from './model';
 
 
 export const AILevel = new BaseTrigger('AILevel');
@@ -182,10 +182,10 @@ export function StageVar(value: InfoParams) {
 export const stateNo = new BaseTrigger('StateNo');
 export const stateType = new StateType('StateType');
 export function sysFVar(value: AttrValue) {
-    return new BaseTrigger(`SysFVar(${transAttrValue(value)})`);
+    return new SysFVar(value);
 }
 export function sysVar(value: AttrValue) {
-    return new BaseTrigger(`SysVar(${transAttrValue(value)})`);
+    return new SysVar(value);
 }
 
 

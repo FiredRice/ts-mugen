@@ -172,7 +172,7 @@ export interface Statedef {
 /**
  * 声名 Statedef
  */
-export function createState(statedef: Statedef) {
+export function useStatedef(statedef: Statedef) {
     currentWrite.setState(statedef);
 }
 

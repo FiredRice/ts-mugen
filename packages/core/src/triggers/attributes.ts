@@ -2,8 +2,11 @@ import { AttrValue } from '../types';
 import { Name } from './names';
 import { BasePerfix, BaseTrigger, createBaseFunTrigger } from './base';
 import { ConstData, ConstMovement, ConstSize, ConstVelocity } from './constant';
-import { HitDefAttr, MoveType, StateType, TeamMode } from './model';
+import { HitDefAttr, MoveType, StateType, SysFVar, SysVar, TeamMode } from './model';
 import { transAttrValue } from '../utils';
+import { Helper } from '../sctrls';
+
+type CustomHelperType<T extends Helper> = Omit<T, 'id' | 'Create'>;
 
 export class BaseAttributes extends BasePerfix {
     constructor(perfix: string = '') {
@@ -189,10 +192,10 @@ export class BaseAttributes extends BasePerfix {
         return new BaseTrigger(`${this.getPerfix()}fvar(${transAttrValue(index)})`);
     }
     public sysFVar(index: AttrValue) {
-        return new BaseTrigger(`${this.getPerfix()}SysFVar(${transAttrValue(index)})`);
+        return new SysFVar(index, this.getPerfix());
     }
     public sysVar(index: AttrValue) {
-        return new BaseTrigger(`${this.getPerfix()}SysVar(${transAttrValue(index)})`);
+        return new SysVar(index, this.getPerfix());
     }
 }
 
@@ -207,8 +210,26 @@ export class Attributes extends BaseAttributes {
     public readonly enemynear = new BaseAttributes(`${this.getPerfix()}enemynear`);
     public readonly enemy = new BaseAttributes(`${this.getPerfix()}enemy`);
     public readonly target = new BaseAttributes(`${this.getPerfix()}target`);
-    public Helper(id: AttrValue) {
-        return new BaseAttributes(`${this.getPerfix()}Helper(${transAttrValue(id)})`);
+
+    public Helper<T extends Helper>(value: T): CustomHelperType<T> & BaseAttributes;
+    public Helper(value: AttrValue) {
+        const _perfix = this.getPerfix();
+        if (value instanceof Helper) {
+            const baseHelper = new BaseAttributes(`${_perfix}Helper(${transAttrValue(value.id)})`);
+            Object.keys(value).forEach((key) => {
+                const innerValue = value[key];
+                if (key !== 'id' && key !== 'Create' && !this[key]) {
+                    if (innerValue instanceof BaseTrigger) {
+                        baseHelper[key] = new BaseTrigger(`${_perfix}${innerValue.value}`);
+                    } else {
+                        baseHelper[key] = innerValue;
+                    }
+                }
+            });
+            return baseHelper;
+        } else {
+            return new BaseAttributes(`${_perfix}Helper(${transAttrValue(value)})`);
+        }
     }
     public EnemyNear(stateno: AttrValue) {
         return new BaseAttributes(`${this.getPerfix()}EnemyNear(${transAttrValue(stateno)})`);
