@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface ParentVarAddParams extends BaseSctrls {
+export interface ParentVarAddParams extends BaseSctrls {
     /***
      * var_no应该是0-59之中的一个整数.
      */

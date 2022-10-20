@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface PlayerPushParams extends BaseSctrls {
+export interface PlayerPushParams extends BaseSctrls {
     /**
      * - 如果push_flag非0,则能够进行推挤检测.
      * - 如果push_flag是0,则停止推挤检测.

@@ -30,7 +30,7 @@ type EnvshakeType = {
     phase?: AttrValue;
 };
 
-interface HitDefParams extends BaseSctrls {
+export interface HitDefParams extends BaseSctrls {
     /**
      * 这是攻击的属性.用来确定是否攻击可以击中P2.格式为:
      * ```
@@ -638,7 +638,7 @@ export function HitDef(params: HitDefParams) {
     }, version);
 }
 
-interface ProjectileParams extends HitDefParams {
+export interface ProjectileParams extends HitDefParams {
     /**
      * 给此飞行道具指定ID号.
      * - 设置为正数.

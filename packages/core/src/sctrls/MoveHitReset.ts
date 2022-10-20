@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface MoveHitResetParams extends BaseSctrls {
+export interface MoveHitResetParams extends BaseSctrls {
 }
 
 /**

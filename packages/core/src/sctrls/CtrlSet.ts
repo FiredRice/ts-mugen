@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils/index';
 
-interface CtrlSetParams extends BaseSctrls {
+export interface CtrlSetParams extends BaseSctrls {
     /**
      * - 非0表示受控制
      * - 0表示不受控制.

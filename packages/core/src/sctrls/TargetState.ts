@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface TargetStateParams extends BaseSctrls {
+export interface TargetStateParams extends BaseSctrls {
     /**
      * 指定目标要进入的状态号.
      */

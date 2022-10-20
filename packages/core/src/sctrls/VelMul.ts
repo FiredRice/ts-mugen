@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface VelMulParams extends BaseSctrls {
+export interface VelMulParams extends BaseSctrls {
     /**
      * 指定乘以玩家x方向速度的值.
      */

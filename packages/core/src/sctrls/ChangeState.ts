@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface ChangeStateParams extends BaseSctrls {
+export interface ChangeStateParams extends BaseSctrls {
     /**
      * 改变为的状态号
      */

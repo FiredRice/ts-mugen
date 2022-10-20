@@ -4,14 +4,14 @@ import { objectToString, transAttrValue, triggersToString, versionCheck } from '
 import { isArray } from 'lodash';
 import { BaseTrigger } from '../triggers/base';
 
-interface VarParams extends BaseSctrls {
+export interface VarParams extends BaseSctrls {
     /**
      * 整数或浮点数
      */
     value?: AttrValue;
 }
 
-interface RandomVarParams extends BaseSctrls {
+export interface RandomVarParams extends BaseSctrls {
     /**
      * least_val和greatest_val指定此控制器分别指定的最大和最小值.
      * 
@@ -22,7 +22,7 @@ interface RandomVarParams extends BaseSctrls {
     range?: AttrValue | [AttrValue, AttrValue];
 }
 
-interface VarRangeSetParams extends BaseSctrls {
+export interface VarRangeSetParams extends BaseSctrls {
     /**
      * 通过一次性计算指定给所有在此范围中的整型变量的值.
      */

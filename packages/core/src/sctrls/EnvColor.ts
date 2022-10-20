@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils/index';
 
-interface EnvColorParams extends BaseSctrls {
+export interface EnvColorParams extends BaseSctrls {
     /**
      * 指定要将屏幕设置成某种颜色的R,G,B数值分量.
      * 

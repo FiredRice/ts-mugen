@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface DestroySelfParams extends BaseSctrls {
+export interface DestroySelfParams extends BaseSctrls {
     /**
      * 若值为1,此helper派生出的所有helper将同时被销毁.
      * - 默认为0.

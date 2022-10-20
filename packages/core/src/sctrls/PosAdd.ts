@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface PosAddParams extends BaseSctrls {
+export interface PosAddParams extends BaseSctrls {
     /**
      * 使玩家向前移动x_value像素.
      * - 默认是0.

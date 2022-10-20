@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface ScreenBoundParams extends BaseSctrls {
+export interface ScreenBoundParams extends BaseSctrls {
     /**
      * - 如果是0,玩家将被允许离开屏幕.
      * - 如果是1,则玩家将被约束在屏幕内.

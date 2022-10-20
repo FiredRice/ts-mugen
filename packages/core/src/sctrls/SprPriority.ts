@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface SprPriorityParams extends BaseSctrls {
+export interface SprPriorityParams extends BaseSctrls {
     /**
      * - 默认值是-5到5.
      */

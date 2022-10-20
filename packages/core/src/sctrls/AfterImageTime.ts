@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils/index';
 
-interface AfterImageTimeParams extends BaseSctrls {
+export interface AfterImageTimeParams extends BaseSctrls {
     /**
      * 设置残影在被移除前显示的新的帧数.
      * 

@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface RemoveExplodParams extends BaseSctrls {
+export interface RemoveExplodParams extends BaseSctrls {
     /**
      * 要移除的explod的ID号.
      * - 如果缺省,将移除玩家拥有的所有explod.

@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface TargetPowerAddParams extends BaseSctrls {
+export interface TargetPowerAddParams extends BaseSctrls {
     /**
      * 增加到每个目标上的能量值.
      */

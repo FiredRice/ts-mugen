@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface TargetLifeAddParams extends BaseSctrls {
+export interface TargetLifeAddParams extends BaseSctrls {
     /**
      * 增加到每个目标生命值的数量
      */

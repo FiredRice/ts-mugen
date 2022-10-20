@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls, TransType } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface TransParams extends BaseSctrls {
+export interface TransParams extends BaseSctrls {
     /**
      * - default：没有效果
      * - none：禁用透明效果

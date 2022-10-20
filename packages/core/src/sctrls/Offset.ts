@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface OffsetParams extends BaseSctrls {
+export interface OffsetParams extends BaseSctrls {
     /**
      * 指定x的偏移量.
      */

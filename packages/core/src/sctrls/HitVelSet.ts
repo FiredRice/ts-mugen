@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface HitVelSetParams extends BaseSctrls {
+export interface HitVelSetParams extends BaseSctrls {
     /**
      * 非0的参数意味着把玩家速度的x分量变为受击速度.
      */

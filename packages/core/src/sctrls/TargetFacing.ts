@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface TargetFacingParams extends BaseSctrls {
+export interface TargetFacingParams extends BaseSctrls {
     /**
      * - 如果facing_val是正数,所有目标的朝向都将与玩家相同.
      * - 如果facing_val是负数,所有目标的朝向都将与玩家相反.

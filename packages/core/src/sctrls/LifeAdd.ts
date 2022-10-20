@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface LifeAddParams extends BaseSctrls {
+export interface LifeAddParams extends BaseSctrls {
     /**
      * 指定增加到玩家血条上的生命值.
      */

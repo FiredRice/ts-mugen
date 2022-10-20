@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils/index';
 
-interface AngleMulParams extends BaseSctrls {
+export interface AngleMulParams extends BaseSctrls {
     /**
      * 绘制的角度乘以 value (浮点型) .
      */

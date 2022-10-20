@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils/index';
 
-interface AngleAddParams extends BaseSctrls {
+export interface AngleAddParams extends BaseSctrls {
     /**
      * 必须以角度形式给出
      */

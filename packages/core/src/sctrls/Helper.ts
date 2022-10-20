@@ -3,7 +3,7 @@ import { Attributes } from '../triggers';
 import { BasePostype, BaseSctrls, BaseValue, AttrValue } from '../types';
 import { triggersToString, objectToString, transAttrValue, transStr, versionCheck } from '../utils';
 
-interface HelperParams extends BaseSctrls {
+export interface HelperParams extends BaseSctrls {
     /**
      * 不推荐使用此参数,不支持使用player型的helper.
      * 

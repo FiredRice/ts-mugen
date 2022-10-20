@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface StopSndParams extends BaseSctrls {
+export interface StopSndParams extends BaseSctrls {
     /**
      * 停止播放 channel 通道的任何声音。
      * 

@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface ReversalDefParams extends BaseSctrls {
+export interface ReversalDefParams extends BaseSctrls {
     reversal: {
         /**
          * attr_string指定能被ReversalDef反弹的攻击属性列表.是一个标准的hit属性字符串.

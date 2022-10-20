@@ -1,4 +1,4 @@
-import { Null, AfterImage, createState } from '@tsmugen/core';
+import { Null, AfterImage, createState, ChangeState } from '@tsmugen/core';
 
 const letsStart = () => {
     createState({
@@ -14,12 +14,12 @@ const letsStart = () => {
     AfterImage({
         triggers: time.equal(0),
         time: 10
-    })
+    });
 
     Null({
         triggers: root.time.equal(0),
         describe: 'Hello World'
-    })
+    });
 };
 
 const state2 = () => {
@@ -33,8 +33,14 @@ const state2 = () => {
     });
 
     Null({
-        triggers: 1,
+        triggers: NumHelper(),
         describe: 'Hello World2'
-    })
-}
+    });
+
+    ChangeState({
+        triggers: Abs(time.add(100)),
+        value: 0,
+        ctrl: 1
+    });
+};
 export default [letsStart, state2];

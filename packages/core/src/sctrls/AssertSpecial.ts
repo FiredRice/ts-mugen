@@ -23,7 +23,7 @@ type SpecialFlag =
     | 'timerfreeze'
     | 'unguardable';
 
-interface AssertSpecialParams extends BaseSctrls {
+export interface AssertSpecialParams extends BaseSctrls {
     /**
      * 断言标示
      * - intro 告诉MUGEN人物正在表演开场姿势.开场时(该标示)必须每帧都被断言.

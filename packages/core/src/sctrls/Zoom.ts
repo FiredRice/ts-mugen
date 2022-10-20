@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface ZoomParams extends BaseSctrls {
+export interface ZoomParams extends BaseSctrls {
     /**
      * 缩放大小（必须大于 1）
      */

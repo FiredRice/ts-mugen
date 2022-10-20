@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface WidthParams extends BaseSctrls {
+export interface WidthParams extends BaseSctrls {
     /**
      * 设置玩家前后的edge宽度.edge宽度决定了玩家能有多接近屏幕的边缘.
      * - 默认值为0,0.

@@ -2,11 +2,15 @@ import { exec } from 'child_process';
 import path from 'path';
 import shell from 'shelljs';
 
+function childExec(command: string) {
+    console.log(command);
+    exec(command);
+}
+
 try {
     shell.exec(`yarn build:clean`);
-    shell.exec(`yarn build:cjs`);
-    shell.exec(`yarn build:types`);
-    shell.cp('-rf', path.join(__dirname, '../src/types/global.d.ts'), path.join(__dirname, '../lib/types/types'));
+    childExec(`yarn build:cjs`);
+    childExec(`yarn build:types`);
 } catch (error) {
     console.log(error);
 }

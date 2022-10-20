@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface HitFallSetParams extends BaseSctrls {
+export interface HitFallSetParams extends BaseSctrls {
     /**
      * 如果fallset_flag是-1,则此控制器不会改变玩家是否将要下落.
      * 

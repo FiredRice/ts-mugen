@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BasePostype, BaseSctrls, TransType } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface ExplodParams extends BaseSctrls {
+export interface ExplodParams extends BaseSctrls {
     /**
      * 指定要播放的动画号.
      * 

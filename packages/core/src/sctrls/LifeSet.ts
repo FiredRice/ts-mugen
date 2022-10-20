@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface LifeSetParams extends BaseSctrls {
+export interface LifeSetParams extends BaseSctrls {
     /**
      * 指定执行(lifeset)后玩家将会获得的生命值.
      */

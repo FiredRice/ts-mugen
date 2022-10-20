@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface SndPanParams extends BaseSctrls {
+export interface SndPanParams extends BaseSctrls {
     /**
      * 指定要移动声音的声道号.
      */

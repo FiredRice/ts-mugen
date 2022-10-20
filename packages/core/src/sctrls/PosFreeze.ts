@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface PosFreezeParams extends BaseSctrls {
+export interface PosFreezeParams extends BaseSctrls {
     /**
      * 如果value非0,则玩家的位置将被冻结,否则不会.
      * - 默认为1.

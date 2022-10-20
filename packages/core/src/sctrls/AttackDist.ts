@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils/index';
 
-interface AttackDistParams extends BaseSctrls {
+export interface AttackDistParams extends BaseSctrls {
     /**
      * 新的防御距离,单位是像素.
      */

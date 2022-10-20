@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface RemapPalParams extends BaseSctrls {
+export interface RemapPalParams extends BaseSctrls {
     /**
      * - 默认值 -1,0.
      */

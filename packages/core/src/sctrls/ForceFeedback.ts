@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface ForceFeedbackParams extends BaseSctrls {
+export interface ForceFeedbackParams extends BaseSctrls {
     /**
      * 有效的waveform(波形)是"sine(正弦波)","square(方波)","sinesquare(正弦方波？)",和"off".
      * 

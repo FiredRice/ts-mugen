@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { BaseSctrls, MoveType, StateType } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface StateTypeSetParams extends BaseSctrls {
+export interface StateTypeSetParams extends BaseSctrls {
     /**
      * - A：空中.
      * - C：蹲下.

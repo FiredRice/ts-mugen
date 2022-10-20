@@ -3,7 +3,7 @@ import { AttrValue } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 import { PauseParams } from './Pause';
 
-interface SuperPauseParams extends Omit<PauseParams, 'time'> {
+export interface SuperPauseParams extends Omit<PauseParams, 'time'> {
     /**
      * 指定暂停将持续的时间.
      * - 默认30帧.(默认速度下的半秒)

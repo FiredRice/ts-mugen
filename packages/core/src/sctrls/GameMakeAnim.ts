@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface GameMakeAnimParams extends BaseSctrls {
+export interface GameMakeAnimParams extends BaseSctrls {
     /**
      * 指定要播放的动画号(从fightfx中).
      * - 默认是0.

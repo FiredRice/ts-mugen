@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface NotHitByParams extends BaseSctrls {
+export interface NotHitByParams extends BaseSctrls {
     /**
      * value 与 value2 只有1种能被指定.
      * 

@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface PlaySndParams extends BaseSctrls {
+export interface PlaySndParams extends BaseSctrls {
     /**
      * group_no和sound_no对应你在玩家的snd文件中给每个声音指定的一对识别码.
      * 

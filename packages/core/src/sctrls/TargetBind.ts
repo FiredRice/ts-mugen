@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface TargetBindParams extends BaseSctrls {
+export interface TargetBindParams extends BaseSctrls {
     /**
      * 指定绑定起作用的时间帧数.
      * - 默认是1.

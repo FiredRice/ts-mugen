@@ -1,7 +1,6 @@
 import { BaseValue, Version } from '@tsmugen/utils';
 import { Triggers } from '../core';
 import { BaseTrigger } from '../triggers/base';
-import './global';
 
 export * from './file';
 

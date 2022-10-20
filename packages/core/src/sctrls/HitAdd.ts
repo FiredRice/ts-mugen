@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface HitAddParams extends BaseSctrls {
+export interface HitAddParams extends BaseSctrls {
     /**
      * 指定增加到当前连击上的打击数字。
      */

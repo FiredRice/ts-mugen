@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils/index';
 
-interface ChangeAnimParams extends BaseSctrls {
+export interface ChangeAnimParams extends BaseSctrls {
     /**
      * 要改变的动作号.
      */

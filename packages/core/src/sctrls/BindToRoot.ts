@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils/index';
 
-interface BindToRootParams extends BaseSctrls {
+export interface BindToRootParams extends BaseSctrls {
     /**
      * 指定绑定的有效时间帧数.
      * - 默认为1.

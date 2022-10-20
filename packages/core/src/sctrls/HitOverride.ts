@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface HitOverrideParams extends BaseSctrls {
+export interface HitOverrideParams extends BaseSctrls {
     /**
      * 标准hit属性字符串指定了要覆盖的hit类型.
      * 

@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface EnvShakeParams extends BaseSctrls {
+export interface EnvShakeParams extends BaseSctrls {
     /**
      * 指定屏幕将要震动的时间帧数.
      */

@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface PowerAddParams extends BaseSctrls {
+export interface PowerAddParams extends BaseSctrls {
     /**
      * 增加到玩家的power上的值.
      */

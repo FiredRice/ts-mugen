@@ -81,48 +81,48 @@ trigger1 = time = 0
 ## <div id='API'>API</div>
 
 ### <div id='State'>State</div>
-
+`state` 通过钩子函数 `createState` 在函数内声名。
+**注意：若您在一个函数多次调用 `createState`，则后面的声名会覆盖前面的声名。**
 ```ts
-import { State, Null, time } from '@tsmugen/core';
+import { createState, Null, time } from '@tsmugen/core';
 
-const state = new State({
-    id: 1000,
-    describe: 'Hello World!',
-    type: 'S',
-    movetype: 'I',
-    physics: 'S',
-    anim: 0
-})；
+function Start() {
+    createState({
+        // id 为状态号真实值
+        id: 1000,
+        describe: 'Hello World!',
+        type: 'S',
+        movetype: 'I',
+        physics: 'S',
+        anim: 0
+    });
 
-state.appendControllers(function () {
     Null({ triggers: time.equal(0) });
-});
+}
 ```
-通过实例化 `State` 创建一个 state，并可以通过**多次**调用 `appendControllers` 方法追加控制器。
 
-实例化 `State` 时可以传入 `version` 属性。当传入 `version` 属性时，当且仅当构建时的版本号与 `version` 一致时，该 `State` 才会参与构建。
+`createState` 中可以传入 `version` 属性。当传入 `version` 属性时，当且仅当构建时的版本号与 `version` 一致时，该 `State` 才会参与构建。
 
 例如：
 ```ts
-import { State, Null, time } from '@tsmugen/core';
+import { createState, Null, time } from '@tsmugen/core';
 
-const state = new State({
-    id: 1000,
-    version: '1.1'
-})；
+function Start() {
+    createState({
+        id: 1000,
+        version: '1.1',
+        describe: 'Hello World!',
+        type: 'S',
+        movetype: 'I',
+        physics: 'S',
+        anim: 0
+    });
 
-state.appendControllers(function () {
     Null({ triggers: time.equal(0) });
-});
+}
 ```
 上述 `State` 输出的代码仅会出现在 1.1 版本的人物包中。
 通过该属性可轻松对 `State` 进行版本控制。
-
-#### State 属性
-|名称|说明|类型|
-|---|---|---|
-|id|状态号真实值|[BaseValue](#BaseValue)|
-|appendControllers|追加控制器，可传入多个函数|(...callbacks: [CallbackFun](#CallbackFun)[]) => this|
 
 ### <div id='Helper'>Helper</div>
 

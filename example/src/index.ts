@@ -1,10 +1,7 @@
 import { Character, Mugen } from '@tsmugen/core';
-import * as allTriggers from '@tsmugen/core/lib/cjs/triggers';
-import states from './skills';
+import '@tsmugen/global';
 
-Object.keys(allTriggers).forEach(key => {
-    global[key] = allTriggers[key];
-});
+import states from './skills';
 
 const char = new Character();
 

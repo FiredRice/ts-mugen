@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface PosSetParams extends BaseSctrls {
+export interface PosSetParams extends BaseSctrls {
     /**
      * 指定玩家新的x方向位置.
      */

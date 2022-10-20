@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, transStr, triggersToString, versionCheck } from '../utils';
 
-interface DisplayToClipboardParams extends BaseSctrls {
+export interface DisplayToClipboardParams extends BaseSctrls {
     /**
      * 一个printf格式字符串型,所以如果你对printf了解,你可以跳过这段描述.
      * 

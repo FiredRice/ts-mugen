@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils/index';
 
-interface DefenceMulSetParams extends BaseSctrls {
+export interface DefenceMulSetParams extends BaseSctrls {
     /**
      * 指定的防御系数.
      */

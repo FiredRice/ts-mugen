@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface TargetVelSetParams extends BaseSctrls {
+export interface TargetVelSetParams extends BaseSctrls {
     /**
      * 设置目标x方向速度为指定值.
      */

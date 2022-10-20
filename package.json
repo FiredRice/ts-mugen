@@ -16,11 +16,12 @@
 		"link": "lerna link",
 		"install": "lerna bootstrap",
 		"clean": "lerna clean",
-		"build": "yarn build:create && yarn build:utils && yarn build:cli && yarn build:core",
+		"build": "yarn build:create && yarn build:utils && yarn build:cli && yarn build:core && yarn build:global",
 		"build:create": "yarn workspace @tsmugen/create-tsmugen-app build",
 		"build:utils": "yarn workspace @tsmugen/utils build",
 		"build:cli": "yarn workspace @tsmugen/cli build",
-		"build:core": "yarn workspace @tsmugen/core build"
+		"build:core": "yarn workspace @tsmugen/core build",
+		"build:global": "yarn workspace @tsmugen/global build"
 	},
 	"devDependencies": {
 		"lerna": "^5.6.2"

@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface PalFXParams extends BaseSctrls {
+export interface PalFXParams extends BaseSctrls {
     /**
      * 指定色表效果将持续的时间.(帧数)
      * - 指定-1使色表效果永久持续.

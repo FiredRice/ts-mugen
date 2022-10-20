@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface TargetDropParams extends BaseSctrls {
+export interface TargetDropParams extends BaseSctrls {
     /**
      * 任何ID号不等于id_no的目标将从玩家的目标列表中被丢弃.
      * - 默认为-1.(丢弃所有目标)

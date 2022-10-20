@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface ExplodBindTimeParams extends BaseSctrls {
+export interface ExplodBindTimeParams extends BaseSctrls {
     /**
      * 仅当explod拥有的ID号等于id_no时才能影响他们的位置绑定.
      * 

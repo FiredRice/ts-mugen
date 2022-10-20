@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface VictoryQuoteParams extends BaseSctrls {
+export interface VictoryQuoteParams extends BaseSctrls {
     /**
      * 指定要使用引语的索引.有效值从0到99.如果quote_index为无效的索引,则一个随机的引语将被选择.
      * - 默认是-1.

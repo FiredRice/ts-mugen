@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils';
 
-interface MakeDustParams extends BaseSctrls {
+export interface MakeDustParams extends BaseSctrls {
     /**
      * 指定尘土被画出的位置,相对于玩家的坐标轴.
      * - 默认是0,0.

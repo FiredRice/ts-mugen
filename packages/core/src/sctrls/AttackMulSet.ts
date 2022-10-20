@@ -2,7 +2,7 @@ import { currentWrite } from '../core';
 import { AttrValue, BaseSctrls } from '../types';
 import { objectToString, triggersToString, versionCheck } from '../utils/index';
 
-interface AttackMulSetParams extends BaseSctrls {
+export interface AttackMulSetParams extends BaseSctrls {
     /**
      * 指定所需的乘数.例如,attack_mul设置为2表示2倍伤害值.
      */
