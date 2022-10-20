@@ -131,12 +131,13 @@ interface CustomHelpers<T extends Helper> {
  */
 export function injectGlobalHelpers<T extends Helper>(helpers: CustomHelpers<T>) {
     Object.keys(helpers).forEach(function (key) {
-        root[key] = root.Helper(helpers[key]);
-        parent[key] = parent.Helper(helpers[key]);
-        partner[key] = partner.Helper(helpers[key]);
-        enemy[key] = enemy.Helper(helpers[key]);
-        enemynear[key] = enemynear.Helper(helpers[key]);
-        target[key] = target.Helper(helpers[key]);
+        const currentHelper = helpers[key];
+        root[key] = root.Helper(currentHelper);
+        parent[key] = parent.Helper(currentHelper);
+        partner[key] = partner.Helper(currentHelper);
+        enemy[key] = enemy.Helper(currentHelper);
+        enemynear[key] = enemynear.Helper(currentHelper);
+        target[key] = target.Helper(currentHelper);
     });
     const _global: any = global;
     _global['root'] = root;
@@ -147,9 +148,6 @@ export function injectGlobalHelpers<T extends Helper>(helpers: CustomHelpers<T>)
     _global['target'] = target;
 }
 
-type OmitHelperType<T> = {
-    [P in keyof T]: Omit<T[P], 'id' | 'Create'>;
-}
 
 /**
  * 向某一实例注入自定义 helper
@@ -157,7 +155,7 @@ type OmitHelperType<T> = {
  * @param helpers 自定义 helper 集合
  * @returns player 实例
  */
-export function injectPlayerHelper<T extends Attributes, K extends Helper, Z extends CustomHelpers<K>>(player: T, helpers: Z): PlayerReturnType<T, OmitHelperType<Z>> {
+export function injectPlayerHelper<T extends Attributes, K extends Helper>(player: T, helpers: CustomHelpers<K>): PlayerReturnType<T, CustomHelpers<K>> {
     Object.keys(helpers).forEach(function (key) {
         player[key] = player.Helper(helpers[key]);
     });

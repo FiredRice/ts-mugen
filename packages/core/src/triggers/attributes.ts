@@ -4,9 +4,7 @@ import { BasePerfix, BaseTrigger, createBaseFunTrigger } from './base';
 import { ConstData, ConstMovement, ConstSize, ConstVelocity } from './constant';
 import { HitDefAttr, MoveType, StateType, SysFVar, SysVar, TeamMode } from './model';
 import { transAttrValue } from '../utils';
-import { Helper } from '../sctrls';
-
-type CustomHelperType<T extends Helper> = Omit<T, 'id' | 'Create'>;
+import { FVar, Helper, Var } from '../sctrls';
 
 export class BaseAttributes extends BasePerfix {
     constructor(perfix: string = '') {
@@ -47,7 +45,9 @@ export class BaseAttributes extends BasePerfix {
      */
     public readonly ID = new BaseTrigger(`${this.getPerfix()}ID`);
     public readonly inGuardDist = new BaseTrigger(`${this.getPerfix()}InGuardDist`);
-    public readonly isHelper = createBaseFunTrigger(`${this.getPerfix()}IsHelper`);
+    public get isHelper() {
+        return createBaseFunTrigger(`${this.getPerfix()}IsHelper`);
+    }
     public readonly isHomeTeam = new BaseTrigger(`${this.getPerfix()}IsHomeTeam`);
     public readonly leftEdge = new BaseTrigger(`${this.getPerfix()}LeftEdge`);
     public readonly life = new BaseTrigger(`${this.getPerfix()}Life`);
@@ -62,9 +62,15 @@ export class BaseAttributes extends BasePerfix {
     public readonly moveHit = new BaseTrigger(`${this.getPerfix()}MoveHit`);
     public readonly moveReversed = new BaseTrigger(`${this.getPerfix()}MoveReversed`);
     public readonly moveType = new MoveType('MoveType', this.getPerfix());
-    public readonly numHelper = createBaseFunTrigger(`${this.getPerfix()}NumHelper`);
-    public readonly numExplod = createBaseFunTrigger(`${this.getPerfix()}NumExplod`);
-    public readonly numTarget = createBaseFunTrigger(`${this.getPerfix()}NumTarget`);
+    public get numHelper() {
+        return createBaseFunTrigger(`${this.getPerfix()}NumHelper`);
+    }
+    public get numExplod() {
+        return createBaseFunTrigger(`${this.getPerfix()}NumExplod`);
+    }
+    public get numTarget() {
+        return createBaseFunTrigger(`${this.getPerfix()}NumTarget`);
+    }
     public readonly numEnemy = new BaseTrigger(`${this.getPerfix()}NumEnemy`);
     public readonly numPartner = new BaseTrigger(`${this.getPerfix()}NumPartner`);
     public readonly numProj = new BaseTrigger(`${this.getPerfix()}NumProj`);
@@ -184,12 +190,57 @@ export class BaseAttributes extends BasePerfix {
      */
     public readonly ticksPerSecond = new BaseTrigger(`${this.getPerfix()}TicksPerSecond`);
 
-
-    public var(index: AttrValue) {
-        return new BaseTrigger(`${this.getPerfix()}var(${transAttrValue(index)})`);
+    public var<T extends Var>(value: T): T;
+    public var(value: AttrValue): Var;
+    public var(value: any) {
+        const _perfix = this.getPerfix();
+        const _index = value instanceof Var ? value.getIndex() : value;
+        const baseVar = new Var(_index);
+        baseVar._setInnerName(`${_perfix}${baseVar.value}`);
+        if (value instanceof Var) {
+            for (const key in value) {
+                if (Object.prototype.hasOwnProperty.call(value, key)) {
+                    const innerValue = value[key];
+                    if (!baseVar[key]) {
+                        if (innerValue instanceof BaseTrigger) {
+                            baseVar[key] = new BaseTrigger(`${_perfix}${innerValue.value}`);
+                        } else {
+                            baseVar[key] = innerValue;
+                        }
+                    } else {
+                        baseVar[key]?._setInnerName?.(`${_perfix}${baseVar[key].value}`);
+                        baseVar[key]?.setPerfix?.(this.perfix);
+                    }
+                }
+            }
+        }
+        return baseVar;
     }
-    public fvar(index: AttrValue) {
-        return new BaseTrigger(`${this.getPerfix()}fvar(${transAttrValue(index)})`);
+    public fvar<T extends FVar>(value: T): T;
+    public fvar(value: AttrValue): FVar;
+    public fvar(value: any) {
+        const _perfix = this.getPerfix();
+        const _index = value instanceof FVar ? value.getIndex() : value;
+        const baseFVar = new FVar(_index);
+        baseFVar._setInnerName(`${_perfix}${baseFVar.value}`);
+        if (value instanceof FVar) {
+            for (const key in value) {
+                if (Object.prototype.hasOwnProperty.call(value, key)) {
+                    const innerValue = value[key];
+                    if (!baseFVar[key]) {
+                        if (innerValue instanceof BaseTrigger) {
+                            baseFVar[key] = new BaseTrigger(`${_perfix}${innerValue.value}`);
+                        } else {
+                            baseFVar[key] = innerValue;
+                        }
+                    } else {
+                        baseFVar[key]?._setInnerName?.(`${_perfix}${baseFVar[key].value}`);
+                        baseFVar[key]?.setPerfix?.(this.perfix);
+                    }
+                }
+            }
+        }
+        return baseFVar;
     }
     public sysFVar(index: AttrValue) {
         return new SysFVar(index, this.getPerfix());
@@ -203,6 +254,7 @@ export class Attributes extends BaseAttributes {
     public constructor(perfix: string = '') {
         super(perfix);
     }
+
     // attributes.ts
     public readonly root = new BaseAttributes(`${this.getPerfix()}root`);
     public readonly parent = new BaseAttributes(`${this.getPerfix()}parent`);
@@ -211,25 +263,39 @@ export class Attributes extends BaseAttributes {
     public readonly enemy = new BaseAttributes(`${this.getPerfix()}enemy`);
     public readonly target = new BaseAttributes(`${this.getPerfix()}target`);
 
-    public Helper<T extends Helper>(value: T): CustomHelperType<T> & BaseAttributes;
-    public Helper(value: AttrValue) {
+    public Helper<T extends Helper>(value: T): T;
+    public Helper(value: AttrValue): Helper;
+    public Helper(value: any) {
         const _perfix = this.getPerfix();
+        const _id = value instanceof Helper ? value.id : value;
+        const baseHelper = new Helper(_id);
+        baseHelper.setPerfix(`${_perfix}Helper(${transAttrValue(_id)})`);
+        const currentPerfix = this.getPerfix();
         if (value instanceof Helper) {
-            const baseHelper = new BaseAttributes(`${_perfix}Helper(${transAttrValue(value.id)})`);
-            Object.keys(value).forEach((key) => {
-                const innerValue = value[key];
-                if (key !== 'id' && key !== 'Create' && !this[key]) {
-                    if (innerValue instanceof BaseTrigger) {
-                        baseHelper[key] = new BaseTrigger(`${_perfix}${innerValue.value}`);
+            for (const key in value) {
+                if (Object.prototype.hasOwnProperty.call(value, key)) {
+                    const innerValue = value[key];
+                    if (!baseHelper[key]) {
+                        if (innerValue instanceof BaseTrigger) {
+                            baseHelper[key] = new BaseTrigger(`${currentPerfix}${innerValue.value}`);
+                        } else {
+                            baseHelper[key] = innerValue;
+                        }
                     } else {
-                        baseHelper[key] = innerValue;
+                        baseHelper[key]?._setInnerName?.(`${currentPerfix}${baseHelper[key].value}`);
+                        baseHelper[key]?.setPerfix?.(this.perfix);
                     }
                 }
-            });
-            return baseHelper;
+            }
         } else {
-            return new BaseAttributes(`${_perfix}Helper(${transAttrValue(value)})`);
+            for (const key in baseHelper) {
+                if (Object.prototype.hasOwnProperty.call(baseHelper, key)) {
+                    baseHelper[key]?._setInnerName?.(`${_perfix}${baseHelper[key].value}`);
+                    baseHelper[key]?.setPerfix?.(this.perfix);
+                }
+            }
         }
+        return baseHelper;
     }
     public EnemyNear(stateno: AttrValue) {
         return new BaseAttributes(`${this.getPerfix()}EnemyNear(${transAttrValue(stateno)})`);

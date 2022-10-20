@@ -118,5 +118,4 @@ export type GlobalExtend = CustomVars & CustomHelpers;
 
 
 **注意：**
-- **以上任意 API 注入的（变量/helper）均会丢失控制器方法，虽然依然存在语法提示（因为不需要）。**
-- **使用以上任意注入 helper 的 API 时，请注意 helper 的 id 应为明确的值而非表达式，即 `new Helper(ID.add(1000))` 等形式的 helper 需避免。**
+**使用以上任意注入 helper 的 API 时，请注意 helper 的 id 应为明确的值而非表达式，即 `new Helper(ID.add(1000))` 等形式的 helper 需避免。**

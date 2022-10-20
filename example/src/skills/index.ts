@@ -1,4 +1,4 @@
-import { Null, AfterImage, useStatedef, ChangeState, createTriggers, Or, useTriggers, And } from '@tsmugen/core';
+import { Null, AfterImage, useStatedef, ChangeState, createTriggers, Or, useTriggers, And, Bracket } from '@tsmugen/core';
 import { enemyFarthest, player1 } from '../players';
 
 const letsStart = () => {
@@ -33,28 +33,11 @@ const state2 = () => {
         anim: 2000
     });
 
-    Null({
-        triggers: createTriggers({
-            All: NumHelper(),
-            1: time.notEqual(0),
-            2: Or(
-                root.singleGlasses.alive,
-                enemyFarthest.AISwitch.between(0, 10),
-                player1.singleGlasses.initVelX.add(10).equal(5)
-            )
-        }),
-        describe: 'Hello World2'
-    });
-
-    // const triggers = useTriggers();
-    // triggers.append(
-    //     Abs(time.add(100)).less(100),
-    //     anim.notEqual(0)
-    // )
-    // triggers.append(
-    //     anim.equal(0),
-    //     time.equal(0)
-    // )
+    root.Helper(1000).Create({
+        triggers: time.equal(0),
+        stateno: 2000
+    })
+    
     ChangeState({
         triggers: createTriggers({
             1: And(
@@ -62,9 +45,14 @@ const state2 = () => {
                 anim.notEqual(0)
             ),
             2: And(
-                anim.equal(0),
-                time.equal(0),
-                parent.animelem.equal(10)
+                Abs(root.Helper(1000).var(100).sub(7)).over(20),
+                Bracket(root.singleGlasses.initVelX),
+                player1.AISwitch,
+                enemyFarthest.AILevel
+            ),
+            3: And(
+                player1.Helper(4000).var(22),
+                enemyFarthest.AISwitch.add(7).equal(7)
             )
         }),
         value: 0,
