@@ -1,4 +1,4 @@
-import { Attributes, AttrValue, BaseAttributes, BaseValue, ConstData, ConstMovement, ConstSize, ConstVelocity, MoveType, Name, StateType } from '@tsmugen/core';
+import { Attributes, AttrValue, BaseAttributes, BaseValue, ConstData, ConstMovement, ConstSize, ConstVelocity, Helper, MoveType, Name, StateType } from '@tsmugen/core';
 import { BaseTrigger } from '@tsmugen/core/lib/types/triggers/base';
 import { HitDefAttr, SysFVar, SysVar, TeamMode } from '@tsmugen/core/lib/types/triggers/model';
 
@@ -107,7 +107,8 @@ declare global {
     /**
      * helper 数量
      */
-    const NumHelper: (id?: AttrValue | undefined) => BaseTrigger;
+    function NumHelper<T extends Helper>(value?: T): BaseTrigger;
+    function NumHelper(value?: AttrValue): BaseTrigger;
     /**
      * 动画数量
      */

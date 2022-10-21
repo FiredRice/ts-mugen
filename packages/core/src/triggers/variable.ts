@@ -1,3 +1,4 @@
+import { Helper } from '../sctrls';
 import { AttrValue, BaseValue } from '../types';
 import { transAttrValue, transStr } from '../utils';
 import { BaseAttributes } from './attributes';
@@ -82,7 +83,16 @@ export const moveType = new MoveType('MoveType');
 /**
  * helper 数量
  */
-export const NumHelper = createBaseFunTrigger('NumHelper');
+export function NumHelper<T extends Helper>(value?: T): BaseTrigger;
+export function NumHelper(value?: AttrValue): BaseTrigger;
+export function NumHelper(value: any) {
+    if (value == null) {
+        return new BaseTrigger('NumHelper');
+    } else {
+        const _id = value instanceof Helper ? value.id : value;
+        return new BaseTrigger(`NumHelper(${transAttrValue(_id)})`);
+    }
+}
 
 /**
  * 动画数量

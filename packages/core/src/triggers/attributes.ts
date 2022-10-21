@@ -5,6 +5,7 @@ import { ConstData, ConstMovement, ConstSize, ConstVelocity } from './constant';
 import { HitDefAttr, MoveType, StateType, SysFVar, SysVar, TeamMode } from './model';
 import { transAttrValue } from '../utils';
 import { FVar, Helper, Var } from '../sctrls';
+import { NumHelper } from './variable';
 
 export class BaseAttributes extends BasePerfix {
     constructor(perfix: string = '') {
@@ -62,8 +63,13 @@ export class BaseAttributes extends BasePerfix {
     public readonly moveHit = new BaseTrigger(`${this.getPerfix()}MoveHit`);
     public readonly moveReversed = new BaseTrigger(`${this.getPerfix()}MoveReversed`);
     public readonly moveType = new MoveType('MoveType', this.getPerfix());
-    public get numHelper() {
-        return createBaseFunTrigger(`${this.getPerfix()}NumHelper`);
+
+    public numHelper<T extends Helper>(value?: T): BaseTrigger;
+    public numHelper(value?: AttrValue): BaseTrigger;
+    public numHelper(value: any) {
+        const result = NumHelper(value);
+        result._setInnerName(`${this.getPerfix()}${result.value}`);
+        return result;
     }
     public get numExplod() {
         return createBaseFunTrigger(`${this.getPerfix()}NumExplod`);
@@ -271,8 +277,10 @@ export class Attributes extends BaseAttributes {
         const baseHelper = new Helper(_id);
         baseHelper.setPerfix(`${_perfix}Helper(${transAttrValue(_id)})`);
         const currentPerfix = this.getPerfix();
+        const valueKeysMap: any = {};
         if (value instanceof Helper) {
             for (const key in value) {
+                valueKeysMap[key] = true;
                 if (Object.prototype.hasOwnProperty.call(value, key)) {
                     const innerValue = value[key];
                     if (!baseHelper[key]) {
@@ -287,12 +295,11 @@ export class Attributes extends BaseAttributes {
                     }
                 }
             }
-        } else {
-            for (const key in baseHelper) {
-                if (Object.prototype.hasOwnProperty.call(baseHelper, key)) {
-                    baseHelper[key]?._setInnerName?.(`${_perfix}${baseHelper[key].value}`);
-                    baseHelper[key]?.setPerfix?.(this.perfix);
-                }
+        }
+        for (const key in baseHelper) {
+            if (Object.prototype.hasOwnProperty.call(baseHelper, key) && !valueKeysMap[key]) {
+                baseHelper[key]?._setInnerName?.(`${_perfix}${baseHelper[key].value}`);
+                baseHelper[key]?.setPerfix?.(this.perfix);
             }
         }
         return baseHelper;
