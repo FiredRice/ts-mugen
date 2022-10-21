@@ -1,6 +1,6 @@
-import { Attributes, AttrValue, BaseAttributes, BaseValue, ConstData, ConstMovement, ConstSize, ConstVelocity, Helper, MoveType, Name, StateType } from '@tsmugen/core';
+import { Attributes, AttrValue, BaseAttributes, BaseValue, ConstData, ConstMovement, ConstSize, ConstVelocity, Helper, Name, StateType } from '@tsmugen/core';
 import { BaseTrigger } from '@tsmugen/core/lib/types/triggers/base';
-import { HitDefAttr, SysFVar, SysVar, TeamMode } from '@tsmugen/core/lib/types/triggers/model';
+import { HitDefAttr, MoveType, SysFVar, SysVar, TeamMode } from '@tsmugen/core/lib/types/triggers/model';
 
 type InfoParams = 'info.name' | 'info.displayname' | 'info.authorname';
 declare global {

@@ -1,6 +1,6 @@
 {
 	"name": "@tsmugen/global",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "ts-mugen 全局注入",
 	"author": "破晓雪风",
 	"homepage": "https://github.com/FiredRice/ts-mugen/tree/master/packages/global",
