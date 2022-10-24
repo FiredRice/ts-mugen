@@ -1,7 +1,19 @@
 import ora from 'ora';
-import { download } from '../utils';
+import downloadGit from 'download-git-repo';
 import path from 'path';
 import fs from 'fs-extra';
+
+function download(repo: string, dest: string) {
+    return new Promise(function (resolve) {
+        downloadGit(repo, dest, function (error) {
+            if (error) {
+                resolve(error);
+            } else {
+                resolve(null);
+            }
+        });
+    });
+}
 
 // 添加加载动画
 async function wrapLoading(message: string, repo: string, dest: string) {
@@ -9,13 +21,13 @@ async function wrapLoading(message: string, repo: string, dest: string) {
     const spinner = ora(message);
     // 开始加载动画
     spinner.start();
-    const { data, error } = await download(repo, dest);
+    const error = await download(repo, dest);
     if (error) {
         spinner.fail('Request failed, refetch ...');
-        console.log(error);
+        return error;
     } else {
         spinner.succeed('Request succeed !!!');
-        return data;
+        return null;
     }
 }
 
@@ -43,13 +55,17 @@ export default class Generator {
 
     // 核心创建逻辑
     public async create() {
-        await wrapLoading(
+        const error = await wrapLoading(
             'waiting download template\n', // 加载提示信息,
-            'gitee:poxiaoxuefeng/tsmugen-templete',
+            'github:FiredRice/tsmugen-templete',
             this.targetDir
         );
-        this.replaceConfig();
-        console.log(`\r\nSuccessfully created project ${this.name}`);
-        console.log(`\r\ncd ${this.name} && (npm install || yarn)`);
+        if (!error) {
+            this.replaceConfig();
+            console.log(`\r\nSuccessfully created project ${this.name}`);
+            console.log(`\r\ncd ${this.name} && (npm install || yarn)`);
+        } else {
+            console.log(error);
+        }
     }
 }
