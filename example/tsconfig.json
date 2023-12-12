@@ -4,6 +4,12 @@
 		"rootDir": "src"
 	},
 	"exclude": ["node_modules/typescript/lib/lib.dom.d.ts"],
+	"ts-node": {
+		"transpileOnly": true,
+		"require": [
+			"tsconfig-paths/register"
+		]
+	},
 	"references": [
 		{
 			"path": "../packages/cli"

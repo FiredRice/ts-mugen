@@ -16,7 +16,6 @@
 		"useDefineForClassFields": false,
 		"emitDecoratorMetadata": true,
 		"forceConsistentCasingInFileNames": true,
-		"suppressImplicitAnyIndexErrors": true,
 		"noImplicitAny": false,
 		"noImplicitThis": false,
 	},
