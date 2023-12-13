@@ -63,6 +63,7 @@ const state2 = () => {
                 enemynear.singleGlassesEnemynear.AILevel,
                 enemynear.singleGlassesEnemynear.initVelY
             ),
+            5: `${time} * ${singleGlasses.velX} = 100`
         }),
         value: 0,
         ctrl: 1

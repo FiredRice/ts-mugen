@@ -12,7 +12,6 @@
 		"url": "https://github.com/FiredRice/ts-mugen"
 	},
 	"scripts": {
-		"reset": "ts-node bin/init.ts",
 		"link": "lerna link",
 		"install": "lerna bootstrap",
 		"clean": "lerna clean",

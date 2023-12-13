@@ -1,6 +1,6 @@
 {
 	"name": "@tsmugen/core",
-	"version": "3.0.1",
+	"version": "3.1.0",
 	"description": "ts-mugen运行的核心模块",
 	"author": "破晓雪风",
 	"homepage": "https://github.com/FiredRice/ts-mugen/tree/master/packages/core",
@@ -33,5 +33,8 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/FiredRice/ts-mugen/tree/master/packages/core"
+	},
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org/"
 	}
 }

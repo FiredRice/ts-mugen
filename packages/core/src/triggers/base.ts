@@ -58,6 +58,10 @@ export class BaseTrigger {
         return this._innerName;
     }
 
+    public toString() {
+        return this.value;
+    }
+
     /**
      * 加
      */

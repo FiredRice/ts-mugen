@@ -40,5 +40,8 @@
 		"cli",
 		"ts-mugen",
 		"mugen"
-	]
+	],
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org/"
+	}
 }
