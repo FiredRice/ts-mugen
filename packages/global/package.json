@@ -31,5 +31,8 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/FiredRice/ts-mugen/tree/master/packages/utils"
+	},
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org/"
 	}
 }
